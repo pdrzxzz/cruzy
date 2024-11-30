@@ -1,5 +1,11 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 Cruzy
+  p Welcome to our website
+  p 
+    b Select the game mode: 
+  form(action="/single" method="GET" class="validated-form" novalidate)
+    button SinglePlayer
+  form(action="/multi" method="GET" class="validated-form" novalidate)
+    button Multiplayer

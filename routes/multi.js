@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-/* GET users listing. */
+/* GET single-player page. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  res.render('multi');
 });
 
 module.exports = router;
