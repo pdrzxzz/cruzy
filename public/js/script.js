@@ -70,9 +70,9 @@ const gridSize = 50;
 // Função para exibir o tabuleiro
 function displayBoard(board, placedWords, ctx) {
   let wordCount = 1;
-  board.forEach((row, y) => {
+  board.forEach((row, y) => { //ITERATES OVER MATRIX
     row.forEach((char, x) => {
-      if (char != ' ') {
+      if (char != ' ') { //IF CHARACTER
         for (let word of placedWords) {
           if (word.x === x && word.y === y) { //if first letter of the word
             ctx.font = "16px serif";
@@ -102,7 +102,6 @@ function appendClues(placedWords, ul) {
   });
 }
 
-
 // Chama a função para gerar o tabuleiro de palavras cruzadas
 const { board, placedWords } = createCrossword(itens);
 
@@ -118,6 +117,8 @@ const ctx = gameCanvas.getContext("2d") //Canvas context
 const gameClues = document.querySelector('#game-clues')
 displayBoard(board, placedWords, ctx);
 appendClues(placedWords, gameClues); //exibe as dicas de acordo com as palavras colocadas
+
+//Debugging
 console.log(board)
 console.log(placedWords)
 
