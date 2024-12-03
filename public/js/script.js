@@ -28,7 +28,11 @@ const itensMatrix = {
   ]
 };
 
-const itens = itensMatrix[theme]
+let itens = itensMatrix['quimica']
+if (Object.keys(itensMatrix).includes(theme)) {
+  itens = itensMatrix[theme]
+}
+// console.log(itens + ' = ' + Object.keys(itensMatrix).includes(theme) + ' ? ' + itensMatrix[theme] + ' : ' + itensMatrix[0])
 
 // Função para criar o tabuleiro de palavras cruzadas
 function createCrossword(itens) {
