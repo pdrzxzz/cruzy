@@ -1,16 +1,34 @@
 // Lista de palavras e pistas sobre anatomia
-const itens = [
-  { word: 'coração', clue: 'Órgão responsável por bombear sangue pelo corpo' },
-  { word: 'fêmur', clue: 'Osso da coxa' },
-  { word: 'cérebro', clue: 'Órgão responsável pelas funções mentais' },
-  { word: 'artéria', clue: 'Vaso sanguíneo que leva o sangue do coração' },
-  { word: 'veia', clue: 'Vaso sanguíneo que leva o sangue de volta ao coração' },
-  { word: 'pulmão', clue: 'Órgão responsável pela troca gasosa no corpo' },
-  { word: 'rins', clue: 'Órgãos responsáveis pela filtragem do sangue' },
-  { word: 'ossos', clue: 'Estruturas que formam o esqueleto' },
-  { word: 'músculos', clue: 'Tecidos que permitem o movimento do corpo' },
-  { word: 'nervos', clue: 'Estruturas que transmitem sinais do cérebro para o corpo' },
-];
+const theme = document.querySelector('#theme').textContent
+
+const itensMatrix = {
+  biologia: [
+    { word: 'coração', clue: 'Órgão responsável por bombear sangue pelo corpo' },
+    { word: 'fêmur', clue: 'Osso da coxa' },
+    { word: 'cérebro', clue: 'Órgão responsável pelas funções mentais' },
+    { word: 'artéria', clue: 'Vaso sanguíneo que leva o sangue do coração' },
+    { word: 'veia', clue: 'Vaso sanguíneo que leva o sangue de volta ao coração' },
+    { word: 'pulmão', clue: 'Órgão responsável pela troca gasosa no corpo' },
+    { word: 'rins', clue: 'Órgãos responsáveis pela filtragem do sangue' },
+    { word: 'ossos', clue: 'Estruturas que formam o esqueleto' },
+    { word: 'músculos', clue: 'Tecidos que permitem o movimento do corpo' },
+    { word: 'nervos', clue: 'Estruturas que transmitem sinais do cérebro para o corpo' },
+  ],
+  quimica: [
+    { word: 'hidrogênio', clue: 'Elemento químico mais abundante no universo, com símbolo H' },
+    { word: 'oxigênio', clue: 'Elemento essencial para a respiração dos seres vivos, com símbolo O' },
+    { word: 'carbono', clue: 'Elemento central na química orgânica, com símbolo C' },
+    { word: 'sódio', clue: 'Elemento altamente reativo, encontrado em sal, com símbolo Na' },
+    { word: 'cloro', clue: 'Elemento químico utilizado em desinfetantes e com símbolo Cl' },
+    { word: 'potássio', clue: 'Elemento químico que atua no equilíbrio dos fluidos corporais, com símbolo K' },
+    { word: 'ferro', clue: 'Metal usado na fabricação de aço, com símbolo Fe' },
+    { word: 'ouro', clue: 'Metal precioso de cor amarela, com símbolo Au' },
+    { word: 'álcool', clue: 'Composto orgânico que contém um grupo hidroxila (-OH)' },
+    { word: 'nitrogênio', clue: 'Elemento que compõe 78% da atmosfera terrestre, com símbolo N' },
+  ]
+};
+
+const itens = itensMatrix[theme]
 
 // Função para criar o tabuleiro de palavras cruzadas
 function createCrossword(itens) {
@@ -68,29 +86,73 @@ function createCrossword(itens) {
 
 const gridSize = 50;
 // Função para exibir o tabuleiro
-function displayBoard(board, placedWords, ctx) {
+function displayBoard(board, placedWords, canvas) {
   let wordCount = 1;
-  board.forEach((row, y) => { //ITERATES OVER MATRIX
+
+  board.forEach((row, y) => {  // Itera sobre a matriz
     row.forEach((char, x) => {
-      if (char != ' ') { //IF CHARACTER
+      if (char !== ' ') {  // Se for um caractere
         for (let word of placedWords) {
-          if (word.x === x && word.y === y) { //if first letter of the word
-            ctx.font = "16px serif";
-            ctx.fillStyle = "rgb(255 0 0)"; //red
-            ctx.fillText(wordCount++, gridSize * y + 5, gridSize * (x + 1) - 35); //NOT THE BEST DESIGN APPROACH
+          if (word.x === x && word.y === y) {  // Se for a primeira letra da palavra
+            const wordLabel = new fabric.Text(wordCount.toString(), {
+              left: gridSize * y + 5,
+              top: gridSize * x,
+              fontSize: 16,
+              fill: 'red',
+            });
+            canvas.add(wordLabel);  // Adiciona o número da palavra ao canvas
+            wordCount++;
           }
         }
-        ctx.font = "36px serif";
-        ctx.fillStyle = "rgb(0 0 0)"; //black
-        ctx.strokeRect(gridSize * y, gridSize * x, gridSize, gridSize)
-        ctx.fillText(char, gridSize * y + 15, gridSize * (x + 1) - 10); //NOT THE BEST DESIGN APPROACH
+
+
+        // Desenha o contorno da célula
+        const rect = new fabric.Rect({
+          left: gridSize * y,
+          top: gridSize * x,
+          width: gridSize,
+          height: gridSize,
+          stroke: 'black',
+          fill: 'transparent',
+          strokeWidth: 2,
+          lockMovementX: true,
+          lockMovementY: true,
+          hasControls: false,
+          evented: true,
+          selectable: false,
+        });
+        canvas.add(rect);  // Adiciona o contorno ao canvas
+
+        // Desenha o caractere
+        const TextBox = new fabric.Textbox(char, {
+          left: gridSize * y + 15,
+          top: gridSize * x,
+          width: gridSize - 30,
+          height: gridSize - 20,
+          fontSize: 36,
+          fill: 'black',
+          editable: true,
+          hasControls: false,
+          backgroundColor: 'transparent', // Cor de fundo transparente
+        });
+        canvas.add(TextBox);  // Adiciona o caractere ao canvas
+      } else {  // Se for um espaço em branco
+        const rect = new fabric.Rect({ // Adiciona o espaço branco ao canvas
+          left: gridSize * y,
+          top: gridSize * x,
+          width: gridSize,
+          height: gridSize,
+          fill: 'white',
+          lockMovementX: true,
+          lockMovementY: true,
+          hasControls: false,
+          selectable: false
+        });
+        canvas.add(rect);  // Adiciona o retângulo branco ao canvas
+        // Adicionar um event listener ao canvas
       }
-      else { //Whitespace
-        ctx.fillStyle = "rgb(255 255 255)"; //white
-        ctx.fillRect(gridSize * y, gridSize * x, gridSize, gridSize)
-      }
-    })
-  })
+    });
+  });
 }
 
 // Função para exibir as pistas
@@ -107,21 +169,18 @@ const { board, placedWords } = createCrossword(itens);
 
 const container = document.querySelector('#game-container')
 container.innerHTML = `
-<canvas width="${gridSize * 10}" height="${gridSize * 10}" id="game-board">The game is loading or can't load on your browser.</canvas>
+<canvas width="${gridSize * 10 + 5}" height="${gridSize * 10 + 5}" id="game-board">The game is loading or can't load on your browser.</canvas>
 <p>Game Clues<p>
 <ol id="game-clues"></ol>
 `
-const gameCanvas = document.querySelector('#game-board')
-const ctx = gameCanvas.getContext("2d") //Canvas context 
+const canvas = new fabric.Canvas(document.querySelector('#game-board'));
+console.log(canvas)
+canvas.hoverCursor = 'default'
 
 const gameClues = document.querySelector('#game-clues')
-displayBoard(board, placedWords, ctx);
+displayBoard(board, placedWords, canvas);
 appendClues(placedWords, gameClues); //exibe as dicas de acordo com as palavras colocadas
 
 //Debugging
 console.log(board)
 console.log(placedWords)
-
-gameCanvas.addEventListener('click', (event) => {
-  console.log(event)
-})

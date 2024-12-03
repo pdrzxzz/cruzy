@@ -17,9 +17,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug'); //https://pugjs.org/api/getting-started.html
 app.use(methodOverride('_method'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(session({
   secret: 'secret',
@@ -28,6 +27,16 @@ app.use(session({
   cookie: { secure: false } // Use "false" para ambientes de desenvolvimento sem HTTPS
 }));
 app.use(flash());
+
+app.use((req, res, next) => {
+  console.log('Middleware Debug: ', {
+    method: req.method,
+    url: req.url,
+    body: req.body,
+  });
+  next();
+});
+
 
 app.use((req, res, next) => {
   res.locals.success = req.flash('success');

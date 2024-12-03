@@ -8,7 +8,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   req.flash('success', 'New room created!');
-  res.redirect('/play');
+  res.redirect('/play' + `?theme=${req.body.theme}`);
 });
 
 router.get('/new', (req, res, next) => {
