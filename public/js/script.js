@@ -25,7 +25,18 @@ const itensMatrix = {
     { word: 'ouro', clue: 'Metal precioso de cor amarela, com símbolo Au' },
     { word: 'álcool', clue: 'Composto orgânico que contém um grupo hidroxila (-OH)' },
     { word: 'nitrogênio', clue: 'Elemento que compõe 78% da atmosfera terrestre, com símbolo N' },
-  ]
+    { word: 'cálcio', clue: 'Elemento importante para a formação dos ossos, com símbolo Ca' },
+    { word: 'fósforo', clue: 'Elemento essencial para a vida, presente no DNA, com símbolo P' },
+    // { word: 'enxofre', clue: 'Elemento químico com símbolo S, utilizado na fabricação de ácido sulfúrico' },
+    // { word: 'magnésio', clue: 'Elemento encontrado em clorofila, essencial para plantas, com símbolo Mg' },
+    // { word: 'prata', clue: 'Metal precioso usado em joias, com símbolo Ag' },
+    // { word: 'zinco', clue: 'Metal usado na galvanização, com símbolo Zn' },
+    // { word: 'mercúrio', clue: 'Metal líquido à temperatura ambiente, com símbolo Hg' },
+    // { word: 'urânio', clue: 'Elemento radioativo utilizado em energia nuclear, com símbolo U' },
+    // { word: 'silício', clue: 'Elemento fundamental na fabricação de chips eletrônicos, com símbolo Si' },
+    // { word: 'bromo', clue: 'Elemento químico líquido à temperatura ambiente, com símbolo Br' }
+]
+
 };
 
 let itens = itensMatrix['quimica']
