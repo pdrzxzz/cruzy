@@ -18,4 +18,5 @@ ou
 
 5.Abra o link *localhost:3000* no navegador   
 
-Documentação em produção.
+Documentação Oficial: https://docs.google.com/document/d/1JyKNSJcvwg3tDUKqbK3uDbGl7hSoqT--c2qsRwEY06o/edit?usp=drive_link
+
