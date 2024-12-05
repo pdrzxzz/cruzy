@@ -1,14 +1,14 @@
 
 class Game {
   // Função para criar o tabuleiro de palavras cruzadas
-  constructor(themeArray) {
-    this.size = 10;
+  constructor(themeArray, size) {
+    this.size = size; // para 20 palavras, size=15 funciona bem
     this.board = Array.from({ length: this.size }, () => Array(this.size).fill(' '));
     this.themeArray = themeArray;
     this.placedWords = [];
-    this.gridSize = 50;
+    this.gridSize = 40;
     this.createCrossword();
-    this.displayGame();
+    this.displayGame(size);
   }
 
   createCrossword() {
@@ -98,11 +98,11 @@ class Game {
 
           // Desenha o caractere
           const TextBox = new fabric.Textbox(char, {
-            left: this.gridSize * y + 15,
-            top: this.gridSize * x,
+            left: this.gridSize * y + 12,
+            top: this.gridSize * x + 5,
             width: this.gridSize - 30,
             height: this.gridSize - 20,
-            fontSize: 36,
+            fontSize: 35,
             fill: 'black',
             editable: true,
             hasControls: false,
@@ -136,12 +136,14 @@ class Game {
     });
   }
 
-  displayGame() {
+  displayGame(size) {
     const container = document.querySelector('#game-container')
     container.innerHTML = `
-        <canvas width="${this.gridSize * 10 + 5}" height="${this.gridSize * 10 + 5}" id="game-board">The game is loading or can't load on your browser.</canvas>
-        <p>Game Clues<p>
-        <ol id="game-clues"></ol>
+        <canvas width="${this.gridSize * size + 5}" height="${this.gridSize * size + 5}" id="game-board">The game is loading or can't load on your browser.</canvas>
+        <div id="clues-container">
+          <p>Game Clues<p>
+          <ol id="game-clues"></ol>
+        </div>
         `
     const canvas = new fabric.Canvas(document.querySelector('#game-board'));
     canvas.hoverCursor = 'default'
@@ -150,7 +152,7 @@ class Game {
   }
 }
 
-const game = new Game(themeArray)
+const game = new Game(themeArray, 20) // para 30 palavras, size=20 é suficiente
 
 //Debugging
 console.log('themeArray: ', game.themeArray)

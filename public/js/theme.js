@@ -27,20 +27,38 @@ const itensMatrix = {
     { word: 'nitrogênio', clue: 'Elemento que compõe 78% da atmosfera terrestre, com símbolo N' },
     { word: 'cálcio', clue: 'Elemento importante para a formação dos ossos, com símbolo Ca' },
     { word: 'fósforo', clue: 'Elemento essencial para a vida, presente no DNA, com símbolo P' },
-    // { word: 'enxofre', clue: 'Elemento químico com símbolo S, utilizado na fabricação de ácido sulfúrico' },
-    // { word: 'magnésio', clue: 'Elemento encontrado em clorofila, essencial para plantas, com símbolo Mg' },
-    // { word: 'prata', clue: 'Metal precioso usado em joias, com símbolo Ag' },
-    // { word: 'zinco', clue: 'Metal usado na galvanização, com símbolo Zn' },
-    // { word: 'mercúrio', clue: 'Metal líquido à temperatura ambiente, com símbolo Hg' },
-    // { word: 'urânio', clue: 'Elemento radioativo utilizado em energia nuclear, com símbolo U' },
-    // { word: 'silício', clue: 'Elemento fundamental na fabricação de chips eletrônicos, com símbolo Si' },
-    // { word: 'bromo', clue: 'Elemento químico líquido à temperatura ambiente, com símbolo Br' }
+    { word: 'enxofre', clue: 'Elemento químico com símbolo S, utilizado na fabricação de ácido sulfúrico' },
+    { word: 'magnésio', clue: 'Elemento encontrado em clorofila, essencial para plantas, com símbolo Mg' },
+    { word: 'prata', clue: 'Metal precioso usado em joias, com símbolo Ag' },
+    { word: 'zinco', clue: 'Metal usado na galvanização, com símbolo Zn' },
+    { word: 'mercúrio', clue: 'Metal líquido à temperatura ambiente, com símbolo Hg' },
+    { word: 'urânio', clue: 'Elemento radioativo utilizado em energia nuclear, com símbolo U' },
+    { word: 'silício', clue: 'Elemento fundamental na fabricação de chips eletrônicos, com símbolo Si' },
+    { word: 'bromo', clue: 'Elemento químico líquido à temperatura ambiente, com símbolo Br' },
+    { word: 'cobre', clue: 'Metal utilizado em fiação elétrica, com símbolo Cu' },
+    { word: 'alumínio', clue: 'Metal leve, utilizado em utensílios domésticos, com símbolo Al' },
+    { word: 'lítio', clue: 'Elemento utilizado em baterias recarregáveis, com símbolo Li' },
+    { word: 'iodo', clue: 'Elemento utilizado em soluções antissépticas, com símbolo I' },
+    { word: 'flúor', clue: 'Elemento utilizado em pasta de dente e com símbolo F' },
+    { word: 'tálio', clue: 'Elemento tóxico utilizado em circuitos eletrônicos, com símbolo Tl' },
+    { word: 'radônio', clue: 'Elemento radioativo, com símbolo Rn, encontrado em rochas' },
+    { word: 'platina', clue: 'Metal precioso, com símbolo Pt, usado em joias e catalisadores' },
+    { word: 'cromo', clue: 'Metal utilizado em ligas e como revestimento, com símbolo Cr' },
+    { word: 'nióbio', clue: 'Elemento metálico utilizado em supercondutores, com símbolo Nb' },
+    { word: 'tungstênio', clue: 'Elemento com ponto de fusão muito alto, utilizado em lâmpadas, com símbolo W' }
 ]
+
 
 };
 
 let themeArray = itensMatrix['quimica']
 if (Object.keys(itensMatrix).includes(theme)) {
     themeArray = itensMatrix[theme]
+}
+
+if (theme == 'biologia'){
+  size = 15;
+} else if(theme == 'quimica'){
+  size = 20;
 }
 // console.log(itens + ' = ' + Object.keys(itensMatrix).includes(theme) + ' ? ' + itensMatrix[theme] + ' : ' + itensMatrix[0])
