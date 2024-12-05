@@ -15,5 +15,4 @@ router.get('/new', (req, res, next) => {
   res.render('single/new')
 })
 
-
 module.exports = router;
