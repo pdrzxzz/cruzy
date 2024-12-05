@@ -8,16 +8,7 @@ html(lang='pt-br')
     script(crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz")
   body
-    if success
-      each message in success
-        div(role="alert").alert.alert-success.alert-dismissible.fade.show
-          p= message
-          button(type="button" data-bs-dismiss="alert" aria-label="Close").btn-close
-
-    if error
-      each message in error 
-        div(role="alert").alert.alert-danger.alert-dismissible.fade.show
-          p= message
-          button(type="button" data-bs-dismiss="alert" aria-label="Close").btn-close
+    include ../partials/navbar
+    include ../partials/flash
 
     block content

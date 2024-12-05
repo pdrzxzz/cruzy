@@ -1,0 +1,11 @@
+if success
+      each message in success
+        div(role="alert").alert.alert-success.alert-dismissible.fade.show
+          p= message
+          button(type="button" data-bs-dismiss="alert" aria-label="Close").btn-close
+
+if error
+    each message in error 
+        div(role="alert").alert.alert-danger.alert-dismissible.fade.show
+          p= message
+          button(type="button" data-bs-dismiss="alert" aria-label="Close").btn-close
