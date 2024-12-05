@@ -55,10 +55,4 @@ let themeArray = itensMatrix['quimica']
 if (Object.keys(itensMatrix).includes(theme)) {
     themeArray = itensMatrix[theme]
 }
-
-if (theme == 'biologia'){
-  size = 15;
-} else if(theme == 'quimica'){
-  size = 20;
-}
 // console.log(itens + ' = ' + Object.keys(itensMatrix).includes(theme) + ' ? ' + itensMatrix[theme] + ' : ' + itensMatrix[0])
