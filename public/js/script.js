@@ -79,70 +79,108 @@ class Game {
     return true;
   }
 
-  displayBoard(canvas) {
-    let wordCount = 1;
+displayBoard(canvas) {
+  let wordCount = 1;
 
-    this.board.forEach((row, y) => {
-      row.forEach((char, x) => {
-        if (char !== ' ') {
-          for (let word of this.placedWords) {
-            if (word.x === x && word.y === y) {
-              const wordLabel = new fabric.Text(wordCount.toString(), {
-                left: this.gridSize * y + 5,
-                top: this.gridSize * x,
-                fontSize: this.gridSize / 3,
-                fill: 'red',
-              });
-              canvas.add(wordLabel);
-              wordCount++;
-            }
-          }
-
-          const rect = new fabric.Rect({
-            left: this.gridSize * y,
-            top: this.gridSize * x,
-            width: this.gridSize,
-            height: this.gridSize,
-            stroke: 'black',
-            fill: 'transparent',
-            strokeWidth: 2,
-            lockMovementX: true,
-            lockMovementY: true,
-            hasControls: false,
-            evented: true,
-            selectable: false,
-          });
-          canvas.add(rect);
-
-          const TextBox = new fabric.Textbox(char, {
-            left: this.gridSize * y + 15,
-            top: this.gridSize * x,
-            width: this.gridSize - 30,
-            height: this.gridSize - 20,
-            fontSize: this.gridSize / 1.5,
-            fill: 'black',
-            editable: true,
-            hasControls: false,
-            backgroundColor: 'transparent',
-          });
-          canvas.add(TextBox);
-        } else {
-          const rect = new fabric.Rect({
-            left: this.gridSize * y,
-            top: this.gridSize * x,
-            width: this.gridSize,
-            height: this.gridSize,
-            fill: 'white',
-            lockMovementX: true,
-            lockMovementY: true,
-            hasControls: false,
-            selectable: false
-          });
-          canvas.add(rect);
-        }
-      });
+  // Função para criar uma célula de palavras cruzadas
+  const createCrosswordCell = (canvas, x, y, char, groupName) => {
+    const rect = new fabric.Rect({
+      left: this.gridSize * y,
+      top: this.gridSize * x,
+      width: this.gridSize,
+      height: this.gridSize,
+      stroke: 'black',
+      fill: 'transparent',
+      strokeWidth: 2,
+      lockMovementX: true,
+      lockMovementY: true,
+      hasControls: false,
+      selectable: false,
     });
-  }
+
+    const textBox = new fabric.Textbox(char, {
+      left: this.gridSize * y + 15,
+      top: this.gridSize * x,
+      width: this.gridSize - 30,
+      height: this.gridSize - 20,
+      fontSize: this.gridSize / 1.5,
+      fill: 'black',
+      editable: false, // Inicialmente desativado
+      hasControls: false,
+      backgroundColor: 'transparent',
+    });
+
+    // Agrupar os elementos relacionados à célula
+    const group = new fabric.Group([rect, textBox], {
+      left: this.gridSize * y,
+      top: this.gridSize * x,
+      lockMovementX: true,
+      lockMovementY: true,
+      hasControls: false,
+      selectable: true,
+      evented: true,
+      groupName, // Nome para identificar grupos relacionados
+    });
+
+    // Adicionar evento de clique no grupo
+    group.on('mousedown', function () {
+      // Destacar o retângulo
+      rect.set('fill', 'lightblue');
+      canvas.renderAll();
+
+      // Ativar edição do `Textbox`
+      textBox.set('editable', true);
+      canvas.setActiveObject(textBox);
+      textBox.enterEditing();
+
+      // Selecionar todo o texto automaticamente
+      setTimeout(() => {
+        textBox.selectAll();
+        canvas.renderAll();
+      }, 0);
+    });
+
+    // Atualizar canvas em tempo real ao digitar
+    textBox.on('changed', function () {
+      canvas.renderAll(); // Atualizar o texto no canvas imediatamente
+    });
+
+    // Remover destaque ao sair da edição
+    textBox.on('editing:exited', function () {
+      rect.set('fill', 'transparent');
+      textBox.set('editable', false);
+      canvas.renderAll();
+    });
+
+    canvas.add(group);
+  };
+
+  // Renderizar o tabuleiro
+  this.board.forEach((row, y) => {
+    row.forEach((char, x) => {
+      if (char !== ' ') {
+        // Adicionar números de palavras, se aplicável
+        for (let word of this.placedWords) {
+          if (word.x === x && word.y === y) {
+            const wordLabel = new fabric.Text(wordCount.toString(), {
+              left: this.gridSize * y + 5,
+              top: this.gridSize * x,
+              fontSize: this.gridSize / 3,
+              fill: 'red',
+            });
+            canvas.add(wordLabel);
+            wordCount++;
+          }
+        }
+
+        // Criar a célula de palavras cruzadas
+        createCrosswordCell(canvas, x, y, char, `group-${x}-${y}`);
+      }
+    });
+  });
+}
+ 
+  
 
   displayClues(ol) {
     this.placedWords.forEach(entry => {
@@ -156,8 +194,10 @@ class Game {
     const container = document.querySelector('#game-container');
     container.innerHTML = `
       <canvas width="${this.canvasSize}" height="${this.canvasSize}" id="game-board">The game is loading or can't load on your browser.</canvas>
-      <p>Game Clues<p>
-      <ol id="game-clues"></ol>
+      <div>
+        <p>Game Clues<p>
+        <ol id="game-clues"></ol>
+      </div>
     `;
     this.canvas = new fabric.Canvas(document.querySelector('#game-board'));
     this.canvas.hoverCursor = 'default';
