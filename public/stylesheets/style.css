@@ -20,5 +20,5 @@ a {
 #game-container {
   display: flex;
   flex-direction: row;
-  gap: 5em;
+  flex-wrap: wrap;
 }
