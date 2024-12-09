@@ -1,18 +1,8 @@
 displayGame = (game) => {
+    function displayBoard() {
 
-    function displayClues(ol) {
-        game.placedWords.forEach(entry => {
-            const newLi = document.createElement('li');
-            newLi.innerHTML = `${entry.clue} (${entry.direction}) - Posição: (${entry.row}, ${entry.column})`;
-            ol.append(newLi);
-        });
-    }
-
-    function displayBoard(canvas) {
-        let wordCount = 1;
-    
         // Função para criar uma célula de palavras cruzadas
-        const createCrosswordCell = (canvas, row, column, char, groupName) => {
+        const createCrosswordCell = (row, column, char, groupName) => {
             const rect = new fabric.Rect({
                 left: game.gridSize * column,
                 top: game.gridSize * row,
@@ -26,7 +16,7 @@ displayGame = (game) => {
                 hasControls: false,
                 selectable: false,
             });
-    
+
             const textBox = new fabric.Textbox(char, {
                 left: game.gridSize * column + 15,
                 top: game.gridSize * row,
@@ -38,7 +28,7 @@ displayGame = (game) => {
                 hasControls: false,
                 backgroundColor: 'transparent',
             });
-    
+
             // Agrupar os elementos relacionados à célula
             const group = new fabric.Group([rect, textBox], {
                 left: game.gridSize * column,
@@ -50,62 +40,74 @@ displayGame = (game) => {
                 evented: true,
                 groupName, // Nome para identificar grupos relacionados
             });
-    
+
             // Adicionar evento de clique no grupo
             group.on('mousedown', function () {
                 // Destacar o retângulo
                 rect.set('fill', 'lightblue');
-                canvas.renderAll();
-    
+                game.canvas.renderAll();
+
                 // Ativar edição do `Textbox`
                 textBox.set('editable', true);
-                canvas.setActiveObject(textBox);
+                game.canvas.setActiveObject(textBox);
                 textBox.enterEditing();
-    
+
                 // Selecionar todo o texto automaticamente
                 setTimeout(() => {
                     textBox.selectAll();
-                    canvas.renderAll();
+                    game.canvas.renderAll();
                 }, 0);
             });
-    
+
             // Atualizar canvas em tempo real ao digitar
             textBox.on('changed', function () {
-                canvas.renderAll(); // Atualizar o texto no canvas imediatamente
+                game.canvas.renderAll(); // Atualizar o texto no canvas imediatamente
             });
-    
+
             // Remover destaque ao sair da edição
             textBox.on('editing:exited', function () {
                 rect.set('fill', 'transparent');
                 textBox.set('editable', false);
-                canvas.renderAll();
+                game.canvas.renderAll();
             });
-    
-            canvas.add(group);
+
+            game.canvas.add(group);
         };
-    
+
+        const createWordLabel = (row, column, word) => {
+            const wordText = String(game.placedWords.indexOf(word) + 1)
+            const wordLabel = new fabric.Text(wordText, {
+                left: game.gridSize * column + 5,
+                top: game.gridSize * row,
+                fontSize: game.gridSize / 3,
+                fill: 'red',
+            });
+            game.canvas.add(wordLabel);
+        }
+
         // Renderizar o tabuleiro
         game.board.forEach((row, rowIndex) => {
             row.forEach((char, colIndex) => {
                 if (char !== ' ') {
-                    // Adicionar números de palavras, se aplicável
+                    // Criar a célula do caractere
+                    createCrosswordCell(rowIndex, colIndex, char, `group-${rowIndex}-${colIndex}`);
+
+                    // Adiciona word label, se for o primeiro caractere da palavra
                     for (let word of game.placedWords) {
                         if (word.row === rowIndex && word.column === colIndex) {
-                            const wordLabel = new fabric.Text(String(game.placedWords.indexOf(word) + 1), {
-                                left: game.gridSize * colIndex + 5,
-                                top: game.gridSize * rowIndex,
-                                fontSize: game.gridSize / 3,
-                                fill: 'red',
-                            });
-                            canvas.add(wordLabel);
-                            wordCount++;
+                            createWordLabel(rowIndex, colIndex, word);
                         }
                     }
-    
-                    // Criar a célula de palavras cruzadas
-                    createCrosswordCell(canvas, rowIndex, colIndex, char, `group-${rowIndex}-${colIndex}`);
                 }
             });
+        });
+    }
+
+    function displayClues(ol) {
+        game.placedWords.forEach(entry => {
+            const newLi = document.createElement('li');
+            newLi.innerHTML = `${entry.clue} (${entry.direction}) - Posição: (${entry.row}, ${entry.column})`;
+            ol.append(newLi);
         });
     }
 
@@ -119,6 +121,6 @@ displayGame = (game) => {
     `;
     game.canvas = new fabric.Canvas(document.querySelector('#game-board'));
     game.canvas.hoverCursor = 'default';
-    displayBoard(game.canvas);
+    displayBoard();
     displayClues(document.querySelector('#game-clues'));
 }
