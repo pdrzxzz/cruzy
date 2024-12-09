@@ -46,33 +46,26 @@ displayGame = (game) => {
                 groupName, // Nome para identificar grupos relacionados
             });
 
-            // Adicionar evento de clique no grupo
+            //CLICOU
             group.on('mousedown', function () {
-                // Destacar o retângulo
                 rect.set('fill', 'lightblue');
-                game.canvas.renderAll();
 
-                // Ativar edição do `Textbox`
                 textBox.set('editable', true);
-                game.canvas.setActiveObject(textBox);
                 textBox.enterEditing();
+                textBox.selectAll();
 
-                // Selecionar todo o texto automaticamente
-                setTimeout(() => {
-                    textBox.selectAll();
-                    game.canvas.renderAll();
-                }, 0);
+                game.canvas.renderAll();
             });
 
-            // Atualizar canvas em tempo real ao digitar
+            //DIGITOU
             textBox.on('changed', function () {
+                textBox.exitEditing();
                 game.canvas.renderAll(); // Atualizar o texto no canvas imediatamente
             });
 
-            // Remover destaque ao sair da edição
+            //SAIU
             textBox.on('editing:exited', function () {
                 rect.set('fill', 'transparent');
-                textBox.set('editable', false);
                 game.canvas.renderAll();
             });
 
