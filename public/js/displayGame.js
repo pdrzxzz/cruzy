@@ -27,6 +27,11 @@ displayGame = (game) => {
                 editable: false, // Inicialmente desativado
                 hasControls: false,
                 backgroundColor: 'transparent',
+                stroke: null,
+                hasBorders: false,
+                lockMovementX: true,
+                lockMovementY: true,
+                selectable: false
             });
 
             // Agrupar os elementos relacionados à célula
@@ -36,7 +41,7 @@ displayGame = (game) => {
                 lockMovementX: true,
                 lockMovementY: true,
                 hasControls: false,
-                selectable: true,
+                selectable: false,
                 evented: true,
                 groupName, // Nome para identificar grupos relacionados
             });
@@ -74,6 +79,11 @@ displayGame = (game) => {
                 top: game.gridSize * row,
                 fontSize: game.gridSize / 3,
                 fill: 'red',
+                editable: false,
+                hasControls: false,
+                lockMovementX: true,
+                lockMovementY: true,
+                selectable: false
             });
             game.canvas.add(wordLabel);
         }
