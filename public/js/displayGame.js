@@ -48,11 +48,16 @@ displayGame = (game) => {
 
             //CLICOU
             group.on('mousedown', function () {
+                if (game.activeCell) {
+                    return; // Impede a edição de outra célula enquanto há uma ativa
+                }
+        
                 rect.set('fill', 'lightblue');
 
                 textBox.set('editable', true);
                 textBox.enterEditing();
                 textBox.selectAll();
+                game.activeCell = group; // Define a célula ativa
 
                 game.canvas.renderAll();
             });
@@ -66,6 +71,8 @@ displayGame = (game) => {
             //SAIU
             textBox.on('editing:exited', function () {
                 rect.set('fill', 'transparent');
+                textBox.set('editable', false);
+                game.activeCell = null; // Libera a célula ativa
                 game.canvas.renderAll();
             });
 
