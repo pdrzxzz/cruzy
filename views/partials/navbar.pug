@@ -1,7 +1,11 @@
-ul.nav
-  li.nav-item
-    a.nav-link(href="/" class='disabled') Navbar -->
-  li.nav-item
-    a.nav-link(href="/") Home
-  li.nav-item
-    a.nav-link.active(href="/single/new") Create New Room
+div#nav-container
+  h1 Cruzy
+  ul.nav
+    li.nav-item
+      a.nav-link(href="/" class='disabled') Navbar -->
+    li.nav-item
+      a.nav-link(href="/") Home
+    li.nav-item
+      a.nav-link.active(href="/single/new") Create New Room
+  p(id="theme")= data.theme
+  p Game Board:
