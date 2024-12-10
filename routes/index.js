@@ -7,8 +7,8 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/play', function (req, res, next) {
-  res.locals.theme = req.query.theme
-  res.render('play');
+  let { data } = req.session;
+  res.render('play', { data });
 });
 
 module.exports = router;

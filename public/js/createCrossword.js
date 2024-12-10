@@ -78,8 +78,6 @@ createCrossword = (game) => {
         
     }
 
-
-
     function placeWord(word, row, column, direction) {
         for (let i = 0; i < word.length; i++) {
             if (direction === 'horizontal') {

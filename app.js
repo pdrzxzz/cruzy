@@ -26,7 +26,10 @@ app.config = function () {
     secret: 'secret', //this string is meant to be a secret key, that codifies our cookies
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false } // Use "false" para ambientes de desenvolvimento sem HTTPS
+    cookie: {
+      secure: false, // Use "false" para ambientes de desenvolvimento sem HTTPS
+      maxAge: 24 * 60 * 60 * 1000 // 1 dia
+    }
   }));
   this.use(flash()); //active flash messages
 
@@ -37,6 +40,7 @@ app.config = function () {
       method: req.method,
       url: req.url,
       body: req.body,
+      reqsessiondata: req.session.data
     });
     next();
   });
