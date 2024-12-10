@@ -46,10 +46,72 @@ const itensMatrix = {
     { word: 'cromo', clue: 'Metal utilizado em ligas e como revestimento, com símbolo Cr' },
     { word: 'nióbio', clue: 'Elemento metálico utilizado em supercondutores, com símbolo Nb' },
     { word: 'tungstênio', clue: 'Elemento com ponto de fusão muito alto, utilizado em lâmpadas, com símbolo W' }
-]
-
-
+  ],
+  fisica: [
+    { word: 'gravidade', clue: 'Força que atrai objetos para o centro da Terra' },
+    { word: 'energia', clue: 'Capacidade de realizar trabalho ou causar mudanças' },
+    { word: 'velocidade', clue: 'Taxa de variação da posição de um objeto' },
+    { word: 'força', clue: 'Interação que altera o movimento de um objeto' },
+    { word: 'massa', clue: 'Quantidade de matéria em um objeto' },
+    { word: 'impulso', clue: 'Produto da força aplicada por um intervalo de tempo' },
+    { word: 'aceleração', clue: 'Taxa de variação da velocidade de um objeto' },
+    { word: 'trabalho', clue: 'Energia transferida a um objeto quando uma força é aplicada sobre ele' },
+    { word: 'potência', clue: 'Taxa de realização de trabalho ou transferência de energia' },
+    { word: 'eletricidade', clue: 'Fluxo de elétrons através de um condutor' },
+    { word: 'ondas', clue: 'Perturbações que se propagam em um meio ou no vácuo' },
+    { word: 'frequência', clue: 'Número de ciclos de uma onda que ocorrem em um segundo' },
+    { word: 'reflexão', clue: 'Mudança na direção de uma onda quando atinge uma superfície' },
+    { word: 'refratação', clue: 'Mudança na direção de uma onda ao passar de um meio para outro' },
+    { word: 'temperatura', clue: 'Medida da energia cinética média das partículas de uma substância' },
+    { word: 'luz', clue: 'Radiação eletromagnética visível ao olho humano' },
+    { word: 'pressão', clue: 'Força exercida por unidade de área' },
+  ],
+  matematica: [
+    { word: 'adição', clue: 'Operação matemática que soma dois números' },
+    { word: 'subtração', clue: 'Operação matemática que subtrai um número de outro' },
+    { word: 'multiplicação', clue: 'Operação matemática que multiplica dois números' },
+    { word: 'divisão', clue: 'Operação matemática que divide um número por outro' },
+    { word: 'fração', clue: 'Representação de uma parte de um todo' },
+    { word: 'porcentagem', clue: 'Parte de 100, usada para representar proporções' },
+    { word: 'raiz quadrada', clue: 'Número que, multiplicado por si mesmo, resulta em outro número' },
+    { word: 'equação', clue: 'Expressão matemática que contém uma igualdade' },
+    { word: 'polinômio', clue: 'Expressão algébrica formada por uma soma de termos' },
+    { word: 'função', clue: 'Relação entre duas variáveis em que a cada valor de uma corresponde um único valor da outra' },
+    { word: 'logaritmo', clue: 'Operação inversa à exponenciação' },
+    { word: 'matriz', clue: 'Arranjo retangular de números organizados em linhas e colunas' },
+    { word: 'vetor', clue: 'Objeto que possui direção, módulo e sentido' },
+    { word: 'ângulo', clue: 'Formado pela interseção de duas retas que se encontram em um ponto' },
+    { word: 'cálculo', clue: 'Ramo da matemática que lida com taxas de variação e acumulação' },
+    { word: 'geometria', clue: 'Estudo das propriedades das figuras e formas no espaço' },
+    { word: 'probabilidade', clue: 'Medida da chance de um evento ocorrer' },
+    { word: 'estatística', clue: 'Ramo da matemática que lida com a coleta e análise de dados' },
+    { word: 'sequência', clue: 'Coleção ordenada de números ou objetos' },
+    { word: 'teorema', clue: 'Proposição matemática demonstrada com base em axiomas ou outros teoremas' },
+    { word: 'derivada', clue: 'Taxa de variação de uma função em relação a uma de suas variáveis' }
+  ],
+  citologia: [
+    { word: 'célula', clue: 'Unidade básica da vida' },
+    { word: 'núcleo', clue: 'Organelo responsável pelo controle das atividades celulares' },
+    { word: 'mitocôndria', clue: 'Organelo responsável pela produção de energia na célula' },
+    { word: 'ribossomos', clue: 'Estruturas responsáveis pela síntese de proteínas' },
+    { word: 'lisossomos', clue: 'Organelos responsáveis pela digestão celular' },
+    { word: 'citoplasma', clue: 'Substância viscosa onde os organelos celulares estão imersos' },
+    { word: 'cloroplastos', clue: 'Organelos responsáveis pela fotossíntese nas células vegetais' },
+    { word: 'cromossomos', clue: 'Estruturas que contêm o material genético da célula' },
+    { word: 'citoesqueleto', clue: 'Rede de fibras que dá forma à célula' },
+    { word: 'vacúolos', clue: 'Organelos responsáveis pelo armazenamento de substâncias' },
+    { word: 'endossomos', clue: 'Vesículas responsáveis pelo transporte de substâncias dentro da célula' },
+    { word: 'peroxissomos', clue: 'Organelos envolvidos na desintoxicação celular' },
+    { word: 'centrossomos', clue: 'Estruturas que organizam os microtúbulos durante a divisão celular' },
+    { word: 'flagelos', clue: 'Estruturas que permitem a locomoção de algumas células' },
+    { word: 'ciliados', clue: 'Células que possuem cílios para locomoção' },
+    { word: 'apoptose', clue: 'Processo de morte celular programada' },
+    { word: 'interfase', clue: 'Fase do ciclo celular onde a célula se prepara para dividir' },
+    { word: 'mitose', clue: 'Divisão celular que gera duas células filhas idênticas' },
+    { word: 'meiose', clue: 'Divisão celular que resulta em células sexuais com metade do número de cromossomos' }
+  ]
 };
+
 
 let themeArray = itensMatrix['quimica']
 if (Object.keys(itensMatrix).includes(theme)) {

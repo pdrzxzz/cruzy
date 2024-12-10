@@ -13,7 +13,9 @@ router.post('/', (req, res, next) => {
 });
 
 router.get('/new', (req, res, next) => {
-  res.render('single/new')
+  const available_themes = ['quimica', 'biologia', 'fisica', 'citologia', 'matematica']
+  //available_themes depois será dinâmico
+  res.render('single/new', {available_themes})
 })
 
 module.exports = router;
