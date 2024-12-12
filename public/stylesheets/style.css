@@ -22,7 +22,7 @@ a {
   display: flex;
   flex-direction: row;
   gap: 30;
-  /*flex-wrap: wrap;*/  
+  flex-wrap: wrap;  
 }
 
 #nav-container {
