@@ -5,7 +5,12 @@ createCrossword = (game) => {
         Essa função retorna true, se pode colocar a palavra
         ou false, se não pode colocar a palavra
         */
-
+        for (let placedWord of game.placedWords) {
+            //palavras não podem ter intersecção na primeira letra (para não sobrepor wordLabels) <-- Ajuste provisório
+            if (word.row === placeWord.row && word.column === placedWord.column) {
+                return false;
+            }
+        }
 
         //Se for a primeira palavra a ser inserida
         //Não obriga a ter pelo menos uma intersecção já que é a primeira palavra
@@ -75,7 +80,7 @@ createCrossword = (game) => {
         //Se chegou até aqui não saiu dos limites e tem alguma intersecção, logo colocar palavra
         return true;
 
-        
+
     }
 
     function placeWord(word, row, column, direction) {
