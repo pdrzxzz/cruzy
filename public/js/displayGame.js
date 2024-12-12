@@ -64,6 +64,8 @@ displayGame = (game) => {
 
             //DIGITOU
             textBox.on('changed', function () {
+                let currentText = textBox.text;
+                textBox.text = currentText.replace(/[^a-zA-ZáàäâãéèëêíìïîóòöôõúùüûçÇ]/g, ''); // Remove non-letter characters
                 textBox.exitEditing();
                 game.canvas.renderAll(); // Atualizar o texto no canvas imediatamente
             });
