@@ -1,5 +1,5 @@
 // Lista de palavras e pistas sobre anatomia
-const theme = document.querySelector('#theme').textContent
+const theme = data.theme
 
 const itensMatrix = {
   biologia: [
