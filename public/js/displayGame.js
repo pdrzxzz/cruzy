@@ -17,21 +17,20 @@ displayGame = (game) => {
                 selectable: false,
             });
 
-            const textBox = new fabric.Textbox(char, {
+            const textBox = new fabric.Textbox('', {
                 left: game.gridSize * column + 15,
-                top: game.gridSize * row,
-                width: game.gridSize - 30,
-                height: game.gridSize - 20,
-                fontSize: game.gridSize / 1.5,
+                top: game.gridSize * row + 10,
+                fontSize: game.gridSize / 1.6,
                 fill: 'black',
                 editable: false, // Inicialmente desativado
                 hasControls: false,
                 backgroundColor: 'transparent',
                 stroke: null,
                 hasBorders: false,
+                transparentCorners: true,
                 lockMovementX: true,
                 lockMovementY: true,
-                selectable: false
+                selectable: false,
             });
 
             // Agrupar os elementos relacionados à célula
@@ -51,7 +50,7 @@ displayGame = (game) => {
                 if (game.activeCell) {
                     return; // Impede a edição de outra célula enquanto há uma ativa
                 }
-        
+
                 rect.set('fill', 'lightblue');
 
                 textBox.set('editable', true);
@@ -64,7 +63,6 @@ displayGame = (game) => {
 
             //DIGITOU
             textBox.on('changed', function () {
-                game.userInput[row][column] = this.text;
                 console.log(game.board)
                 console.log(game.userInput)
                 let currentText = textBox.text;
@@ -75,6 +73,7 @@ displayGame = (game) => {
 
             //SAIU
             textBox.on('editing:exited', function () {
+                game.userInput[row][column] = this.text;
                 rect.set('fill', 'transparent');
                 textBox.set('editable', false);
                 game.activeCell = null; // Libera a célula ativa
@@ -124,13 +123,16 @@ displayGame = (game) => {
             newLi.innerHTML = `${entry.clue} (${entry.direction}) - Posição: (${entry.row}, ${entry.column})`;
             ol.append(newLi);
         });
-    }
+    }   
 
     const container = document.querySelector('#game-container');
     container.innerHTML = `
-      <canvas width="${game.canvasSize}" height="${game.canvasSize}" id="game-board">The game is loading or can't load on your browser.</canvas>
       <div>
-        <p>Game Clues<p>
+        <p>Game Board</p>
+        <canvas width="${game.canvasSize}" height="${game.canvasSize}" id="game-board">The game is loading or can't load on your browser.</canvas>
+      </div>
+      <div>
+        <p>Game Clues</p>
         <ol id="game-clues"></ol>
       </div>
     `;
