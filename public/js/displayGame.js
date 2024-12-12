@@ -2,7 +2,7 @@ displayGame = (game) => {
     function displayBoard() {
 
         // Função para criar uma célula de palavras cruzadas
-        const createCrosswordCell = (row, column, char, cellName) => {
+        const createCrosswordCell = (row, column, cellName) => {
             const rect = new fabric.Rect({
                 left: game.gridSize * column,
                 top: game.gridSize * row,
@@ -58,22 +58,30 @@ displayGame = (game) => {
                 textBox.selectAll();
                 game.activeCell = cell; // Define a célula ativa
 
+                // Alterar a cor de todas as células na mesma linha
+                game.canvas.getObjects().forEach((obj) => {
+                    if (obj.cellName && obj.cellName.startsWith(`cell-${row}-`)) { // Verifica se a célula está na mesma linha
+                        console.log('on if')
+                        const rectInRow = obj._objects[0]; // A primeira parte do grupo é o rect
+                        rectInRow.set('fill', 'lightgreen'); // Altere a cor desejada para as células na linha
+                    }
+                });
+
                 game.canvas.renderAll();
             });
 
             //DIGITOU
             textBox.on('changed', function () {
-                console.log(game.board)
-                console.log(game.userInput)
-                let currentText = textBox.text;
                 textBox.text = currentText.replace(/[^a-zA-ZáàäâãéèëêíìïîóòöôõúùüûçÇ]/g, ''); // Remove non-letter characters
                 textBox.exitEditing();
-                game.canvas.renderAll(); // Atualizar o texto no canvas imediatamente
-            });
-
-            //SAIU
-            textBox.on('editing:exited', function () {
                 game.userInput[row][column] = this.text;
+                // Alterar a cor de todas as células na mesma linha
+                game.canvas.getObjects().forEach((obj) => {
+                    if (obj.cellName && obj.cellName.startsWith(`cell-${row}-`)) { // Verifica se a célula está na mesma linha
+                        const rectInRow = obj._objects[0]; // A primeira parte do grupo é o rect
+                        rectInRow.set('fill', 'white'); // Altere a cor desejada para as células na linha
+                    }
+                });
                 rect.set('fill', 'transparent');
                 textBox.set('editable', false);
                 game.activeCell = null; // Libera a célula ativa
@@ -104,7 +112,7 @@ displayGame = (game) => {
             row.forEach((char, colIndex) => {
                 if (char !== ' ') {
                     // Criar a célula do caractere
-                    createCrosswordCell(rowIndex, colIndex, char, `cell-${rowIndex}-${colIndex}`);
+                    createCrosswordCell(rowIndex, colIndex, `cell-${rowIndex}-${colIndex}`);
 
                     // Adiciona word label, se for o primeiro caractere da palavra
                     for (let word of game.placedWords) {
@@ -123,7 +131,7 @@ displayGame = (game) => {
             newLi.innerHTML = `${entry.clue} (${entry.direction}) - Posição: (${entry.row}, ${entry.column})`;
             ol.append(newLi);
         });
-    }   
+    }
 
     const container = document.querySelector('#game-container');
     container.innerHTML = `
