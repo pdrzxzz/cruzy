@@ -2,7 +2,7 @@ displayGame = (game) => {
     function displayBoard() {
 
         // Função para criar uma célula de palavras cruzadas
-        const createCrosswordCell = (row, column, char, groupName) => {
+        const createCrosswordCell = (row, column, char, cellName) => {
             const rect = new fabric.Rect({
                 left: game.gridSize * column,
                 top: game.gridSize * row,
@@ -35,7 +35,7 @@ displayGame = (game) => {
             });
 
             // Agrupar os elementos relacionados à célula
-            const group = new fabric.Group([rect, textBox], {
+            const cell = new fabric.Group([rect, textBox], {
                 left: game.gridSize * column,
                 top: game.gridSize * row,
                 lockMovementX: true,
@@ -43,11 +43,11 @@ displayGame = (game) => {
                 hasControls: false,
                 selectable: false,
                 evented: true,
-                groupName, // Nome para identificar grupos relacionados
+                cellName, // Nome para identificar grupos relacionados
             });
 
             //CLICOU
-            group.on('mousedown', function () {
+            cell.on('mousedown', function () {
                 if (game.activeCell) {
                     return; // Impede a edição de outra célula enquanto há uma ativa
                 }
@@ -57,7 +57,7 @@ displayGame = (game) => {
                 textBox.set('editable', true);
                 textBox.enterEditing();
                 textBox.selectAll();
-                game.activeCell = group; // Define a célula ativa
+                game.activeCell = cell; // Define a célula ativa
 
                 game.canvas.renderAll();
             });
@@ -81,7 +81,7 @@ displayGame = (game) => {
                 game.canvas.renderAll();
             });
 
-            game.canvas.add(group);
+            game.canvas.add(cell);
         };
 
         const createWordLabel = (row, column, word) => {
@@ -105,7 +105,7 @@ displayGame = (game) => {
             row.forEach((char, colIndex) => {
                 if (char !== ' ') {
                     // Criar a célula do caractere
-                    createCrosswordCell(rowIndex, colIndex, char, `group-${rowIndex}-${colIndex}`);
+                    createCrosswordCell(rowIndex, colIndex, char, `cell-${rowIndex}-${colIndex}`);
 
                     // Adiciona word label, se for o primeiro caractere da palavra
                     for (let word of game.placedWords) {
