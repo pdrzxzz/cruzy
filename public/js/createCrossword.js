@@ -100,6 +100,7 @@ createCrossword = (game) => {
         game.size++; // Aumenta o tamanho do tabuleiro
         game.canvasSize = game.gridSize * game.size + 5; //Atualiza o tamanho do canvas
         game.board = Array.from({ length: game.size }, () => Array(game.size).fill(' ')); // Cria um novo tabuleiro maior
+        game.userInput = Array.from({ length: game.size }, () => Array(game.size).fill(' '));
         game.placedWords = []; // Limpa as palavras já colocadas e tenta colocar novamente ( Voltando ao começo do while )
         game.unplacedWords = [...themeArray]; //restart
     }

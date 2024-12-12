@@ -64,6 +64,9 @@ displayGame = (game) => {
 
             //DIGITOU
             textBox.on('changed', function () {
+                game.userInput[row][column] = this.text;
+                console.log(game.board)
+                console.log(game.userInput)
                 let currentText = textBox.text;
                 textBox.text = currentText.replace(/[^a-zA-ZáàäâãéèëêíìïîóòöôõúùüûçÇ]/g, ''); // Remove non-letter characters
                 textBox.exitEditing();
