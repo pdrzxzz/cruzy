@@ -61,7 +61,6 @@ displayGame = (game) => {
                 // Alterar a cor de todas as células na mesma linha
                 game.canvas.getObjects().forEach((obj) => {
                     if (obj.cellName && obj.cellName.startsWith(`cell-${row}-`)) { // Verifica se a célula está na mesma linha
-                        console.log('on if')
                         const rectInRow = obj._objects[0]; // A primeira parte do grupo é o rect
                         rectInRow.set('fill', 'lightgreen'); // Altere a cor desejada para as células na linha
                     }
@@ -72,7 +71,7 @@ displayGame = (game) => {
 
             //DIGITOU
             textBox.on('changed', function () {
-                textBox.text = currentText.replace(/[^a-zA-ZáàäâãéèëêíìïîóòöôõúùüûçÇ]/g, ''); // Remove non-letter characters
+                textBox.text = textBox.text.replace(/[^a-zA-ZáàäâãéèëêíìïîóòöôõúùüûçÇ]/g, ''); // Remove non-letter characters
                 textBox.exitEditing();
                 game.userInput[row][column] = this.text;
                 // Alterar a cor de todas as células na mesma linha
