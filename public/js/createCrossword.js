@@ -87,10 +87,18 @@ createCrossword = (game) => {
         for (let i = 0; i < word.length; i++) {
             if (direction === 'horizontal') {
                 game.board[row][column + i] = word[i];
-                game.wordLocations[row][column + i] = String(wordIndex);
+                if (game.wordLocations[row][column + i] === ' ') {
+                    game.wordLocations[row][column + i] += String(wordIndex);
+                } else {
+                    game.wordLocations[row][column + i] += '-' + String(wordIndex);
+                }
             } else if (direction === 'vertical') {
                 game.board[row + i][column] = word[i];
-                game.wordLocations[row + i][column] = String(wordIndex);
+                if (game.wordLocations[row + i][column] === ' ') {
+                    game.wordLocations[row + i][column] += String(wordIndex);
+                } else {
+                    game.wordLocations[row + i][column] += '-' + String(wordIndex);
+                }
 
             }
         }
@@ -113,7 +121,7 @@ createCrossword = (game) => {
         unPlacedWords estará vazio e placedAllWords será true
         O sucesso dessa função é checado pela função isBoardFilled()
         */
-        let wordCount = 0;
+        let wordCount = 1;
         for (let i = 0; i < 1000; i++) {
 
             let wordIndex = i % game.unplacedWords.length;

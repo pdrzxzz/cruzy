@@ -4,9 +4,9 @@ class Game {
     this.size = this.generateSize() // Tamanho inicial do tabuleiro (1 dimension)
     this.gridSize = 50; //Tamanho de cada bloquinho
     this.canvasSize = this.gridSize * this.size + 5; //Tamanho inicial do canvas
-    this.board = Array.from({ length: this.size }, () => Array(this.size).fill(' ')); //Matrix inicial do tabuleiro
-    this.userInput = Array.from({ length: this.size }, () => Array(this.size).fill(' ')); //Matrix inicial da digitação do usuário
-    this.wordLocations = Array.from({ length: this.size }, () => Array(this.size).fill(' '));
+    this.board = Array.from({ length: this.size }, () => Array(this.size).fill('')); //Matrix inicial do tabuleiro
+    this.userInput = Array.from({ length: this.size }, () => Array(this.size).fill('')); //Matrix inicial da digitação do usuário
+    this.wordLocations = Array.from({ length: this.size }, () => Array(this.size).fill(''));
     this.unplacedWords = [...themeArray]; //Copy
     this.placedWords = []; //Array para guardar informação da posição em que foi colocada cada palavra 
     this.createCrossword(); //Cria o caça palavras, preenche this.board e this.placedWords
