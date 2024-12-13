@@ -6,6 +6,7 @@ class Game {
     this.canvasSize = this.gridSize * this.size + 5; //Tamanho inicial do canvas
     this.board = Array.from({ length: this.size }, () => Array(this.size).fill(' ')); //Matrix inicial do tabuleiro
     this.userInput = Array.from({ length: this.size }, () => Array(this.size).fill(' ')); //Matrix inicial da digitação do usuário
+    this.wordLocations = Array.from({ length: this.size }, () => Array(this.size).fill(' '));
     this.unplacedWords = [...themeArray]; //Copy
     this.placedWords = []; //Array para guardar informação da posição em que foi colocada cada palavra 
     this.createCrossword(); //Cria o caça palavras, preenche this.board e this.placedWords
@@ -36,3 +37,4 @@ console.log('board: ', game.board);
 console.log('userInput: ', game.userInput)
 console.log('canvas: ', game.canvas);
 console.log('game.placedWords: ', game.placedWords);
+console.log('game.wordLocations: ', game.wordLocations);

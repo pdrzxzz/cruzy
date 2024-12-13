@@ -83,14 +83,15 @@ createCrossword = (game) => {
 
     }
 
-    function placeWord(word, row, column, direction) {
+    function placeWord(word, row, column, direction, wordIndex) {
         for (let i = 0; i < word.length; i++) {
             if (direction === 'horizontal') {
                 game.board[row][column + i] = word[i];
-                // console.log(`Colocando ${word[i]} na posição (${x + i}, ${y})`)
+                game.wordLocations[row][column + i] = String(wordIndex);
             } else if (direction === 'vertical') {
                 game.board[row + i][column] = word[i];
-                // console.log(`Colocando ${word[i]} na posição (${x}, ${y + i})`)
+                game.wordLocations[row + i][column] = String(wordIndex);
+
             }
         }
     }
@@ -103,6 +104,7 @@ createCrossword = (game) => {
         game.userInput = Array.from({ length: game.size }, () => Array(game.size).fill(' '));
         game.placedWords = []; // Limpa as palavras já colocadas e tenta colocar novamente ( Voltando ao começo do while )
         game.unplacedWords = [...themeArray]; //restart
+        game.wordLocations = Array.from({ length: game.size }, () => Array(game.size).fill(' '));
     }
 
     function tryFillBoard() {
@@ -111,14 +113,12 @@ createCrossword = (game) => {
         unPlacedWords estará vazio e placedAllWords será true
         O sucesso dessa função é checado pela função isBoardFilled()
         */
-
+        let wordCount = 0;
         for (let i = 0; i < 1000; i++) {
-            //Se todas as palavras já foram colocadas, não faz sentido continuar com esse for
-            if (!game.unplacedWords.length) {
-                break;
-            }
+
+            let wordIndex = i % game.unplacedWords.length;
             //item === random {word, clue} that do not are placed
-            let item = game.unplacedWords[i % game.unplacedWords.length];
+            let item = game.unplacedWords[wordIndex];
             let { word, clue } = item;
             let placed = false;
 
@@ -130,13 +130,18 @@ createCrossword = (game) => {
                 const direction = Math.random() > 0.5 ? 'horizontal' : 'vertical';
 
                 if (canPlaceWord(word, row, column, direction)) {
-                    placeWord(word, row, column, direction);
+                    placeWord(word, row, column, direction, wordCount++);
                     game.placedWords.push({ word, row, column, direction, clue });
                     // console.log(game.placedWords)
-                    game.unplacedWords.splice(i % game.unplacedWords.length, 1)
+                    game.unplacedWords.splice(wordIndex, 1)
                     placed = true;
                 }
                 attempts++;
+            }
+
+            //Se todas as palavras já foram colocadas, não faz sentido continuar com esse for
+            if (!game.unplacedWords.length) {
+                break;
             }
         }
     }
