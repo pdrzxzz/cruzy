@@ -2,7 +2,7 @@ include layouts/layout
 block content
   div#game-container
   script.
-      const data = !{JSON.stringify(data)}; //pass data to theme.js
+      const data = !{JSON.stringify(data)}; //pass data to theme.js, data comes from req.session.data on get /play on index.js
   script(src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js")
   script(src='/js/theme.js')
   script(src="/js/createCrossword.js") 

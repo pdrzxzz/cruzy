@@ -3,6 +3,30 @@ displayGame = (game) => {
 
         // Função para criar uma célula de palavras cruzadas
         const createCrosswordCell = (row, column) => {
+
+            function startEditingCell(cell, rect, textBox) {
+                rect.set('fill', 'lightblue');
+
+                // Impede o foco automático, removendo a edição direta
+                textBox.set('editable', true);
+                textBox.enterEditing();
+                textBox.selectAll();
+                game.activeCell = cell; // Define a célula ativa
+
+                // Alterar a cor de todas as células da mesma palavra
+                game.canvas.getObjects().forEach((obj) => {
+                    if (obj.cellName && obj.cellName.split('-').some(element => cell.cellName.split('-').includes(element))) { // Verifica se a célula está na mesma palavra
+                        const rectInWord = obj._objects[0]; // A primeira parte do grupo é o rect
+                        rectInWord.set('fill', 'lightgreen');
+                        game.selectedCells.push(obj)
+                        console.log(game.selectedCells)
+                    }
+                });
+
+                game.canvas.renderAll();
+            }
+
+
             const rect = new fabric.Rect({
                 left: game.gridSize * column,
                 top: game.gridSize * row,
@@ -47,61 +71,49 @@ displayGame = (game) => {
 
             //CLICOU
             cell.on('mousedown', function () {
-                if (game.activeCell) {
-                    return; // Impede a edição de outra célula enquanto há uma ativa
+                if (!game.activeCell) { // Impede a edição de outra célula enquanto há uma ativa
+                    startEditingCell(cell, rect, textBox);
                 }
-            
-                rect.set('fill', 'lightblue');
-                
-                // Impede o foco automático, removendo a edição direta
-                textBox.set('editable', true);
-                textBox.enterEditing();
-                textBox.selectAll();
-                game.activeCell = cell; // Define a célula ativa
 
-                // Alterar a cor de todas as células da mesma palavra
-                game.canvas.getObjects().forEach((obj) => {
-                    if (obj.cellName && obj.cellName.split('-').some(element => cell.cellName.split('-').includes(element))) { // Verifica se a célula está na mesma palavra
-                        const rectInRow = obj._objects[0]; // A primeira parte do grupo é o rect
-                        rectInRow.set('fill', 'lightgreen');
-                    }
-                });
-            
-                game.canvas.renderAll();
             });
 
             //DIGITOU
             textBox.on('changed', function () {
                 // Impede o comportamento de rolagem
                 document.body.style.overflow = 'hidden';
-            
+
                 // Remove caracteres não permitidos
                 textBox.text = textBox.text.replace(/[^a-zA-ZáàäâãéèëêíìïîóòöôõúùüûçÇ]/g, '');
-            
+
                 // Adiciona um atraso para sair da edição, evitando o foco indesejado
                 setTimeout(() => {
                     textBox.exitEditing();
                     game.userInput[row][column] = this.text;
-            
-                    // Alterar a cor de todas as células na mesma linha
+
+                    
+
+                    // Alterar a cor de todas as células da mesma palavra
                     game.canvas.getObjects().forEach((obj) => {
                         if (obj.cellName && obj.cellName.split('-').some(element => cell.cellName.split('-').includes(element))) {
-                            const rectInRow = obj._objects[0]; // A primeira parte do grupo é o rect
-                            rectInRow.set('fill', 'white'); // Altere a cor desejada para as células na linha
+                            const rectInWord = obj._objects[0]; // A primeira parte do grupo é o rect
+                            rectInWord.set('fill', 'white'); // Altere a cor desejada para as células na linha
+                            game.selectedCells.splice(game.selectedCells.indexOf(obj), 1)
+                            console.log(game.selectedCells)
                         }
                     });
-            
+
                     rect.set('fill', 'transparent');
                     textBox.set('editable', false);
                     game.activeCell = null; // Libera a célula ativa
                     game.canvas.renderAll();
-            
+
+
                     // Restaura o comportamento normal de rolagem após a edição
                     document.body.style.overflow = '';
                 }, 50); // Adiciona um pequeno atraso para permitir que a rolagem não aconteça
-            
+
             });
-            
+
 
             game.canvas.add(cell);
         };
