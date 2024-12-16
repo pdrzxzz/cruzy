@@ -9,7 +9,7 @@ body {
   width: 50%;
 }
 
-.new-room input{
+.new-room input {
   margin-bottom: 1em;
 }
 
@@ -22,12 +22,12 @@ a {
   display: flex;
   flex-direction: row;
   gap: 30;
-  flex-wrap: wrap;  
+  flex-wrap: wrap;
 }
 
 #nav-container {
   display: flex;
   flex-direction: row;
   gap: 100;
-  
+
 }

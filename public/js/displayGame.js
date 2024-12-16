@@ -4,26 +4,54 @@ displayGame = (game) => {
         // Função para criar uma célula de palavras cruzadas
         const createCrosswordCell = (row, column) => {
 
-            function startEditingCell(cell, rect, textBox) {
+            function highlightCell(cell) {
+                game.highlightedCells.push(cell)
+                const rect = cell._objects[0]
                 rect.set('fill', 'lightblue');
+            }
 
-                // Impede o foco automático, removendo a edição direta
+            function unhighlightCell(cell) {
+                game.highlightedCells.splice(game.highlightedCells.indexOf(cell), 1)
+                const rect = cell._objects[0]
+                rect.set('fill', 'white'); // Altere a cor desejada para as células na linha
+            }
+
+            function startEditingCell(cell) {
+                const textBox = cell._objects[1]
+
                 textBox.set('editable', true);
                 textBox.enterEditing();
                 textBox.selectAll();
-                game.activeCell = cell; // Define a célula ativa
-
-                // Alterar a cor de todas as células da mesma palavra
+                
+                // Destaca todas as células da mesma palavra
                 game.canvas.getObjects().forEach((obj) => {
                     if (obj.cellName && obj.cellName.split('-').some(element => cell.cellName.split('-').includes(element))) { // Verifica se a célula está na mesma palavra
-                        const rectInWord = obj._objects[0]; // A primeira parte do grupo é o rect
-                        rectInWord.set('fill', 'lightgreen');
-                        game.selectedCells.push(obj)
-                        console.log(game.selectedCells)
+                        highlightCell(obj);
+                        console.log('game.highlightedCells: ', game.highlightedCells)
                     }
                 });
 
-                game.canvas.renderAll();
+                game.activeCell = cell; // Define a célula ativa    
+            }
+
+            function stopEditingCell() {
+                const textBox = game.activeCell._objects[1]
+
+                // Remove caracteres não permitidos
+                textBox.exitEditing();
+                textBox.text = textBox.text.replace(/[^a-zA-ZáàäâãéèëêíìïîóòöôõúùüûçÇ]/g, '');
+                game.userInput[row][column] = textBox.text;
+
+                // Tira o destaque de todas as células da mesma palavra
+                game.canvas.getObjects().forEach((obj) => {
+                    if (obj.cellName && obj.cellName.split('-').some(element => game.activeCell.cellName.split('-').includes(element))) { // Verifica se a célula está na mesma palavra
+                        unhighlightCell(obj);
+                        console.log('game.highlightedCells: ', game.highlightedCells)
+                    }
+                });
+
+                textBox.set('editable', false);
+                game.activeCell = null; // Libera a célula ativa
             }
 
 
@@ -71,47 +99,24 @@ displayGame = (game) => {
 
             //CLICOU
             cell.on('mousedown', function () {
-                if (!game.activeCell) { // Impede a edição de outra célula enquanto há uma ativa
-                    startEditingCell(cell, rect, textBox);
+                if (game.activeCell) {
+                    stopEditingCell()
                 }
-
+                startEditingCell(cell);
             });
 
             //DIGITOU
             textBox.on('changed', function () {
-                // Impede o comportamento de rolagem
-                document.body.style.overflow = 'hidden';
+                let actualIndex = game.highlightedCells.indexOf(cell)
+                let nextCell = game.highlightedCells[actualIndex + 1]
+                //Finaliza edição dessa célula
+                stopEditingCell(cell)
 
-                // Remove caracteres não permitidos
-                textBox.text = textBox.text.replace(/[^a-zA-ZáàäâãéèëêíìïîóòöôõúùüûçÇ]/g, '');
-
-                // Adiciona um atraso para sair da edição, evitando o foco indesejado
-                setTimeout(() => {
-                    textBox.exitEditing();
-                    game.userInput[row][column] = this.text;
-
-                    
-
-                    // Alterar a cor de todas as células da mesma palavra
-                    game.canvas.getObjects().forEach((obj) => {
-                        if (obj.cellName && obj.cellName.split('-').some(element => cell.cellName.split('-').includes(element))) {
-                            const rectInWord = obj._objects[0]; // A primeira parte do grupo é o rect
-                            rectInWord.set('fill', 'white'); // Altere a cor desejada para as células na linha
-                            game.selectedCells.splice(game.selectedCells.indexOf(obj), 1)
-                            console.log(game.selectedCells)
-                        }
-                    });
-
-                    rect.set('fill', 'transparent');
-                    textBox.set('editable', false);
-                    game.activeCell = null; // Libera a célula ativa
-                    game.canvas.renderAll();
-
-
-                    // Restaura o comportamento normal de rolagem após a edição
-                    document.body.style.overflow = '';
-                }, 50); // Adiciona um pequeno atraso para permitir que a rolagem não aconteça
-
+                // Move para a próxima célula
+                if (nextCell) {
+                    startEditingCell(nextCell)
+                }
+                game.canvas.renderAll();
             });
 
 

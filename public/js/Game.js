@@ -8,7 +8,7 @@ class Game {
     this.userInput = Array.from({ length: this.size }, () => Array(this.size).fill('')); //Matrix inicial da digitação do usuário
     this.wordLocations = Array.from({ length: this.size }, () => Array(this.size).fill(''));
     this.unplacedWords = [...themeArray]; //Copy, used on createCrossword
-    this.selectedCells = []
+    this.highlightedCells = []
     this.placedWords = []; //Array para guardar informação da posição em que foi colocada cada palavra 
     this.createCrossword(); //Cria o caça palavras, preenche this.board e this.placedWords
     this.displayGame(); //Exibe o jogo na tela
