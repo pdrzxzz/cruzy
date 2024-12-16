@@ -58,9 +58,8 @@ displayGame = (game) => {
                 textBox.selectAll();
                 game.activeCell = cell; // Define a célula ativa
 
-                // Alterar a cor de todas as células na mesma linha
+                // Alterar a cor de todas as células da mesma palavra
                 game.canvas.getObjects().forEach((obj) => {
-                    if(obj.cellName){console.log(obj.cellName)}
                     if (obj.cellName && obj.cellName.split('-').some(element => cell.cellName.split('-').includes(element))) { // Verifica se a célula está na mesma palavra
                         const rectInRow = obj._objects[0]; // A primeira parte do grupo é o rect
                         rectInRow.set('fill', 'lightgreen'); // Altere a cor desejada para as células na linha
@@ -110,7 +109,7 @@ displayGame = (game) => {
         // Renderizar o tabuleiro
         game.board.forEach((row, rowIndex) => {
             row.forEach((char, colIndex) => {
-                if (char !== ' ') {
+                if (char) {
                     // Criar a célula do caractere
                     createCrosswordCell(rowIndex, colIndex);
 

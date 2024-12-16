@@ -43,11 +43,11 @@ createCrossword = (game) => {
                     return false;
                 }
                 // Se tiver um caractere diferente de espaço e da letra a ser colocada
-                if (game.board[row][column + i] !== word[i] && game.board[row][column + i] !== ' ') {
+                if (game.board[row][column + i] && game.board[row][column + i] !== word[i]) {
                     return false;
                 }
                 //Se quero colocar a letra em um espaço vazio
-                if (game.board[row][column + i] === ' ') {
+                if (!game.board[row][column + i]) {
                     totalBlanks++;
                 }
             }
@@ -60,11 +60,11 @@ createCrossword = (game) => {
                     return false;
                 }
                 // Permite cruzar palavras no mesmo caractere
-                if (game.board[row + i][column] !== word[i] && game.board[row + i][column] !== ' ') {
+                if (game.board[row + i][column] && game.board[row + i][column] !== word[i]) {
                     return false;
                 }
                 //Se quero colocar a letra em um espaço vazio
-                if (game.board[row + i][column] === ' ') {
+                if (!game.board[row + i][column]) {
                     totalBlanks++;
                 }
             }
@@ -87,14 +87,14 @@ createCrossword = (game) => {
         for (let i = 0; i < word.length; i++) {
             if (direction === 'horizontal') {
                 game.board[row][column + i] = word[i];
-                if (game.wordLocations[row][column + i] === ' ') {
+                if (game.wordLocations[row][column + i] === '') {
                     game.wordLocations[row][column + i] += String(wordIndex);
                 } else {
                     game.wordLocations[row][column + i] += '-' + String(wordIndex);
                 }
             } else if (direction === 'vertical') {
                 game.board[row + i][column] = word[i];
-                if (game.wordLocations[row + i][column] === ' ') {
+                if (game.wordLocations[row + i][column] === '') {
                     game.wordLocations[row + i][column] += String(wordIndex);
                 } else {
                     game.wordLocations[row + i][column] += '-' + String(wordIndex);
@@ -108,11 +108,11 @@ createCrossword = (game) => {
         console.log('Aumentando tamanho do tabuleiro...')
         game.size++; // Aumenta o tamanho do tabuleiro
         game.canvasSize = game.gridSize * game.size + 5; //Atualiza o tamanho do canvas
-        game.board = Array.from({ length: game.size }, () => Array(game.size).fill(' ')); // Cria um novo tabuleiro maior
-        game.userInput = Array.from({ length: game.size }, () => Array(game.size).fill(' '));
+        game.board = Array.from({ length: game.size }, () => Array(game.size).fill('')); // Cria um novo tabuleiro maior
+        game.userInput = Array.from({ length: game.size }, () => Array(game.size).fill(''));
         game.placedWords = []; // Limpa as palavras já colocadas e tenta colocar novamente ( Voltando ao começo do while )
         game.unplacedWords = [...themeArray]; //restart
-        game.wordLocations = Array.from({ length: game.size }, () => Array(game.size).fill(' '));
+        game.wordLocations = Array.from({ length: game.size }, () => Array(game.size).fill(''));
     }
 
     function tryFillBoard() {
