@@ -29,7 +29,6 @@ class Game {
   }
 
   toggleUserDirection() {
-    console.log('Toggling user direction!')
     this.userDirection = this.userDirection === 'vertical' ? 'horizontal' : 'vertical';
   }
 }

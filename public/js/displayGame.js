@@ -181,12 +181,6 @@ displayGame = (game) => {
             });
             
         });
-
-        game.canvas.getObjects().forEach((obj) => {
-            if (obj.text) {
-                console.log(obj.row, '-', obj.column)
-            }
-        });
     }
 
 
