@@ -16,18 +16,26 @@ displayGame = (game) => {
                 rect.set('fill', 'white'); // Altere a cor desejada para as células na linha
             }
 
+            function grayHighlightCell(cell) {
+                const rect = cell._objects[0]
+                rect.set('fill', '#e6e6e6');
+            }
+
             function startEditingCell(cell) {
                 const textBox = cell._objects[1]
 
                 textBox.set('editable', true);
                 textBox.enterEditing();
                 textBox.selectAll();
-                
+
                 // Destaca todas as células da mesma palavra
                 game.canvas.getObjects().forEach((obj) => {
                     if (obj.cellName && obj.cellName.split('-').some(element => cell.cellName.split('-').includes(element))) { // Verifica se a célula está na mesma palavra
-                        highlightCell(obj);
-                        console.log('game.highlightedCells: ', game.highlightedCells)
+                        grayHighlightCell(obj);
+                        if ((game.userDirection === 'horizontal' && obj.top === cell.top) || (game.userDirection === 'vertical' && obj.left === cell.left)) {
+                            highlightCell(obj);
+                        }
+                        // console.log('game.highlightedCells: ', game.highlightedCells)
                     }
                 });
 
@@ -46,14 +54,13 @@ displayGame = (game) => {
                 game.canvas.getObjects().forEach((obj) => {
                     if (obj.cellName && obj.cellName.split('-').some(element => game.activeCell.cellName.split('-').includes(element))) { // Verifica se a célula está na mesma palavra
                         unhighlightCell(obj);
-                        console.log('game.highlightedCells: ', game.highlightedCells)
+                        // console.log('game.highlightedCells: ', game.highlightedCells)
                     }
                 });
 
                 textBox.set('editable', false);
                 game.activeCell = null; // Libera a célula ativa
             }
-
 
             const rect = new fabric.Rect({
                 left: game.gridSize * column,
@@ -99,6 +106,9 @@ displayGame = (game) => {
 
             //CLICOU
             cell.on('mousedown', function () {
+                if (game.activeCell && game.activeCell === cell) {
+                    game.toggleUserDirection();
+                }
                 if (game.activeCell) {
                     stopEditingCell()
                 }
