@@ -1,3 +1,14 @@
 body {
   margin: 32px;
 }
+
+#game-container {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+#nav-container {
+  display: flex;
+  flex-direction: row;
+}
