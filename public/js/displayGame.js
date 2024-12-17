@@ -134,8 +134,22 @@ displayGame = (game) => {
         };
 
         const createWordLabel = (row, column, word) => {
-            const wordText = String(game.placedWords.indexOf(word) + 1)
-            const wordLabel = new fabric.Text(wordText, {
+            const wordLabelText = String(game.placedWords.indexOf(word) + 1)
+
+            //Check if there's already a word label at this position
+            for (let obj of game.canvas.getObjects()) {
+                if (obj.text) { //if it's a wordlabel (not the best checking but work for now)
+                    if (obj.row === row && obj.column === column) { //If at this position
+                        // console.log('Sobreposição!!!');
+                        obj.text += '-' + wordLabelText;
+                        return;
+                    }
+                }
+            }
+
+            const wordLabel = new fabric.Text(wordLabelText, {
+                row,
+                column,
                 left: game.gridSize * column + 5,
                 top: game.gridSize * row,
                 fontSize: game.gridSize / 3,
@@ -165,7 +179,15 @@ displayGame = (game) => {
                 }
             });
         });
+
+        game.canvas.getObjects().forEach((obj) => {
+            if (obj.text) {
+                console.log(obj.row, '-', obj.column)
+            }
+        });
     }
+
+
 
     function displayClues(ol) {
         game.placedWords.forEach(entry => {
