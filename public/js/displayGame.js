@@ -47,8 +47,8 @@ displayGame = (game) => {
 
                 // Remove caracteres não permitidos
                 textBox.exitEditing();
-                textBox.text = textBox.text.replace(/[^a-zA-ZáàäâãéèëêíìïîóòöôõúùüûçÇ]/g, '');
-                game.userInput[row][column] = textBox.text;
+                textBox.text = textBox.text.replace(/[^a-zA-ZáàäâãéèëêíìïîóòöôõúùüûçÇ]/g, '').toUpperCase();
+                game.userInput[row][column] = textBox.text.toLowerCase();
 
                 // Tira o destaque de todas as células da mesma palavra
                 game.canvas.getObjects().forEach((obj) => {
@@ -126,6 +126,7 @@ displayGame = (game) => {
                 if (nextCell) {
                     startEditingCell(nextCell)
                 }
+
                 game.canvas.renderAll();
             });
 
@@ -164,6 +165,7 @@ displayGame = (game) => {
                     }
                 }
             });
+            
         });
     }
 
@@ -190,4 +192,6 @@ displayGame = (game) => {
     game.canvas.hoverCursor = 'default';
     displayBoard();
     displayClues(document.querySelector('#game-clues'));
+
+    
 }
