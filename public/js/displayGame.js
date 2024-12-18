@@ -31,7 +31,7 @@ displayGame = (game) => {
 
                 // Destaca todas as células da mesma palavra
                 game.canvas.getObjects().forEach((obj) => {
-                    if (obj.cellName && obj.cellName.split('-').some(element => cell.cellName.split('-').includes(element))) { // Verifica se a célula está na mesma palavra
+                    if (obj.cellName && obj.cellName.split('-').some(element => cell.cellName.split('-').includes(element))) { // Verifica se obj e cell estão na mesma palavra
                         grayHighlightCell(obj);
                         if ((game.userDirection === 'horizontal' && obj.top === cell.top) || (game.userDirection === 'vertical' && obj.left === cell.left)) {
                             highlightCell(obj);
@@ -44,11 +44,14 @@ displayGame = (game) => {
             }
 
             function completeWord(cell, direction) {
-                const [rect, textBox] = cell._objects
                 // Destaca todas as células da mesma palavra
                 game.canvas.getObjects().forEach((obj) => {
-                    if (obj.cellName && obj.cellName.split('-').some(element => cell.cellName.split('-').includes(element))) { // Verifica se a célula está na mesma palavra
-                        if ((direction === 'horizontal' && obj.top === cell.top) || (direction === 'vertical' && obj.left === cell.left)) {
+                    if (obj.cellName && obj.cellName.split('-').some(element => cell.cellName.split('-').includes(element))) { // Verifica se obj e cell estão na mesma palavra
+                        if (direction === 'horizontal' && obj.top === cell.top) { // Apenas objetos na mesma horizontal
+                            const rect = obj._objects[0];
+                            rect.set('fill', 'lightgreen');
+                        } else if (direction === 'vertical' && obj.left === cell.left) { // Apenas objetos na mesma vertical
+                            const rect = obj._objects[0];
                             rect.set('fill', 'lightgreen');
                         }
                     }
@@ -61,40 +64,31 @@ displayGame = (game) => {
                     let i = 0;
 
                     if (direction === 'horizontal') {
-                        while (true) {
-                            if (game.wordLocations[row][column + i] && game.wordLocations[row][column + i].split('-').some(element => cell.cellName.split('-').includes(element))) { //if this cell is of word
-                                if (game.board[row][column + i] !== game.userInput[row][column + i]) { //if wrong letter, break. if not wrong letter, continue.
-                                    console.log(`${game.board[row][column + i]} !== ${game.userInput[row][column + i]}`)
-                                    break; //wrong word
-                                }
-                                i++;
+                        while (i < word.word.length) {
+                            if (game.board[row][column + i] !== game.userInput[row][column + i]) { //if wrong letter, break. if not wrong letter, continue.
+                                console.log(`${game.board[row][column + i]} !== ${game.userInput[row][column + i]}`)
+                                break; //wrong word
                             }
-                            else {
-                                if (i > 0) { //the word ends, so it's all right
-                                    console.log('completeWord');
-                                    completeWord(cell, direction);
-                                }
-                                break;
-                            }
+                            i++;
+                        }
+                        if (i >= word.word.length) {
+                            console.log('completeWord');
+                            completeWord(cell, direction);
                         }
                     }
 
+
                     else { //vertical
-                        while (true) {
-                            if (game.wordLocations[row + i][column] && game.wordLocations[row + i][column].split('-').some(element => cell.cellName.split('-').includes(element))) { //if this cell is of word
-                                if (game.board[row + i][column] !== game.userInput[row + i][column]) { //if wrong letter, break. if not wrong letter, continue.
-                                    console.log(`${game.board[row + i][column]} !== ${game.userInput[row + i][column]}`);
-                                    break; //wrong word
-                                }
-                                i++;
+                        while (i < word.word.length) {
+                            if (game.board[row + i][column] !== game.userInput[row + i][column]) { //if wrong letter, break. if not wrong letter, continue.
+                                console.log(`${game.board[row + i][column]} !== ${game.userInput[row + i][column]}`)
+                                break; //wrong word
                             }
-                            else {
-                                if (i > 0) { //the word ends, so it's all right
-                                    console.log('completeWord');
-                                    completeWord(cell, direction);
-                                }
-                                break;
-                            }
+                            i++;
+                        }
+                        if (i >= word.word.length) {
+                            console.log('completeWord');
+                            completeWord(cell, direction);
                         }
                     }
 
@@ -113,7 +107,7 @@ displayGame = (game) => {
 
                 // Tira o destaque de todas as células da mesma palavra
                 game.canvas.getObjects().forEach((obj) => {
-                    if (obj.cellName && obj.cellName.split('-').some(element => game.activeCell.cellName.split('-').includes(element))) { // Verifica se a célula está na mesma palavra
+                    if (obj.cellName && obj.cellName.split('-').some(element => game.activeCell.cellName.split('-').includes(element))) {// Verifica se obj e cell estão na mesma palavra
                         unhighlightCell(obj);
                         // console.log('game.highlightedCells: ', game.highlightedCells)
                     }
