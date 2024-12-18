@@ -1,14 +1,82 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  margin: 32px;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
 }
 
-#game-container {
-  display: flex;
-  flex-direction: row;
-  gap: 30px;
+/* Header com título */
+header {
+  background-color: #9b1b56; /* Roxo escuro */
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 28px;
+  font-weight: bold;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-#nav-container {
-  display: flex;
-  flex-direction: row;
+header h1 {
+  font-size: 42px;
+  text-shadow: 2px 2px 4px #6b2666;
 }
+
+/* Container principal */
+main#game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  text-align: center;
+  gap: 20px;
+}
+
+.intro-text h2 {
+  font-size: 28px;
+  color: #6b2666; /* Roxo escuro */
+  text-shadow: 1px 1px 2px #ddd;
+}
+
+.intro-text p {
+  font-size: 16px;
+  color: #555;
+  max-width: 600px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+/* Botões */
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.button-container form {
+  margin: 0;
+}
+
+button.btn {
+  background-color: #d04e83; /* Roxo mais claro */
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 15px 30px;
+  box-shadow: 0 4px #b03d6f;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button.btn:hover {
+  background-color: #b03d6f; /* Tom mais escuro ao passar o mouse */
+  transform: translateY(-2px);
+}
+
