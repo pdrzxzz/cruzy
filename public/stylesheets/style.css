@@ -9,7 +9,9 @@ body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
   color: #333;
+
 }
+
 
 /* Header com título */
 header {
@@ -27,15 +29,21 @@ header h1 {
   text-shadow: 2px 2px 4px #6b2666;
 }
 
-/* Container principal */
+/* Definir a imagem de fundo apenas para a página home */
 main#game-container {
+  background-image: url('images/image.png'); /* Caminho para a imagem */
+  background-size: 1500px 410px;  /* A imagem vai cobrir toda a área do container */
+  background-position: center top;  /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Impede a repetição da imagem */
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 40px 20px;
   text-align: center;
   gap: 20px;
+  height: 100vh;
 }
+
 
 .intro-text h2 {
   font-size: 28px;
