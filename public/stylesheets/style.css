@@ -9,13 +9,11 @@ body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
   color: #333;
-
 }
-
 
 /* Header com título */
 header {
-  background-color: #9b1b56; /* Roxo escuro */
+  background-color: #C13271; /* Roxo escuro */
   color: white;
   text-align: center;
   padding: 20px 0;
@@ -29,68 +27,106 @@ header h1 {
   text-shadow: 2px 2px 4px #6b2666;
 }
 
-/* Definir a imagem de fundo apenas para a página home */
+/* Definir a imagem de fundo apenas para a página Home */
 main#game-container {
   background-image: url('images/image.png'); /* Caminho para a imagem */
-  background-size: 1500px 410px;  /* A imagem vai cobrir toda a área do container */
-  background-position: center top;  /* Centraliza a imagem */
+  background-size: 1500px 410px; /* A imagem vai cobrir toda a área do container */
+  background-position: center top; /* Centraliza a imagem */
   background-repeat: no-repeat; /* Impede a repetição da imagem */
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 40px 20px;
-  text-align: center;
+  text-align: right; /* Alinha o texto para a direita na Home */
   gap: 20px;
   height: 100vh;
+}
+
+/* Ajuste para o texto somente da Home Page */
+main#game-container .intro-text h2,
+main#game-container .intro-text h3,
+main#game-container .intro-text p {
+  margin-right: auto;  /* Move o texto para a direita */
+  margin-left: 500px; /* Adiciona uma margem direita para dar um espaçamento */
+  text-align: justify; /* Alinha o texto para a direita */
+  margin-top: 15px;
 }
 
 
 .intro-text h2 {
   font-size: 28px;
   color: #6b2666; /* Roxo escuro */
-  text-shadow: 1px 1px 2px #ddd;
+  font-weight: 900; /* Torna a fonte bem grossa */
+  text-shadow: 
+    2px 2px 0 #fff,   /* Borda branca para a parte superior e direita */
+    -2px -2px 0 #fff, /* Borda branca para a parte inferior e esquerda */
+    2px -2px 0 #fff,  /* Borda branca para a parte superior e esquerda */
+    -2px 2px 0 #fff,  /* Borda branca para a parte inferior e direita */
+    3px 3px 5px rgba(175, 175, 175, 0.5); /* Sombra cinza clara com opacidade */
+    
 }
+
+.intro-text h3 {
+  font-size: 18px;
+  color: #6b2666; /* Roxo escuro */
+  font-weight: 900; /* Torna a fonte bem grossa */
+  text-shadow: 
+    2px 2px 0 #fff,   /* Borda branca para a parte superior e direita */
+    -2px -2px 0 #fff, /* Borda branca para a parte inferior e esquerda */
+    2px -2px 0 #fff,  /* Borda branca para a parte superior e esquerda */
+    -2px 2px 0 #fff,  /* Borda branca para a parte inferior e direita */
+    3px 3px 5px rgba(175, 175, 175, 0.5); /* Sombra cinza clara com opacidade */
+}
+
+
 
 .intro-text p {
   font-size: 16px;
-  color: #555;
+  color: #6b2666; /* Roxo escuro */
+  font-weight: 700;
   max-width: 600px;
   line-height: 1.6;
   margin-bottom: 10px;
+    text-align: center; /* Justifica o texto */
+
 }
 
-/* Botões */
+/* Container dos botões na Home Page */
 .button-container {
   display: flex;
-  justify-content: center;
-  gap: 20px;
+  justify-content: flex-end; /* Move os botões para a direita */
+  width: 100%; /* Garante que o container ocupa toda a largura */
+  gap: 40px; /* Espaço entre os botões */
+  margin-top: 50px; /* Ajuste o espaço superior */
+  margin-right: 300px;
+
 }
 
-.button-container form {
-  margin: 0;
-}
-
-button.btn {
-  background-color: #d04e83; /* Roxo mais claro */
+/* Estilo dos botões específicos da Home Page */
+main#game-container button.btn {
+  display: inline-block; /* Garante que os botões respeitem tamanho */
+  background-color: #d04e83;
   color: white;
-  font-size: 18px;
+  font-size: 32px; /* Texto do botão 2x maior */
   font-weight: bold;
   border: none;
-  border-radius: 8px;
-  padding: 15px 30px;
-  box-shadow: 0 4px #b03d6f;
+  border-radius: 10px; /* Bordas arredondadas maiores */
+  padding: 15px 60px; /* Espaçamento interno maior */
+  box-shadow: 0 10px #b03d6f; /* Ajusta sombra */
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
-}
 
-button.btn:hover {
-  background-color: #b03d6f; /* Tom mais escuro ao passar o mouse */
-  transform: translateY(-2px);
+
 }
 
 
-/*SINGLE PLAYER*/
-/* Container principal da página single-player */
+main#game-container button.btn:hover {
+  background-color: #b03d6f;
+  transform: translateY(-6px);
+}
+
+/* SINGLE PLAYER */
+/* Container principal da página Single Player */
 main#single-player-container {
   display: flex;
   flex-direction: column;
@@ -101,13 +137,13 @@ main#single-player-container {
 }
 
 /* Texto de introdução */
-.intro-text h2 {
+main#single-player-container .intro-text h2 {
   font-size: 28px;
   color: #6b2666;
   margin-bottom: 10px;
 }
 
-.intro-text p {
+main#single-player-container .intro-text p {
   font-size: 16px;
   color: #555;
   max-width: 600px;
@@ -115,11 +151,11 @@ main#single-player-container {
   margin-bottom: 20px;
 }
 
-/* Botão principal */
-button.btn {
+/* Botões da página Single Player */
+main#single-player-container button.btn {
   background-color: #d04e83;
   color: white;
-  font-size: 18px;
+  font-size: 18px; /* Menor tamanho para essa página */
   font-weight: bold;
   border: none;
   border-radius: 8px;
@@ -129,7 +165,7 @@ button.btn {
   transition: background-color 0.3s, transform 0.2s;
 }
 
-button.btn:hover {
+main#single-player-container button.btn:hover {
   background-color: #b03d6f;
   transform: translateY(-2px);
 }
