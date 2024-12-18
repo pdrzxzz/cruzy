@@ -1,6 +1,13 @@
 include ../layouts/layout
 
 block content
-    h1 Single-player Page!
+  header
+    h1 CRUZY
+
+  main#single-player-container
+    .intro-text
+      h2 Bem-vindo ao Modo Single-Player!
+      p Comece um novo jogo e desafie suas habilidades em palavras cruzadas.
+
     form(action="/single/new" method="GET" class="validated-form" novalidate)
-        button Create new game
+      button.btn(type="submit") Criar Novo Jogo

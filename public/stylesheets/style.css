@@ -80,3 +80,48 @@ button.btn:hover {
   transform: translateY(-2px);
 }
 
+
+/*SINGLE PLAYER*/
+/* Container principal da página single-player */
+main#single-player-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  padding: 40px 20px;
+}
+
+/* Texto de introdução */
+.intro-text h2 {
+  font-size: 28px;
+  color: #6b2666;
+  margin-bottom: 10px;
+}
+
+.intro-text p {
+  font-size: 16px;
+  color: #555;
+  max-width: 600px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+/* Botão principal */
+button.btn {
+  background-color: #d04e83;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  box-shadow: 0 4px #b03d6f;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button.btn:hover {
+  background-color: #b03d6f;
+  transform: translateY(-2px);
+}
