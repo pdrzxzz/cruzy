@@ -219,7 +219,7 @@ displayGame = (game) => {
                     startEditingCell(goToNextWord())
                 }
             });
-            
+
             game.canvas.add(cell);
         };
 
@@ -277,21 +277,24 @@ displayGame = (game) => {
     function goToNextWord() {
         // Procurar a próxima palavra que ainda não foi completada
         let nextWord = null;
-        
+
         for (let i = 0; i < game.placedWords.length; i++) {
             let word = game.placedWords[i];
-            
+
             // Verifica se a palavra ainda não foi completada
             if (!game.completedWords.includes(word)) {
                 nextWord = word;
                 break; // Encontra a primeira palavra não completada
             }
         }
-    
+
         if (nextWord) {
             // Encontra a célula inicial da próxima palavra
             let { row, column, direction } = nextWord;
-            
+            if (game.userDirection !== direction) {
+                game.toggleUserDirection();
+            }
+
             // Encontrar a célula correspondente
             let startingCell = null;
             game.canvas.getObjects().forEach((obj) => {
@@ -323,7 +326,7 @@ displayGame = (game) => {
         <ol id="game-clues"></ol>
       </div>
     `;
-    
+
     displayBoard();
     displayClues();
 }
