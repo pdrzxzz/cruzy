@@ -19,12 +19,16 @@ header {
   font-size: 28px;
   font-weight: bold;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  position: relative;
+  position: absolute; /* Posiciona a header em cima da navbar */
+  top: 0; /* Alinha no topo da página */
+  left: 0;
+  right: 0;
+  z-index: 2000; /* Garante que a header fique em cima da navbar */
 }
 
 header img {
   width: auto; /* Ajusta a largura automaticamente */
-  max-width: 270px; /* Limita a largura máxima da imagem */
+  max-width: 350px; /* Limita a largura máxima da imagem */
   height: auto; /* Mantém a proporção da imagem */
   display: block;
   margin: 0 auto; /* Centraliza a imagem */
@@ -175,3 +179,65 @@ main#single-player-container button.btn:hover {
   background-color: #b03d6f;
   transform: translateY(-2px);
 }
+
+/* Navbar Style */
+#nav-container {
+  background-color: #b03d6f; /* Roxo escuro para a barra de navegação */
+  padding: 15px 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: absolute; /* A navbar fica fixa na parte superior */
+  top: 110px; /* Ajuste para colocar a navbar logo abaixo da header */
+  left: 0;
+  width: 100%; /* Garante que a navbar ocupe toda a largura da página */
+  z-index: 1000; /* Navbar abaixo da header */
+}
+
+
+.nav {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  display: inline-block;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.nav-link:hover {
+  background-color: #b03d6f;
+  transform: translateY(-4px);
+}
+
+.nav-link.active {
+  background-color: #d04e83; /* Cor de fundo quando estiver ativo */
+  color: white;
+  text-decoration: none;
+}
+
+.nav-link.disabled {
+  color: #d3d3d3; /* Cor para itens desabilitados */
+  pointer-events: none; /* Impede interação com o link */
+  text-decoration: none;
+}
+
+.nav-link:focus {
+  outline: none;
+}
+main {
+  margin-top: 250px; /* Dá espaço para a header e navbar */
+  padding: 20px;
+}
+
