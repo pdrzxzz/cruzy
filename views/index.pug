@@ -1,11 +1,17 @@
 include layouts/layout
 
 block content
-  h1 Cruzy
-  p Welcome to our website
-  p 
-    b Select the game mode: 
-  form(action="/single" method="GET" class="validated-form" novalidate)
-    button SinglePlayer
-  form(action="/multi" method="GET" class="validated-form" novalidate)
-    button Multiplayer
+  header
+    img(src="/stylesheets/images/logo.png", alt="Logo do Cruzy") 
+  main#game-container
+    .intro-text
+      h2 BEM VINDOS AO CRUZY!
+      h3 Desafie sua mente com palavras
+      p Cruzy é um jogo de palavras cruzadas personalizado, onde a diversão e o desafio se encontram. 
+        | Use a inteligência artificial para criar suas próprias cruzadas e explorar uma infinidade de opções feitas sob medida para você.
+        | Seja o mestre das palavras e descubra como a combinação de criatividade e tecnologia pode tornar cada jogo único e empolgante. Prepare-se para exercitar seu cérebro de uma maneira totalmente nova!
+    .button-container
+      form(action="/single" method="GET" class="validated-form" novalidate)
+        button.btn SinglePlayer
+      form(action="/multi" method="GET" class="validated-form" novalidate)
+        button.btn Multiplayer

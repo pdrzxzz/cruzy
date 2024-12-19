@@ -1,14 +1,250 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  margin: 32px;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
 }
 
-#game-container {
+header {
+  background-color: #C13271; /* Roxo escuro */
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 28px;
+  font-weight: bold;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: absolute; /* Posiciona a header em cima da navbar */
+  top: 0; /* Alinha no topo da página */
+  left: 0;
+  right: 0;
+  z-index: 2000; /* Garante que a header fique em cima da navbar */
+}
+
+header img {
+  width: auto; /* Ajusta a largura automaticamente */
+  max-width: 350px; /* Limita a largura máxima da imagem */
+  height: auto; /* Mantém a proporção da imagem */
+  display: block;
+  margin: 0 auto; /* Centraliza a imagem */
+}
+
+header h1 {
+  display: none; /* Esconde o texto 'CRUZY' */
+}
+main#game-container.play-page {
+  padding-top: 10000px 
+}
+/* Definir a imagem de fundo apenas para a página Home */
+main#game-container {
+  background-image: url('images/image.png'); /* Caminho para a imagem */
+  background-size: 1540px 410px; /* A imagem vai cobrir toda a área do container */
+  background-position: center top; /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Impede a repetição da imagem */
   display: flex;
-  flex-direction: row;
-  gap: 30px;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  text-align: right; /* Alinha o texto para a direita na Home */
+  gap: 20px;
+  height: 100vh;
 }
 
+/* Ajuste para o texto somente da Home Page */
+main#game-container .intro-text h2,
+main#game-container .intro-text h3,
+main#game-container .intro-text p {
+  margin-right: auto;  /* Move o texto para a direita */
+  margin-left: 500px; /* Adiciona uma margem direita para dar um espaçamento */
+  text-align: justify; /* Alinha o texto para a direita */
+  margin-top: 15px;
+}
+
+
+.intro-text h2 {
+  font-size: 28px;
+  color: #6b2666; /* Roxo escuro */
+  font-weight: 900; /* Torna a fonte bem grossa */
+  text-shadow: 
+    2px 2px 0 #fff,   /* Borda branca para a parte superior e direita */
+    -2px -2px 0 #fff, /* Borda branca para a parte inferior e esquerda */
+    2px -2px 0 #fff,  /* Borda branca para a parte superior e esquerda */
+    -2px 2px 0 #fff,  /* Borda branca para a parte inferior e direita */
+    3px 3px 5px rgba(175, 175, 175, 0.5); /* Sombra cinza clara com opacidade */
+    
+}
+
+.intro-text h3 {
+  font-size: 18px;
+  color: #6b2666; /* Roxo escuro */
+  font-weight: 900; /* Torna a fonte bem grossa */
+  text-shadow: 
+    2px 2px 0 #fff,   /* Borda branca para a parte superior e direita */
+    -2px -2px 0 #fff, /* Borda branca para a parte inferior e esquerda */
+    2px -2px 0 #fff,  /* Borda branca para a parte superior e esquerda */
+    -2px 2px 0 #fff,  /* Borda branca para a parte inferior e direita */
+    3px 3px 5px rgba(175, 175, 175, 0.5); /* Sombra cinza clara com opacidade */
+}
+
+
+
+.intro-text p {
+  font-size: 16px;
+  color: #6b2666; /* Roxo escuro */
+  font-weight: 700;
+  max-width: 600px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+    text-align: center; /* Justifica o texto */
+
+}
+
+/* Container dos botões na Home Page */
+.button-container {
+  display: flex;
+  justify-content: flex-end; /* Move os botões para a direita */
+  width: 100%; /* Garante que o container ocupa toda a largura */
+  gap: 40px; /* Espaço entre os botões */
+  margin-top: 50px; /* Ajuste o espaço superior */
+  margin-right: 300px;
+
+}
+
+/* Estilo dos botões específicos da Home Page */
+main#game-container button.btn {
+  display: inline-block; /* Garante que os botões respeitem tamanho */
+  background-color: #d04e83;
+  color: white;
+  font-size: 32px; /* Texto do botão 2x maior */
+  font-weight: bold;
+  border: none;
+  border-radius: 10px; /* Bordas arredondadas maiores */
+  padding: 15px 60px; /* Espaçamento interno maior */
+  box-shadow: 0 10px #b03d6f; /* Ajusta sombra */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+
+
+}
+
+
+main#game-container button.btn:hover {
+  background-color: #b03d6f;
+  transform: translateY(-6px);
+}
+
+/* SINGLE PLAYER */
+/* Container principal da página Single Player */
+main#single-player-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  padding: 40px 20px;
+}
+
+/* Texto de introdução */
+main#single-player-container .intro-text h2 {
+  font-size: 28px;
+  color: #6b2666;
+  margin-bottom: 10px;
+}
+
+main#single-player-container .intro-text p {
+  font-size: 16px;
+  color: #555;
+  max-width: 600px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+/* Botões da página Single Player */
+main#single-player-container button.btn {
+  background-color: #d04e83;
+  color: white;
+  font-size: 18px; /* Menor tamanho para essa página */
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  box-shadow: 0 4px #b03d6f;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+main#single-player-container button.btn:hover {
+  background-color: #b03d6f;
+  transform: translateY(-2px);
+}
+
+/* Navbar Style */
 #nav-container {
-  display: flex;
-  flex-direction: row;
+  background-color: #b03d6f; /* Roxo escuro para a barra de navegação */
+  padding: 10px 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: absolute; /* A navbar fica fixa na parte superior */
+  top: 110px; /* Ajuste para colocar a navbar logo abaixo da header */
+  left: 0;
+  width: 100%; /* Garante que a navbar ocupe toda a largura da página */
+  z-index: 1000; /* Navbar abaixo da header */
 }
+
+
+.nav {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 10px;
+  padding: 0;
+}
+
+.nav-item {
+  display: inline-block;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.nav-link:hover {
+  background-color: white;
+  transform: translateY(-1px);
+  color: #6b2666; /* Altera a cor do texto durante o hover */
+}
+
+.nav-link.active {
+  background-color: #d04e83; /* Cor de fundo quando estiver ativo */
+  color: white;
+  text-decoration: none;
+}
+
+.nav-link.disabled {
+  color: #d3d3d3; /* Cor para itens desabilitados */
+  pointer-events: none; /* Impede interação com o link */
+  text-decoration: none;
+}
+
+.nav-link:focus {
+  outline: none; /* Remove o contorno padrão */
+  color: white; /* Altera a cor do texto quando em foco */
+}
+
+
+main {
+  margin-top: 230px; /* Dá espaço para a header e navbar */
+  padding: 20px;
+}
+
