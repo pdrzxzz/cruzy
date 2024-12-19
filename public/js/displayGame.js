@@ -215,6 +215,8 @@ displayGame = (game) => {
                 // Move para a próxima célula
                 if (nextCell) {
                     startEditingCell(nextCell)
+                } else {
+                    startEditingCell(goToNextWord())
                 }
             });
             
@@ -270,6 +272,35 @@ displayGame = (game) => {
             });
 
         });
+    }
+
+    function goToNextWord() {
+        // Procurar a próxima palavra que ainda não foi completada
+        let nextWord = null;
+        
+        for (let i = 0; i < game.placedWords.length; i++) {
+            let word = game.placedWords[i];
+            
+            // Verifica se a palavra ainda não foi completada
+            if (!game.completedWords.includes(word)) {
+                nextWord = word;
+                break; // Encontra a primeira palavra não completada
+            }
+        }
+    
+        if (nextWord) {
+            // Encontra a célula inicial da próxima palavra
+            let { row, column, direction } = nextWord;
+            
+            // Encontrar a célula correspondente
+            let startingCell = null;
+            game.canvas.getObjects().forEach((obj) => {
+                if (obj.cellName && obj.row === row && obj.column === column) {
+                    startingCell = obj;
+                }
+            });
+            return startingCell;
+        }
     }
 
     function displayClues() {
