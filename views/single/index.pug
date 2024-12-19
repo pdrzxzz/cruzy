@@ -2,7 +2,7 @@ include ../layouts/layout
 
 block content
   header
-    h1 CRUZY
+    img(src="/stylesheets/images/logo.png" alt="Logo do Cruzy")
 
   main#single-player-container
     .intro-text
@@ -11,3 +11,4 @@ block content
 
     form(action="/single/new" method="GET" class="validated-form" novalidate)
       button.btn(type="submit") Criar Novo Jogo
+

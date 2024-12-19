@@ -11,7 +11,6 @@ body {
   color: #333;
 }
 
-/* Header com título */
 header {
   background-color: #C13271; /* Roxo escuro */
   color: white;
@@ -20,13 +19,20 @@ header {
   font-size: 28px;
   font-weight: bold;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+header img {
+  width: auto; /* Ajusta a largura automaticamente */
+  max-width: 270px; /* Limita a largura máxima da imagem */
+  height: auto; /* Mantém a proporção da imagem */
+  display: block;
+  margin: 0 auto; /* Centraliza a imagem */
 }
 
 header h1 {
-  font-size: 42px;
-  text-shadow: 2px 2px 4px #6b2666;
+  display: none; /* Esconde o texto 'CRUZY' */
 }
-
 /* Definir a imagem de fundo apenas para a página Home */
 main#game-container {
   background-image: url('images/image.png'); /* Caminho para a imagem */
