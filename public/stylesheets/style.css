@@ -37,10 +37,13 @@ header img {
 header h1 {
   display: none; /* Esconde o texto 'CRUZY' */
 }
+main#game-container.play-page {
+  padding-top: 10000px 
+}
 /* Definir a imagem de fundo apenas para a página Home */
 main#game-container {
   background-image: url('images/image.png'); /* Caminho para a imagem */
-  background-size: 1500px 410px; /* A imagem vai cobrir toda a área do container */
+  background-size: 1540px 410px; /* A imagem vai cobrir toda a área do container */
   background-position: center top; /* Centraliza a imagem */
   background-repeat: no-repeat; /* Impede a repetição da imagem */
   display: flex;
@@ -183,7 +186,7 @@ main#single-player-container button.btn:hover {
 /* Navbar Style */
 #nav-container {
   background-color: #b03d6f; /* Roxo escuro para a barra de navegação */
-  padding: 15px 15px;
+  padding: 10px 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   position: absolute; /* A navbar fica fixa na parte superior */
   top: 110px; /* Ajuste para colocar a navbar logo abaixo da header */
@@ -236,8 +239,10 @@ main#single-player-container button.btn:hover {
 .nav-link:focus {
   outline: none;
 }
+
+
 main {
-  margin-top: 250px; /* Dá espaço para a header e navbar */
+  margin-top: 230px; /* Dá espaço para a header e navbar */
   padding: 20px;
 }
 

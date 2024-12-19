@@ -1,10 +1,13 @@
 include layouts/layout
+
 block content
-  div#game-container
-  script.
+  header
+    img(src="/stylesheets/images/logo.png", alt="Logo do Cruzy") 
+  div#game-container.play-page(style="padding-top: 150px;")  
+    script.
       const data = !{JSON.stringify(data)}; //pass data to theme.js, data comes from req.session.data on get /play on index.js
-  script(src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js")
-  script(src='/js/theme.js')
-  script(src="/js/createCrossword.js") 
-  script(src="/js/displayGame.js") 
-  script(src='/js/Game.js')
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js")
+    script(src='/js/theme.js')
+    script(src="/js/createCrossword.js") 
+    script(src="/js/displayGame.js") 
+    script(src='/js/Game.js')
