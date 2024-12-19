@@ -1,3 +1,4 @@
+
 displayGame = (game) => {
     function displayBoard() {
 
@@ -22,24 +23,104 @@ displayGame = (game) => {
             }
 
             function startEditingCell(cell) {
-                const textBox = cell._objects[1]
 
-                textBox.set('editable', true);
-                textBox.enterEditing();
-                textBox.selectAll();
+                if (!game.completedCells.includes(cell)) { //Se a célula não tiver sido completada
+                    const textBox = cell._objects[1]
+                    textBox.set('editable', true);
+                    textBox.enterEditing();
+                    textBox.selectAll();
+                }
 
                 // Destaca todas as células da mesma palavra
                 game.canvas.getObjects().forEach((obj) => {
-                    if (obj.cellName && obj.cellName.split('-').some(element => cell.cellName.split('-').includes(element))) { // Verifica se a célula está na mesma palavra
-                        grayHighlightCell(obj);
-                        if ((game.userDirection === 'horizontal' && obj.top === cell.top) || (game.userDirection === 'vertical' && obj.left === cell.left)) {
-                            highlightCell(obj);
+                    if (!game.completedCells.includes(obj)) { //Se a célula não tiver sido concluida
+                        if (obj.cellName && obj.cellName.split('-').some(element => cell.cellName.split('-').includes(element))) { // Verifica se obj e cell estão na mesma palavra
+                            grayHighlightCell(obj);
+                            if ((game.userDirection === 'horizontal' && obj.top === cell.top) || (game.userDirection === 'vertical' && obj.left === cell.left)) {
+                                highlightCell(obj);
+                            }
+                            // console.log('game.highlightedCells: ', game.highlightedCells)
                         }
-                        // console.log('game.highlightedCells: ', game.highlightedCells)
                     }
                 });
 
                 game.activeCell = cell; // Define a célula ativa    
+            }
+
+            function completeWord(word) {
+                let { row, column, direction } = word;
+                let cell;
+                //This loop finds the cell on row, column position
+                game.canvas.getObjects().forEach((obj) => {
+                    if (obj.cellName && obj.row === row && obj.column === column) {
+                        cell = obj;
+                    }
+                });
+
+                // Highlights the correct objs based on cell and direction (from completed word)
+                game.canvas.getObjects().forEach((obj) => {
+                    if (obj.cellName && obj.cellName.split('-').some(element => cell.cellName.split('-').includes(element))) { // Verifica se obj e cell estão na mesma palavra
+                        if (direction === 'horizontal' && obj.top === cell.top && obj.left >= cell.left) { // Apenas objetos na mesma horizontal e para direita
+                            const rect = obj._objects[0];
+                            game.completedCells.push(obj)
+                            rect.set('fill', 'lightgreen');
+                        } else if (direction === 'vertical' && obj.left === cell.left && obj.top >= cell.top) { // Apenas objetos na mesma vertical e para baixo
+                            const rect = obj._objects[0];
+                            game.completedCells.push(obj)
+                            rect.set('fill', 'lightgreen');
+                        }
+                    }
+                });
+
+                game.completedWords.push(word);
+                // console.log('game.completedWords: ', game.completedWords)
+                checkGameCompletion()
+            }
+
+            function checkWordCompletion() {
+                for (let word of game.placedWords) {
+                    if (game.completedWords.includes(word)) {
+                        continue;
+                    }
+                    let { row, column, direction } = word;
+                    let i = 0;
+
+                    if (direction === 'horizontal') {
+                        while (i < word.word.length) {
+                            if (game.board[row][column + i] !== game.userInput[row][column + i]) { //if wrong letter, break. if not wrong letter, continue.
+                                // console.log(`${game.board[row][column + i]} !== ${game.userInput[row][column + i]}`)
+                                break; //wrong word
+                            }
+                            i++;
+                        }
+                        if (i >= word.word.length) {
+                            console.log('completeWord');
+                            completeWord(word);
+                        }
+                    }
+
+
+                    else { //vertical
+                        while (i < word.word.length) {
+                            if (game.board[row + i][column] !== game.userInput[row + i][column]) { //if wrong letter, break. if not wrong letter, continue.
+                                // console.log(`${game.board[row + i][column]} !== ${game.userInput[row + i][column]}`)
+                                break; //wrong word
+                            }
+                            i++;
+                        }
+                        if (i >= word.word.length) {
+                            console.log('completeWord');
+                            completeWord(word);
+                        }
+                    }
+
+                }
+            }
+
+            function checkGameCompletion() {
+                if (game.completedWords.length >= game.placedWords.length) {
+                    console.log('You won!!!')
+                }
             }
 
             function stopEditingCell() {
@@ -47,18 +128,21 @@ displayGame = (game) => {
 
                 // Remove caracteres não permitidos
                 textBox.exitEditing();
-                textBox.text = textBox.text.replace(/[^a-zA-ZáàäâãéèëêíìïîóòöôõúùüûçÇ]/g, '').toUpperCase();
+                textBox.set('editable', false);
+                textBox.text = textBox.text.toUpperCase().replace(/[^A-ZÁÀÄÂÃÉÈËÊÍÌÏÎÓÒÖÔÕÚÙÜÛÇç]/g, '');
+
                 game.userInput[row][column] = textBox.text.toLowerCase();
 
                 // Tira o destaque de todas as células da mesma palavra
                 game.canvas.getObjects().forEach((obj) => {
-                    if (obj.cellName && obj.cellName.split('-').some(element => game.activeCell.cellName.split('-').includes(element))) { // Verifica se a célula está na mesma palavra
-                        unhighlightCell(obj);
-                        // console.log('game.highlightedCells: ', game.highlightedCells)
+                    if (!game.completedCells.includes(obj)) { //Se a célula não tiver sido concluida
+                        if (obj.cellName && obj.cellName.split('-').some(element => game.activeCell.cellName.split('-').includes(element))) {// Verifica se obj e cell estão na mesma palavra
+                            unhighlightCell(obj);
+                            // console.log('game.highlightedCells: ', game.highlightedCells)
+                        }
                     }
                 });
 
-                textBox.set('editable', false);
                 game.activeCell = null; // Libera a célula ativa
             }
 
@@ -94,6 +178,8 @@ displayGame = (game) => {
 
             // Agrupar os elementos relacionados à célula
             const cell = new fabric.Group([rect, textBox], {
+                row,
+                column,
                 left: game.gridSize * column,
                 top: game.gridSize * row,
                 lockMovementX: true,
@@ -106,12 +192,15 @@ displayGame = (game) => {
 
             //CLICOU
             cell.on('mousedown', function () {
+                //Se clicar na mesma célula
                 if (game.activeCell && game.activeCell === cell) {
                     game.toggleUserDirection();
                 }
+                //Se tiver uma célula ativa, desativá-la
                 if (game.activeCell) {
                     stopEditingCell()
                 }
+                //Se a palavra da célula clicada não estiver completada
                 startEditingCell(cell);
             });
 
@@ -121,6 +210,7 @@ displayGame = (game) => {
                 let nextCell = game.highlightedCells[actualIndex + 1]
                 //Finaliza edição dessa célula
                 stopEditingCell(cell)
+                checkWordCompletion();
 
                 // Move para a próxima célula
                 if (nextCell) {
@@ -179,7 +269,7 @@ displayGame = (game) => {
                     }
                 }
             });
-            
+
         });
     }
 
@@ -209,5 +299,5 @@ displayGame = (game) => {
     displayBoard();
     displayClues(document.querySelector('#game-clues'));
 
-    
+
 }
