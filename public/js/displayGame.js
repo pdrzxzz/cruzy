@@ -216,11 +216,8 @@ displayGame = (game) => {
                 if (nextCell) {
                     startEditingCell(nextCell)
                 }
-
-                game.canvas.renderAll();
             });
-
-
+            
             game.canvas.add(cell);
         };
 
@@ -254,6 +251,8 @@ displayGame = (game) => {
             game.canvas.add(wordLabel);
         }
 
+        game.canvas = new fabric.Canvas(document.querySelector('#game-board'));
+        game.canvas.hoverCursor = 'default';
         // Renderizar o tabuleiro
         game.board.forEach((row, rowIndex) => {
             row.forEach((char, colIndex) => {
@@ -273,9 +272,8 @@ displayGame = (game) => {
         });
     }
 
-
-
-    function displayClues(ol) {
+    function displayClues() {
+        const ol = document.querySelector('#game-clues')
         game.placedWords.forEach(entry => {
             const newLi = document.createElement('li');
             newLi.innerHTML = `${entry.clue} (${entry.direction}) - Posição: (${entry.row}, ${entry.column})`;
@@ -294,10 +292,7 @@ displayGame = (game) => {
         <ol id="game-clues"></ol>
       </div>
     `;
-    game.canvas = new fabric.Canvas(document.querySelector('#game-board'));
-    game.canvas.hoverCursor = 'default';
+    
     displayBoard();
-    displayClues(document.querySelector('#game-clues'));
-
-
+    displayClues();
 }
