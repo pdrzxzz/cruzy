@@ -4,6 +4,7 @@ const session = require('express-session') //1. to use flash messages 2. to stor
 const path = require('path'); //normalize paths of differents sos
 const cookieParser = require('cookie-parser'); //populate req.cookies with an object keyed by the cookie names.
 const flash = require('connect-flash'); //flash messages 
+const mongoose = require('mongoose');
 
 //Use a classe express.Router para criar manipuladores de rota modulares e montáveis. 
 //Uma instância de Router é um middleware e sistema de roteamento completo; por essa razão, ela é frequentemente referida como um “mini-aplicativo”
@@ -11,6 +12,14 @@ const flash = require('connect-flash'); //flash messages
 const indexRouter = require('./routes/index');
 const singleRouter = require('./routes/single');
 const multiRouter = require('./routes/multi');
+
+//connect to mongo by mongoose
+const dbUrl = 'mongodb://127.0.0.1:27017/cruzy'
+mongoose.connect(dbUrl)
+mongoose.connection.on("error", console.error.bind(console, "connection error:"));
+mongoose.connection.once("open", () => {
+    console.log("Database connected");
+});
 
 const app = express();
 

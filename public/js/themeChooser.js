@@ -10,11 +10,17 @@ for (let button of document.querySelectorAll('#themeButton')) {
         form.action = "/single";  // A URL para onde os dados serão enviados
 
         // Criar um campo de entrada escondido para armazenar o tema
-        const input = document.createElement("input");
-        input.type = "hidden";
-        input.name = "theme";  // Nome do campo que o servidor vai receber
-        input.value = theme;   // Valor do botão clicado
-        form.appendChild(input);
+        const themeInput = document.createElement("themeInput");
+        themeInput.type = "hidden";
+        themeInput.name = "theme";  // Nome do campo que o servidor vai receber
+        themeInput.value = theme;   // Valor do botão clicado
+
+        const ownerInput = document.createElement("ownerInput");
+        ownerInput.type = "hidden";
+        ownerInput.name = "input";  // Nome do campo que o servidor vai receber
+        ownerInput.value = 'emanuel';   // Valor do botão clicado
+        
+        form.append(themeInput, ownerInput);
 
         // Adicionar o formulário ao corpo e enviá-lo
         document.body.appendChild(form);
