@@ -11,9 +11,7 @@ router.route('/')
 .post(catchAsync(rooms.createNewRoom))
 
 router.get('/new', (req, res, next) => {
-  const available_themes = ['quimica', 'biologia', 'fisica', 'citologia', 'matematica']
-  //available_themes depois será dinâmico
-  res.render('single/new', {available_themes})
+  res.render('single/new')
 })
 
 module.exports = router;
