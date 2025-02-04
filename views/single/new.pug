@@ -8,16 +8,15 @@ block content
     .intro-text
       h2 Create New Game
       p Escolha um tema para o seu jogo de palavras cruzadas.
+      p Tema padrão: quimica
 
     form(action="/single" method="POST" class="validated-form new-room-form" novalidate)
       label(for="theme") Theme:
-      input(type="text" name="theme" id="theme" disabled value="Tema personalizado indisponível")
-      button(disabled) Create
+      input(type="text" name="theme" id="theme" required)
+      label(for="owner") Owner:
+      input(type="text" name="owner" id="owner" required)      
+      label(for="language") Language:
+      input(type="text" name="language" id="language" required)      
+      button(type="submit") Create
 
-    section
-      p Escolha um tema:
-      each theme in available_themes
-        button(id='themeButton', value=theme)= theme
-
-    script(src="/js/themeChooser.js")
-    n
+    p Temas predefinidos: biologia, quimica, fisica, citologia, matematica

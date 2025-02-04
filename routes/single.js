@@ -1,21 +1,17 @@
 const express = require('express');
 const router = express.Router();
+const rooms = require('../controllers/rooms')
+const catchAsync = require('../utils/catchAsync');
 
-/* GET single-player page. */
-router.get('/', (req, res, next) => {
+router.route('/')
+.get((req, res, next) => {
   res.render('single/index');
-});
+})
 
-router.post('/', (req, res, next) => {
-  req.flash('success', 'New room created!');
-  req.session.data = req.body;
-  res.redirect('/play');
-});
+.post(catchAsync(rooms.createNewRoom))
 
 router.get('/new', (req, res, next) => {
-  const available_themes = ['quimica', 'biologia', 'fisica', 'citologia', 'matematica']
-  //available_themes depois será dinâmico
-  res.render('single/new', {available_themes})
+  res.render('single/new')
 })
 
 module.exports = router;
