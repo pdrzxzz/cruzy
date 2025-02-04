@@ -28,6 +28,19 @@ displayGame = (game) => {
                     textBox.set('editable', true);
                     textBox.enterEditing();
                     textBox.selectAll();
+
+                    // Add keydown listener using hiddenTextarea, which is used by fabric.js
+                    const handleKeyDown = function(e) {
+                        if (e.key === 'Backspace' || e.key === 'Delete') {
+                            console.log('Detected backspace/delete at cell:', cell.row, cell.column);
+                        }
+                    };
+                    // atribuindo a função à propriedade keyDownHandler do textBox para que seja possível removê-la posteriormente
+                    textBox.keyDownHandler = handleKeyDown;
+                    // adicionando o listener ao hiddenTextarea
+                    if (textBox.hiddenTextarea) {
+                        textBox.hiddenTextarea.addEventListener('keydown', handleKeyDown);
+                    }
                 }
 
                 // Destaca todas as células da mesma palavra
@@ -123,7 +136,13 @@ displayGame = (game) => {
             }
 
             function stopEditingCell() {
-                const textBox = game.activeCell._objects[1]
+                const textBox = game.activeCell._objects[1];
+
+                // hiddenTextArea é usado para capturar eventos de teclado
+                if (textBox.hiddenTextarea && textBox.keyDownHandler) {
+                    // para de ouvir eventos de teclado no hiddenTextarea quando a célula é desativada
+                    textBox.hiddenTextarea.removeEventListener('keydown', textBox.keyDownHandler);
+                }
 
                 // Remove caracteres não permitidos
                 textBox.exitEditing();
