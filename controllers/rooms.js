@@ -17,17 +17,13 @@ module.exports.createNewRoom = async(req, res, next) => {
     { word: '', clue: ''},
     { word: '', clue: ''},
     { word: '', clue: ''},
-    { word: '', clue: ''},
-    { word: '', clue: ''},
-    { word: '', clue: ''},
-    { word: '', clue: ''},
-    { word: '', clue: ''},
-    { word: '', clue: ''},
   ]
 
   word and clue keys must not be changed.
-  only fill the empty spaces using word of theme ${req.body.theme} on ${req.body.language}.
+  only fill the empty spaces using ${req.body.nWords} lower-case words of theme ${req.body.theme} on ${req.body.language} and/or add more objects as needed.
   DO NOT RETURN NOTHING ELSE
+
+  double-check if the words are lower-cased and the javascript syntax is correct.
     
       `}],
       model: 'gpt-4o',
