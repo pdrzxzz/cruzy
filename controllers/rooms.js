@@ -1,9 +1,10 @@
 const Room = require('../models/room')
 const OpenAI = require('openai')
+require('dotenv').config()
 
 module.exports.createNewRoom = async(req, res, next) => {
   const client = new OpenAI({
-    apiKey: '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', // This is the default and can be omitted
+    apiKey: process.env['OPENAI_API_KEY'], // This is the default and can be omitted
   });
 
   async function main() {
