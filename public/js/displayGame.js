@@ -1,4 +1,3 @@
-
 displayGame = (game) => {
     function displayBoard() {
 
@@ -331,4 +330,39 @@ displayGame = (game) => {
 
     displayBoard();
     displayClues();
+
+    function handleClickOutside(event) {
+        // Get click coordinates relative to canvas
+        const pointer = game.canvas.getPointer(event.e);
+        const clickedObject = game.canvas.findTarget(event.e);
+        
+        // Check if click is outside highlighted cells
+        const clickedHighlightedCell = game.highlightedCells.find(cell => {
+            return clickedObject === cell;
+        });
+
+        if (!clickedHighlightedCell) {
+            // Stop editing for all highlighted cells
+            game.highlightedCells.forEach(cell => {
+                const textBox = cell._objects[1];
+                if (textBox.isEditing) {
+                    textBox.exitEditing();
+                }
+                textBox.set('editable', false);
+                
+                // Remove highlight
+                const rect = cell._objects[0];
+                rect.set('fill', 'white');
+            });
+            
+            // Clear highlighted cells array
+            game.highlightedCells = [];
+            
+            // Render canvas to show changes
+            game.canvas.renderAll();
+        }
+    }
+
+    // Add event listener to canvas
+    game.canvas.on('mouse:down', handleClickOutside);
 }
