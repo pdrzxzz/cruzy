@@ -1,0 +1,23 @@
+include ../layouts/layout
+block content
+  .container.d-flex.justify-content-center.align-items-center.mt-5
+    .row
+      .col-md-6.offset-md-3.col-xl-4.offset-xl-4
+        .card.shadow
+          img.card-img-top(src="/stylesheets/images/logo.png", alt="")
+          .card-body
+            h5.card-title Register
+            form.validated-form(action="/register" method="POST" novalidate)
+              .mb-3
+                label.form-label(for="username") Username
+                input.form-control(type="text" id="username" name="username" required autofocus)
+                .valid-feedback Looks good!
+              .mb-3
+                label.form-label(for="email") Email
+                input.form-control(type="email" id="email" name="email" required)
+                .valid-feedback Looks good!
+              .mb-3
+                label.form-label(for="password") Password
+                input.form-control(type="password" id="password" name="password" required)
+                .valid-feedback Looks good!
+              button.btn.btn-success.btn-block Register

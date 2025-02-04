@@ -5,6 +5,8 @@ const path = require('path'); //normalize paths of differents sos
 const cookieParser = require('cookie-parser'); //populate req.cookies with an object keyed by the cookie names.
 const flash = require('connect-flash'); //flash messages 
 const mongoose = require('mongoose');
+const passport = require('passport')
+const LocalStrategy = require('passport-local')
 
 //Use a classe express.Router para criar manipuladores de rota modulares e montáveis. 
 //Uma instância de Router é um middleware e sistema de roteamento completo; por essa razão, ela é frequentemente referida como um “mini-aplicativo”
@@ -12,6 +14,9 @@ const mongoose = require('mongoose');
 const indexRouter = require('./routes/index');
 const singleRouter = require('./routes/single');
 const multiRouter = require('./routes/multi');
+const userRoutes = require('./routes/users')
+
+const User = require('./models/user') //require user model
 
 //connect to mongo by mongoose
 const dbUrl = 'mongodb://127.0.0.1:27017/cruzy'
@@ -53,20 +58,31 @@ app.config = function () {
     });
     next();
   });
+
+   //initialize passport
+   this.use(passport.initialize())
+   this.use(passport.session()) //use application-level middleware (after session middleware)
+   //These 3 User methods below are defined via passport-local-mongoose 
+   passport.use(new LocalStrategy(User.authenticate())); // tell passport to use LocalStrategy and the authentication method is on User method
+   passport.serializeUser(User.serializeUser()); //how to store the user in the session
+   passport.deserializeUser(User.deserializeUser()); //how to unstore the user in the session
+
   //debbuging
 
   //middleware that passes res.locals to pug files
   this.use((req, res, next) => {
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
+    res.locals.currentUser = req.user
     next();
   });
-}
+};
 //configure app server
-app.config()
+app.config();
 
 // set routes
 app.use('/', indexRouter);
+app.use('/', userRoutes);
 app.use('/single', singleRouter);
 app.use('/multi', multiRouter);
 

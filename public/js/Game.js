@@ -13,7 +13,7 @@ class Game {
     this.completedCells = [];
     this.completedWords = [];
     this.placedWords = []; //Array para guardar informação da posição em que foi colocada cada palavra 
-    this.createCrossword(); //Cria o caça palavras, preenche this.board e this.placedWords
+    this.createCrossword(); //Cria o palavras cruzadas, preenche this.board e this.placedWords
     this.displayGame(); //Exibe o jogo na tela
   }
 
