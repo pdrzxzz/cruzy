@@ -8,11 +8,9 @@ const roomSchema = new mongoose.Schema({
     },
     owner: {
       type: String,
-      required: true
     },
     language: {
       type: String,
-      required: true
     },
     themeArray: {
       type: Array,
