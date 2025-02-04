@@ -56,7 +56,6 @@ module.exports.createNewRoom = async(req, res, next) => {
     console.log('response: ', response)
 
     return eval('('+response+')' );
-
   }
 
   req.session.data = await main();
