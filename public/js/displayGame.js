@@ -360,7 +360,8 @@ displayGame = (game) => {
     const container = document.querySelector('#game-container');
     container.innerHTML = `
       <div>
-        <p>Game Board</p>
+        <p>Theme: ${data.theme}</p>
+        <p>Language: ${data.language}</p>
         <canvas width="${game.canvasSize}" height="${game.canvasSize}" id="game-board">The game is loading or can't load on your browser.</canvas>
       </div>
       <div>

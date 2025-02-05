@@ -1,6 +1,6 @@
 include ../layouts/layout
 
-block content
+block con10t
   header
     img(src="/stylesheets/images/logo.png" alt="Logo do Cruzy")
 
@@ -11,13 +11,16 @@ block content
 
     form(action="/single" method="POST" class="validated-form new-room-form" novalidate)
       label(for="theme") Theme:
-      input(type="text" name="theme" id="theme" disabled value="Tema personalizado indisponível")
-      button(disabled) Create
+      input(type="text" name="theme" id="theme" required)  
+       
+      label Number of Words:
+      input(type="radio" name="nWords" id="5" value="5" required)   
+      label(for="5") 5
+      input(type="radio" name="nWords" id="10" value="10" required)   
+      label(for="10") 10
+      input(type="radio" name="nWords" id="20" value="20" required)   
+      label(for="20") 20
 
-    section
-      p Escolha um tema:
-      each theme in available_themes
-        button(id='themeButton', value=theme)= theme
-
-    script(src="/js/themeChooser.js")
-    n
+      label(for="language") Language:
+      input(type="text" name="language" id="language" required)      
+      button(type="submit") Create
