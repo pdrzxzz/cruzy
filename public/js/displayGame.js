@@ -28,6 +28,43 @@ displayGame = (game) => {
                     textBox.set('editable', true);
                     textBox.enterEditing();
                     textBox.selectAll();
+
+                    // Add keydown listener using hiddenTextarea, which is used by fabric.js
+                    const handleKeyDown = function(e) {
+                        // Verifica se é backspace/delete e se a célula está vazia
+                        if ((e.key === 'Backspace' || e.key === 'Delete') && textBox.text === '') {
+                            e.preventDefault(); // Impede o comportamento padrão da tecla
+                            
+                            // Encontra a célula anterior na sequência
+                            let currentIndex = game.highlightedCells.indexOf(cell);
+                            let prevCell = currentIndex > 0 ? game.highlightedCells[currentIndex - 1] : null;
+                            
+                            if (prevCell) {
+                                stopEditingCell(); // Finaliza edição da célula atual
+                                
+                                // Limpa o conteúdo da célula anterior
+                                const prevTextBox = prevCell._objects[1];
+                                prevTextBox.text = '';
+                                game.userInput[prevCell.row][prevCell.column] = '';
+                                
+                                // Inicia edição da célula anterior
+                                startEditingCell(prevCell);
+                                
+                                // Ativa cursor visual
+                                prevTextBox.hiddenTextarea?.focus();
+                                prevTextBox.setCursorByClick({}); 
+                                
+                                // Atualiza o canvas
+                                game.canvas.renderAll();
+                            }
+                        }
+                    };
+                    // atribuindo a função à propriedade keyDownHandler do textBox para que seja possível removê-la posteriormente
+                    textBox.keyDownHandler = handleKeyDown;
+                    // adicionando o listener ao hiddenTextarea
+                    if (textBox.hiddenTextarea) {
+                        textBox.hiddenTextarea.addEventListener('keydown', handleKeyDown);
+                    }
                 }
 
                 // Destaca todas as células da mesma palavra
@@ -123,7 +160,13 @@ displayGame = (game) => {
             }
 
             function stopEditingCell() {
-                const textBox = game.activeCell._objects[1]
+                const textBox = game.activeCell._objects[1];
+
+                // hiddenTextArea é usado para capturar eventos de teclado
+                if (textBox.hiddenTextarea && textBox.keyDownHandler) {
+                    // para de ouvir eventos de teclado no hiddenTextarea quando a célula é desativada
+                    textBox.hiddenTextarea.removeEventListener('keydown', textBox.keyDownHandler);
+                }
 
                 // Remove caracteres não permitidos
                 textBox.exitEditing();
