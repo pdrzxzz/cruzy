@@ -7,6 +7,7 @@ const flash = require('connect-flash'); //flash messages
 const mongoose = require('mongoose');
 const passport = require('passport')
 const LocalStrategy = require('passport-local')
+const MongoStore = require('connect-mongo');
 
 //Use a classe express.Router para criar manipuladores de rota modulares e montáveis. 
 //Uma instância de Router é um middleware e sistema de roteamento completo; por essa razão, ela é frequentemente referida como um “mini-aplicativo”
@@ -16,10 +17,11 @@ const singleRouter = require('./routes/single');
 const multiRouter = require('./routes/multi');
 const userRoutes = require('./routes/users')
 
-const User = require('./models/user') //require user model
+const User = require('./models/user'); //require user model
 
+// const dbUrl = 'mongodb://127.0.0.1:27017/cruzy';
+const dbUrl = process.env["DB_URL"]
 //connect to mongo by mongoose
-const dbUrl = 'mongodb://127.0.0.1:27017/cruzy'
 mongoose.connect(dbUrl)
 mongoose.connection.on("error", console.error.bind(console, "connection error:"));
 mongoose.connection.once("open", () => {
@@ -36,7 +38,16 @@ app.config = function () {
   this.use(express.static(path.join(__dirname, 'public')));
   this.use(express.urlencoded({ extended: true }));
   this.use(cookieParser()); //populate req.cookies with an object keyed by the cookie names.
+
+  const store = MongoStore.create({
+    mongoUrl: 'mongodb://localhost/test-app',
+    touchAfter: 24 * 3600 // time period in seconds
+  })
+  store.on('error', (e) => {
+    console.log('Session error', e)
+  })
   this.use(session({
+    store,
     secret: 'secret', //this string is meant to be a secret key, that codifies our cookies
     resave: false,
     saveUninitialized: true,
