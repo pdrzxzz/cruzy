@@ -31,8 +31,32 @@ displayGame = (game) => {
 
                     // Add keydown listener using hiddenTextarea, which is used by fabric.js
                     const handleKeyDown = function(e) {
-                        if (e.key === 'Backspace' || e.key === 'Delete') {
-                            console.log('Detected backspace/delete at cell:', cell.row, cell.column);
+                        // Verifica se é backspace/delete e se a célula está vazia
+                        if ((e.key === 'Backspace' || e.key === 'Delete') && textBox.text === '') {
+                            e.preventDefault(); // Impede o comportamento padrão da tecla
+                            
+                            // Encontra a célula anterior na sequência
+                            let currentIndex = game.highlightedCells.indexOf(cell);
+                            let prevCell = currentIndex > 0 ? game.highlightedCells[currentIndex - 1] : null;
+                            
+                            if (prevCell) {
+                                stopEditingCell(); // Finaliza edição da célula atual
+                                
+                                // Limpa o conteúdo da célula anterior
+                                const prevTextBox = prevCell._objects[1];
+                                prevTextBox.text = '';
+                                game.userInput[prevCell.row][prevCell.column] = '';
+                                
+                                // Inicia edição da célula anterior
+                                startEditingCell(prevCell);
+                                
+                                // Ativa cursor visual
+                                prevTextBox.hiddenTextarea?.focus();
+                                prevTextBox.setCursorByClick({}); 
+                                
+                                // Atualiza o canvas
+                                game.canvas.renderAll();
+                            }
                         }
                     };
                     // atribuindo a função à propriedade keyDownHandler do textBox para que seja possível removê-la posteriormente
