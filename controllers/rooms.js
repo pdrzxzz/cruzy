@@ -58,17 +58,21 @@ module.exports.createNewRoom = async(req, res, next) => {
     return eval('('+response+')' );
   }
 
-  req.session.data = await main();
+  const { theme, language, themeArray } = await main();
+  
+  const Game = require('../public/js/Game');
+  req.session.data.game = new Game(themeArray);
+  req.session.data.theme = theme;
+  req.session.data.language = language;
 
   const room = new Room(req.session.data)
   await room.save()
   // req.flash('success', 'New room created!');
-  console.log(`/play/${room._id}`)
   res.redirect(`/play/${room._id}`);
 }
 
 module.exports.showRoom = async(req, res, next) => {
   const room = await Room.findById(req.params.id)
-  console.log(room)
-  res.render('play', {data: req.session.data}) 
+  console.log('room: ', room)
+  res.render('play', {room}) 
 }

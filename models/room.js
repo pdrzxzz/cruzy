@@ -12,8 +12,8 @@ const roomSchema = new mongoose.Schema({
     language: {
       type: String,
     },
-    themeArray: {
-      type: Array,
+    game: {
+      type: Object,
     }
   });
   

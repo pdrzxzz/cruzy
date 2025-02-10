@@ -360,8 +360,8 @@ displayGame = (game) => {
     const container = document.querySelector('#game-container');
     container.innerHTML = `
       <div>
-        <p>Theme: ${data.theme}</p>
-        <p>Language: ${data.language}</p>
+        <p>Theme: ${room.theme}</p>
+        <p>Language: ${room.language}</p>
         <canvas width="${game.canvasSize}" height="${game.canvasSize}" id="game-board">The game is loading or can't load on your browser.</canvas>
       </div>
       <div>
@@ -408,3 +408,5 @@ displayGame = (game) => {
     // Add event listener to canvas
     game.canvas.on('mouse:down', handleClickOutside);
 }
+
+displayGame(room.game)
