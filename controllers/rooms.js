@@ -13,8 +13,6 @@ module.exports.createNewRoom = async(req, res, next) => {
       messages: [{ role: 'user', content: `return a javascript array like this: 
   { 
     theme: '',
-    language: '',
-        
     themeArray:  
       [
         { word: '', clue: ''},
@@ -24,8 +22,8 @@ module.exports.createNewRoom = async(req, res, next) => {
       ]
   }
 
-  the words "theme", "language", "themeArray", "word" and "clue" must not be changed.
-  fill the empty spaces of the inner array using ${req.body.nWords} lower-case words with theme ${req.body.theme} on ${req.body.language} and/or add more objects as needed, example:
+  the words "theme", "themeArray", "word" and "clue" must not be changed.
+  fill the empty spaces of the inner array using ${req.body.nWords} lower-case words with theme ${req.body.theme} on Português(Brasil) language and/or add more objects as needed, example:
 
       [
           { word: 'apple', clue: 'A common red or green fruit that keeps the doctor away.' },
@@ -40,9 +38,8 @@ module.exports.createNewRoom = async(req, res, next) => {
 
   if the theme provided does not correspond to a valid theme, use a random theme and fill the "theme" key with the theme you choose, example: theme: 'food'
   if the theme provided correspond to a valid theme, use it and fill the "theme" key with the theme corresponding, example: theme: 'animals'
-  if the language provided does not correspond to a valid language, use english: theme: 'english'
-  if the language provided correspond to a valid language, fill "language" key with the theme corresponding, example: language: 'russian'.
 
+  MAKE IT THE HARDER AND SPECIFIC YOU CAN.
   THE CLUES ARE MEANT TO BE SHORT.
   DO NOT RETURN NOTHING ELSE
     
@@ -58,12 +55,12 @@ module.exports.createNewRoom = async(req, res, next) => {
     return eval('('+response+')' );
   }
 
-  const { theme, language, themeArray } = await main();
+  const { theme, themeArray } = await main();
   
   const Game = require('../public/js/Game');
   const game = new Game(themeArray);
 
-  const room = new Room({theme, language, game})
+  const room = new Room({theme, owner: req.user.username, game})
   await room.save()
   // req.flash('success', 'New room created!');
   res.redirect(`/play/${room._id}`);
