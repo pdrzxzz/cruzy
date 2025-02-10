@@ -40,7 +40,7 @@ app.config = function () {
   this.use(cookieParser()); //populate req.cookies with an object keyed by the cookie names.
 
   const store = MongoStore.create({
-    mongoUrl: 'mongodb://localhost/test-app',
+    mongoUrl: dbUrl,
     touchAfter: 24 * 3600 // time period in seconds
   })
   store.on('error', (e) => {
