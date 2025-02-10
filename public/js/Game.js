@@ -5,8 +5,6 @@ module.exports = class Game {
   constructor(themeArray) {
     this.themeArray = themeArray; //Array de objetos que contém {word: clue}
     this.size = this.generateSize() // Tamanho inicial do tabuleiro (1 dimension)
-    this.gridSize = 50; //Tamanho de cada bloquinho
-    this.canvasSize = this.gridSize * this.size + 5; //Tamanho inicial do canvas
     this.board = Array.from({ length: this.size }, () => Array(this.size).fill('')); //Matrix inicial do tabuleiro
     this.userInput = Array.from({ length: this.size }, () => Array(this.size).fill('')); //Matrix inicial da digitação do usuário
     this.wordLocations = Array.from({ length: this.size }, () => Array(this.size).fill(''));
@@ -24,15 +22,10 @@ module.exports = class Game {
     createCrossword(this); //from createCrossword.js
   }
 
-
   generateSize() {
     console.log(this.themeArray)
     const maxWordLength = Math.max(...this.themeArray.map(item => item.word.length)); //Tamanho da maior palavra
     return Math.ceil(Math.sqrt(this.themeArray.length * maxWordLength)); // Tamanho inicial do tabuleiro (1 dimension)
-  }
-
-  toggleUserDirection() {
-    this.userDirection = this.userDirection === 'vertical' ? 'horizontal' : 'vertical';
   }
 }
 

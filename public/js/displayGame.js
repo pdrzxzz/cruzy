@@ -1,4 +1,8 @@
+
 displayGame = (game) => {
+    const GRID_SIZE = 50; //Tamanho de cada bloquinho
+    const CANVAS_SIZE = GRID_SIZE * game.size + 5; //Tamanho inicial do canvas
+
     function displayBoard() {
 
         // Função para criar uma célula de palavras cruzadas
@@ -155,8 +159,48 @@ displayGame = (game) => {
 
             function checkGameCompletion() {
                 if (game.completedWords.length >= game.placedWords.length) {
-                    console.log('You won!!!')
+                    completeGame();
                 }
+            }
+
+            function completeGame() {
+                console.log('you won')
+            }
+
+            function goToNextWord() {
+                // Procurar a próxima palavra que ainda não foi completada
+                let nextWord = null;
+        
+                for (let i = 0; i < game.placedWords.length; i++) {
+                    let word = game.placedWords[i];
+        
+                    // Verifica se a palavra ainda não foi completada
+                    if (!game.completedWords.includes(word)) {
+                        nextWord = word;
+                        break; // Encontra a primeira palavra não completada
+                    }
+                }
+        
+                if (nextWord) {
+                    // Encontra a célula inicial da próxima palavra
+                    let { row, column, direction } = nextWord;
+                    if (game.userDirection !== direction) {
+                        toggleUserDirection();
+                    }
+        
+                    // Encontrar a célula correspondente
+                    let startingCell = null;
+                    game.canvas.getObjects().forEach((obj) => {
+                        if (obj.cellName && obj.row === row && obj.column === column) {
+                            startingCell = obj;
+                        }
+                    });
+                    return startingCell;
+                }
+            }
+        
+            function toggleUserDirection() {
+                game.userDirection = game.userDirection === 'vertical' ? 'horizontal' : 'vertical';
             }
 
             function stopEditingCell() {
@@ -186,13 +230,14 @@ displayGame = (game) => {
                 });
 
                 game.activeCell = null; // Libera a célula ativa
+                game.canvas.renderAll()
             }
 
             const rect = new fabric.Rect({
-                left: game.gridSize * column,
-                top: game.gridSize * row,
-                width: game.gridSize,
-                height: game.gridSize,
+                left: GRID_SIZE * column,
+                top: GRID_SIZE * row,
+                width: GRID_SIZE,
+                height: GRID_SIZE,
                 stroke: 'black',
                 fill: 'transparent',
                 strokeWidth: 2,
@@ -203,9 +248,9 @@ displayGame = (game) => {
             });
 
             const textBox = new fabric.Textbox('', {
-                left: game.gridSize * column + 15,
-                top: game.gridSize * row + 10,
-                fontSize: game.gridSize / 1.6,
+                left: GRID_SIZE * column + 15,
+                top: GRID_SIZE * row + 10,
+                fontSize: GRID_SIZE / 1.6,
                 fill: 'black',
                 editable: false, // Inicialmente desativado
                 hasControls: false,
@@ -222,8 +267,8 @@ displayGame = (game) => {
             const cell = new fabric.Group([rect, textBox], {
                 row,
                 column,
-                left: game.gridSize * column,
-                top: game.gridSize * row,
+                left: GRID_SIZE * column,
+                top: GRID_SIZE * row,
                 lockMovementX: true,
                 lockMovementY: true,
                 hasControls: false,
@@ -236,7 +281,7 @@ displayGame = (game) => {
             cell.on('mousedown', function () {
                 //Se clicar na mesma célula
                 if (game.activeCell && game.activeCell === cell) {
-                    game.toggleUserDirection();
+                    toggleUserDirection();
                 }
                 //Se tiver uma célula ativa, desativá-la
                 if (game.activeCell) {
@@ -258,7 +303,11 @@ displayGame = (game) => {
                 if (nextCell) {
                     startEditingCell(nextCell)
                 } else {
-                    startEditingCell(goToNextWord())
+                    nextCell = goToNextWord();
+                    if(nextCell) {
+                        startEditingCell(nextCell)
+                    }
+                    
                 }
             });
 
@@ -282,9 +331,9 @@ displayGame = (game) => {
             const wordLabel = new fabric.Text(wordLabelText, {
                 row,
                 column,
-                left: game.gridSize * column + 5,
-                top: game.gridSize * row,
-                fontSize: game.gridSize / 3,
+                left: GRID_SIZE * column + 5,
+                top: GRID_SIZE * row,
+                fontSize: GRID_SIZE / 3,
                 fill: 'red',
                 editable: false,
                 hasControls: false,
@@ -296,7 +345,7 @@ displayGame = (game) => {
         }
 
         game.canvas = new fabric.Canvas(document.querySelector('#game-board'));
-        game.canvas.hoverCursor = 'default';
+        game.canvas.hoverCursor = 'pointer';
         // Renderizar o tabuleiro
         game.board.forEach((row, rowIndex) => {
             row.forEach((char, colIndex) => {
@@ -316,38 +365,6 @@ displayGame = (game) => {
         });
     }
 
-    function goToNextWord() {
-        // Procurar a próxima palavra que ainda não foi completada
-        let nextWord = null;
-
-        for (let i = 0; i < game.placedWords.length; i++) {
-            let word = game.placedWords[i];
-
-            // Verifica se a palavra ainda não foi completada
-            if (!game.completedWords.includes(word)) {
-                nextWord = word;
-                break; // Encontra a primeira palavra não completada
-            }
-        }
-
-        if (nextWord) {
-            // Encontra a célula inicial da próxima palavra
-            let { row, column, direction } = nextWord;
-            if (game.userDirection !== direction) {
-                game.toggleUserDirection();
-            }
-
-            // Encontrar a célula correspondente
-            let startingCell = null;
-            game.canvas.getObjects().forEach((obj) => {
-                if (obj.cellName && obj.row === row && obj.column === column) {
-                    startingCell = obj;
-                }
-            });
-            return startingCell;
-        }
-    }
-
     function displayClues() {
         const ol = document.querySelector('#game-clues')
         game.placedWords.forEach(entry => {
@@ -362,7 +379,7 @@ displayGame = (game) => {
       <div>
         <p>Theme: ${room.theme}</p>
         <p>Language: ${room.language}</p>
-        <canvas width="${game.canvasSize}" height="${game.canvasSize}" id="game-board">The game is loading or can't load on your browser.</canvas>
+        <canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="game-board">The game is loading or can't load on your browser.</canvas>
       </div>
       <div>
         <p>Game Clues</p>
@@ -410,3 +427,12 @@ displayGame = (game) => {
 }
 
 displayGame(room.game)
+
+console.log('themeArray: ', room.game.themeArray);
+console.log('size: ', room.game.size);
+console.log('canvasSize: ', room.CANVAS_SIZE);
+console.log('board: ', room.game.board);
+console.log('userInput: ', room.game.userInput)
+console.log('canvas: ', room.game.canvas);
+console.log('placedWords: ', room.game.placedWords);
+console.log('wordLocations: ', room.game.wordLocations);
