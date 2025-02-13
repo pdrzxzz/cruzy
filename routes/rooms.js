@@ -17,4 +17,9 @@ router.get('/new', isLoggedIn,
   res.render('rooms/new')
 })
 
+router.route('/:id')
+.delete(
+  isLoggedIn,
+  catchAsync(rooms.deleteRoom))
+
 module.exports = router;

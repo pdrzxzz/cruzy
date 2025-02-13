@@ -13,7 +13,14 @@ block content
           li 
               p= `Nome: ${room.name}`
               span= `Tema: ${room.theme}`
-              a(href=`/play/${room._id}`) Entrar
+              form(action=`/play/${room._id}`, method="GET")
+                button.btn Entrar
+              form(action=`/rooms/${room._id}?_method=DELETE`, method="POST")
+                button.btn.btn-danger Delete
+
+
+      unless rooms.length
+        p Não há salas disponíveis
 
 
     form(action="/rooms/new" method="GET" class="validated-form" novalidate)

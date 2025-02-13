@@ -77,3 +77,10 @@ module.exports.showRoom = async(req, res, next) => {
   const room = await Room.findById(req.params.id)
   res.render('play', {room}) 
 }
+
+module.exports.deleteRoom = async(req, res, next) => {
+  const {id} = req.params;
+  await Room.findByIdAndDelete(id);
+  req.flash('success', 'Successfully deleted room') //flash pop-up
+  res.redirect('/rooms');
+}

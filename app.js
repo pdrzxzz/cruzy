@@ -8,6 +8,8 @@ const mongoose = require('mongoose');
 const passport = require('passport')
 const LocalStrategy = require('passport-local')
 const MongoStore = require('connect-mongo');
+const methodOverride = require('method-override');
+
 
 //Use a classe express.Router para criar manipuladores de rota modulares e montáveis. 
 //Uma instância de Router é um middleware e sistema de roteamento completo; por essa razão, ela é frequentemente referida como um “mini-aplicativo”
@@ -37,6 +39,7 @@ app.config = function () {
   this.use(express.static(path.join(__dirname, 'public')));
   this.use(express.urlencoded({ extended: true }));
   this.use(cookieParser()); //populate req.cookies with an object keyed by the cookie names.
+  this.use(methodOverride('_method'));
 
   const store = MongoStore.create({
     mongoUrl: dbUrl,
@@ -45,6 +48,7 @@ app.config = function () {
   store.on('error', (e) => {
     console.log('Session error', e)
   })
+  
   this.use(session({
     store,
     secret: 'secret', //this string is meant to be a secret key, that codifies our cookies
