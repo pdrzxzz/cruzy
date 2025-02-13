@@ -13,8 +13,7 @@ const MongoStore = require('connect-mongo');
 //Uma instância de Router é um middleware e sistema de roteamento completo; por essa razão, ela é frequentemente referida como um “mini-aplicativo”
 //https://expressjs.com/pt-br/guide/routing.html
 const indexRouter = require('./routes/index');
-const singleRouter = require('./routes/single');
-const multiRouter = require('./routes/multi');
+const roomsRouter = require('./routes/rooms');
 const userRoutes = require('./routes/users')
 
 const User = require('./models/user'); //require user model
@@ -94,8 +93,7 @@ app.config();
 // set routes
 app.use('/', indexRouter);
 app.use('/', userRoutes);
-app.use('/single', singleRouter);
-app.use('/multi', multiRouter);
+app.use('/rooms', roomsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

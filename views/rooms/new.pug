@@ -9,16 +9,17 @@ block con10t
       h2 Create New Game
       p Escolha um tema para o seu jogo de palavras cruzadas.
 
-    form(action="/single" method="POST" class="validated-form new-room-form" novalidate)
+    form(action="/rooms" method="POST" class="validated-form new-room-form" novalidate)
+      label(for="theme") Room Name:
+      input(type="text" name="name" id="name" required)  
       label(for="theme") Theme:
       input(type="text" name="theme" id="theme" required)  
-       
       label Number of Words:
-      input(type="radio" name="nWords" id="5" value="5" required)   
+      input(type="radio" name="numWords" id="5" value="5" required)   
       label(for="5") 5
-      input(type="radio" name="nWords" id="10" value="10" required)   
+      input(type="radio" name="numWords" id="10" value="10" required)   
       label(for="10") 10
-      input(type="radio" name="nWords" id="20" value="20" required)   
+      input(type="radio" name="numWords" id="20" value="20" required)   
       label(for="20") 20
       
       button(type="submit") Create

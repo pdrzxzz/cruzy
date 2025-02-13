@@ -1,0 +1,21 @@
+include ../layouts/layout
+
+block content
+  header
+    img(src="/stylesheets/images/logo.png" alt="Logo do Cruzy")
+  
+  main#single-player-container
+    .intro-text
+      h2 Salas
+
+    ul
+      each room in rooms
+          li 
+              p= `Nome: ${room.name}`
+              span= `Tema: ${room.theme}`
+              a(href=`/play/${room._id}`) Entrar
+
+
+    form(action="/rooms/new" method="GET" class="validated-form" novalidate)
+      button.btn(type="submit") Criar Novo Jogo
+

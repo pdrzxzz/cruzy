@@ -5,9 +5,8 @@ const catchAsync = require('../utils/catchAsync');
 const { isLoggedIn } = require('../middleware')
 
 router.route('/')
-.get((req, res, next) => {
-  res.render('single/index');
-})
+.get(
+  catchAsync(rooms.showAllRooms))
 
 .post(
   isLoggedIn,
@@ -15,7 +14,7 @@ router.route('/')
 
 router.get('/new', isLoggedIn, 
   (req, res, next) => {
-  res.render('single/new')
+  res.render('rooms/new')
 })
 
 module.exports = router;

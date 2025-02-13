@@ -2,11 +2,10 @@ const express = require('express');
 const router = express.Router();
 const rooms = require('../controllers/rooms')
 const catchAsync = require('../utils/catchAsync');
+const { renderHomePage } = require('../controllers');
 
 /* GET home page. */
-router.get('/', function (req, res) {
-  res.render('index', { title: 'Cruzy' });
-});
+router.get('/', renderHomePage);
 
 router.get('/play/:id', catchAsync(rooms.showRoom))
 
