@@ -10,10 +10,6 @@ const roomSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-    language: {
-      type: String,
-      default: 'Português',
-    },
     game: {
       type: Object,
       required: true,
