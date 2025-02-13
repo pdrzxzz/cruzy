@@ -2,6 +2,12 @@ const Room = require('../models/room')
 const OpenAI = require('openai')
 require('dotenv').config()
 
+module.exports.showAllRooms = async(req, res, next) => {
+  const rooms = await Room.find({});
+  res.render('rooms/index', {rooms});
+}
+
+
 module.exports.createNewRoom = async(req, res, next) => {
   const client = new OpenAI({
     apiKey: process.env['OPENAI_API_KEY'],
@@ -23,7 +29,7 @@ module.exports.createNewRoom = async(req, res, next) => {
   }
 
   the words "theme", "themeArray", "word" and "clue" must not be changed.
-  fill the empty spaces of the inner array using ${req.body.nWords} lower-case words with theme ${req.body.theme} on Português(Brasil) language and/or add more objects as needed, example:
+  fill the empty spaces of the inner array using ${req.body.numWords} lower-case words with theme ${req.body.theme} on Português(Brasil) language and/or add more objects as needed, example:
 
       [
           { word: 'apple', clue: 'A common red or green fruit that keeps the doctor away.' },
@@ -59,8 +65,9 @@ module.exports.createNewRoom = async(req, res, next) => {
   
   const Game = require('../public/js/Game');
   const game = new Game(themeArray);
+  const {name, numWords} = req.body;
 
-  const room = new Room({theme, owner: req.user.username, game})
+  const room = new Room({name, theme, numWords, owner: req.user.username, game})
   await room.save()
   // req.flash('success', 'New room created!');
   res.redirect(`/play/${room._id}`);
@@ -69,4 +76,11 @@ module.exports.createNewRoom = async(req, res, next) => {
 module.exports.showRoom = async(req, res, next) => {
   const room = await Room.findById(req.params.id)
   res.render('play', {room}) 
+}
+
+module.exports.deleteRoom = async(req, res, next) => {
+  const {id} = req.params;
+  await Room.findByIdAndDelete(id);
+  req.flash('success', 'Successfully deleted room') //flash pop-up
+  res.redirect('/rooms');
 }

@@ -1,0 +1,23 @@
+include ../layouts/layout
+
+block content
+  header
+    img(src="/stylesheets/images/logo.png" alt="Logo do Cruzy")
+  
+  main#single-player-container
+    .intro-text
+      h2 Salas
+
+    ul
+      each room in rooms
+          li 
+              p= `Nome: ${room.name}`
+              span= `Tema: ${room.theme}`
+              form(action=`/play/${room._id}`, method="GET")
+                button.btn Entrar
+              form(action=`/rooms/${room._id}?_method=DELETE`, method="POST")
+                button.btn.btn-danger Delete
+
+
+      unless rooms.length
+        p Não há salas disponíveis
