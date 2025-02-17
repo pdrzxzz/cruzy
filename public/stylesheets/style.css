@@ -40,7 +40,7 @@ header h1 {
 
 /* Definir a imagem de fundo apenas para a página Home */
 main#game-container {
-  /* background-image: url('images/image.png'); Caminho para a imagem; */
+  background-image: url('images/image.png'); /* Caminho para a imagem; */
   background-size: 1540px 410px; /* A imagem vai cobrir toda a área do container */
   background-position: center top; /* Centraliza a imagem */
   background-repeat: no-repeat; /* Impede a repetição da imagem */
@@ -116,18 +116,10 @@ main#game-container .intro-text p {
 /* Estilo dos botões específicos da Home Page */
 main#game-container button.btn {
   display: inline-block; /* Garante que os botões respeitem tamanho */
-  background-color: #d04e83;
-  color: white;
   font-size: 32px; /* Texto do botão 2x maior */
-  font-weight: bold;
-  border: none;
   border-radius: 10px; /* Bordas arredondadas maiores */
   padding: 15px 60px; /* Espaçamento interno maior */
   box-shadow: 0 10px #b03d6f; /* Ajusta sombra */
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-
-
 }
 
 
@@ -163,7 +155,7 @@ main#single-player-container .intro-text p {
 }
 
 /* Botões da página Single Player */
-main#single-player-container button.btn {
+button.btn {
   background-color: #d04e83;
   color: white;
   font-size: 18px; /* Menor tamanho para essa página */
@@ -176,7 +168,8 @@ main#single-player-container button.btn {
   transition: background-color 0.3s, transform 0.2s;
 }
 
-main#single-player-container button.btn:hover {
+button.btn:hover {
+  color: white;
   background-color: #b03d6f;
   transform: translateY(-2px);
 }
