@@ -12,6 +12,12 @@ module.exports.showRoomCreation = async(req, res, next) => {
 }
 
 module.exports.createNewRoom = async(req, res, next) => {
+  
+  if(await Room.exists({name: req.body.name})){
+    req.flash('error', 'This room name is already in use')
+    return res.redirect('/rooms/new')
+  }
+
   const client = new OpenAI({
     apiKey: process.env['OPENAI_API_KEY'],
   });
