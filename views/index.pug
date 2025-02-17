@@ -12,9 +12,11 @@ include layouts/layout
       if currentUser
         form(action="/rooms" method="GET" class="validated-form" novalidate)
           button.btn SinglePlayer
-        form(action="/multi" method="GET" class="validated-form" novalidate)
-          button.btn Multiplayer
+        //- form(action="/multi" method="GET" class="validated-form" novalidate)
+        //-   button.btn Multiplayer
       else
+      form(action="/login" method="GET" class="validated-form" novalidate)
+            button.btn Login
         form(action="/register" method="GET" class="validated-form" novalidate)
             button.btn Register
 
