@@ -377,6 +377,7 @@ displayGame = (game) => {
     const container = document.querySelector('#game-container');
     container.innerHTML = `
       <div>
+        <p>Room Name: ${room.name}</p>
         <p>Theme: ${room.theme}</p>
         <p>Created By: ${room.owner}</p>
         <canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="game-board">The game is loading or can't load on your browser.</canvas>

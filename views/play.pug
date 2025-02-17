@@ -1,6 +1,6 @@
 include layouts/layout
 
-  div#game-container.play-page(style="padding-top: 150px;")  
+  main#game-container
     script.
       const room = !{JSON.stringify(room)}; //pass data to theme.js, data comes from req.session.data on get /play on index.js
     script(src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js")
