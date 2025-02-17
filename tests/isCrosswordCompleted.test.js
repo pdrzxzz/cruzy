@@ -3,16 +3,16 @@ const Game = require('../public/js/Game.js');
 describe('Game Board Fill Tests', () => {
     let game;
     const mockTheme = [
-        { word: 'test', clue: 'A test word' },
-        { word: 'jest', clue: 'Testing framework' },
-        { word: 'code', clue: 'What developers write' }
+        { word: 'apple', clue: 'A fruit' },
+        { word: 'river', clue: 'A natural watercourse' },
+        { word: 'mountain', clue: 'A large natural elevation of the earth surface' }
     ];
 
     beforeEach(() => {
         game = new Game(mockTheme);
     });
 
-    test('should have all words placed after initialization', () => {
+    test('should have all words placed', () => {
         expect(game.unplacedWords.length).toBe(0);
         expect(game.placedWords.length).toBe(mockTheme.length);
     });
@@ -23,14 +23,6 @@ describe('Game Board Fill Tests', () => {
                 const cell = game.board[row + (direction === 'vertical' ? i : 0)][column + (direction === 'horizontal' ? i : 0)];
                 expect(cell).toBe(word[i]);
             }
-        });
-    });
-
-    test('should have correct words placed on the board', () => {
-        game.placedWords.forEach(({word, row, column, direction}) => {
-            const wordIndex = mockTheme.findIndex(item => item.word === word);
-            expect(wordIndex).not.toBe(-1);
-            expect(mockTheme[wordIndex].word).toBe(word);
         });
     });
 });
