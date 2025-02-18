@@ -7,7 +7,6 @@ module.exports.showAllRooms = async(req, res, next) => {
   res.render('rooms/index', {rooms});
 }
 
-
 module.exports.createNewRoom = async(req, res, next) => {
   const client = new OpenAI({
     apiKey: process.env['OPENAI_API_KEY'],
