@@ -2,14 +2,20 @@ div#nav-container
   ul.nav
     li.nav-item
       a.nav-link(href="/") Home
-    li.nav-item
     if currentUser
-      a.nav-link(href="/rooms") Rooms
-      a.nav-link(href="/rooms/new") Create New Room
-      a.nav-link(href="/logout") Logout
+      li.nav-item
+        a.nav-link(href="/rooms") Rooms
+      li.nav-item
+        a.nav-link(href="/rooms/new") Create New Room
+      li.nav-item
+        a.nav-link(href="/logout") Logout
+      li.nav-item
+        a.nav-link= currentUser.username
     else 
-      a.nav-link(href="/login") Login
-      a.nav-link(href="/register") Register
+      li.nav-item
+        a.nav-link(href="/login") Login
+      li.nav-item
+        a.nav-link(href="/register") Register
       //- p currentUser não está funcionando mostrar o usuário logado
     
     

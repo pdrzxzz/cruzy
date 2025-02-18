@@ -6,20 +6,22 @@ const { isLoggedIn } = require('../middleware')
 
 router.route('/')
 .get(
-  catchAsync(rooms.showAllRooms))
+  isLoggedIn,
+  catchAsync(rooms.showAllRooms)) //show all your rooms
 
 .post(
   isLoggedIn,
-  catchAsync(rooms.createNewRoom))
+  catchAsync(rooms.createNewRoom)) //create a new room on database and redirect to it
 
-router.get('/new', isLoggedIn, 
-  (req, res, next) => {
-  res.render('rooms/new')
-})
+router.route('/new')
+.get(
+  isLoggedIn,
+  rooms.showRoomCreation //render room creation form
+)
 
 router.route('/:id')
 .delete(
   isLoggedIn,
-  catchAsync(rooms.deleteRoom))
+  catchAsync(rooms.deleteRoom)) //delete a room on database
 
 module.exports = router;

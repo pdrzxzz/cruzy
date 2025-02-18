@@ -4,11 +4,11 @@ const session = require('express-session') //1. to use flash messages 2. to stor
 const path = require('path'); //normalize paths of differents sos
 const cookieParser = require('cookie-parser'); //populate req.cookies with an object keyed by the cookie names.
 const flash = require('connect-flash'); //flash messages 
-const mongoose = require('mongoose');
-const passport = require('passport')
-const LocalStrategy = require('passport-local')
-const MongoStore = require('connect-mongo');
-const methodOverride = require('method-override');
+const mongoose = require('mongoose'); //to connect to mongoDB via node
+const MongoStore = require('connect-mongo'); //mongoDB on session store
+const passport = require('passport'); //authentication tool 
+const LocalStrategy = require('passport-local'); //local authentication tool for passport
+const methodOverride = require('method-override'); //browsers forms only takes get and post, this module let us send all the other types (put, patch, delete...) from browsers forms.
 
 
 //Use a classe express.Router para criar manipuladores de rota modulares e montáveis. 

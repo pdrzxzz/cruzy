@@ -1,25 +1,22 @@
 include ../layouts/layout
 
-block con10t
-  header
-    img(src="/stylesheets/images/logo.png" alt="Logo do Cruzy")
-
   main#single-player-container
     .intro-text
       h2 Create New Game
       p Escolha um tema para o seu jogo de palavras cruzadas.
 
     form(action="/rooms" method="POST" class="validated-form new-room-form" novalidate)
-      label(for="theme") Room Name:
+      label(for="name") Room Name:
       input(type="text" name="name" id="name" required)  
       label(for="theme") Theme:
       input(type="text" name="theme" id="theme" required)  
-      label Number of Words:
+      label Approximate Number of Words:
       input(type="radio" name="numWords" id="5" value="5" required)   
       label(for="5") 5
       input(type="radio" name="numWords" id="10" value="10" required)   
       label(for="10") 10
       input(type="radio" name="numWords" id="20" value="20" required)   
       label(for="20") 20
+      span (Default: 10)
       
-      button(type="submit") Create
+      button.btn(type="submit") Create

@@ -7,8 +7,24 @@ module.exports.showAllRooms = async(req, res, next) => {
   res.render('rooms/index', {rooms});
 }
 
+module.exports.showRoomCreation = async(req, res, next) => {
+  res.render('rooms/new');
+}
 
 module.exports.createNewRoom = async(req, res, next) => {
+  
+  if(await Room.exists({name: req.body.name})){
+    req.flash('error', 'This room name is already in use')
+    return res.redirect('/rooms/new')
+  }
+  let {name, numWords} = req.body;
+  if(!name){
+    name = `Room${Date.now()}`
+  }
+  if(!numWords){
+    numWords = 10;
+  }
+    
   const client = new OpenAI({
     apiKey: process.env['OPENAI_API_KEY'],
   });
@@ -65,11 +81,10 @@ module.exports.createNewRoom = async(req, res, next) => {
   
   const Game = require('../public/js/Game');
   const game = new Game(themeArray);
-  const {name, numWords} = req.body;
 
   const room = new Room({name, theme, numWords, owner: req.user.username, game})
   await room.save()
-  // req.flash('success', 'New room created!');
+  req.flash('success', 'New room created!');
   res.redirect(`/play/${room._id}`);
 }
 

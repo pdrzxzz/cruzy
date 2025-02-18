@@ -1,15 +1,12 @@
 include ../layouts/layout
-
-block content
-  header
-    img(src="/stylesheets/images/logo.png" alt="Logo do Cruzy")
   
   main#single-player-container
     .intro-text
-      h2 Salas
+      h2 Suas Salas
 
     ul
       each room in rooms
+        if room.owner == currentUser.username
           li 
               p= `Nome: ${room.name}`
               span= `Tema: ${room.theme}`
@@ -17,7 +14,5 @@ block content
                 button.btn Entrar
               form(action=`/rooms/${room._id}?_method=DELETE`, method="POST")
                 button.btn.btn-danger Delete
-
-
       unless rooms.length
-        p Não há salas disponíveis
+        p Não há salas a mostrar
