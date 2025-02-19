@@ -5,10 +5,12 @@ include ../layouts/layout
       h2 Suas Salas
 
     ul
+    .room-list
       each room in rooms
         if room.owner == currentUser.username
           li 
-              p= `Nome: ${room.name}`
+            .room
+              p.room-name= `${room.name}`
               span= `Tema: ${room.theme}`
               form(action=`/play/${room._id}`, method="GET")
                 button.btn Entrar
