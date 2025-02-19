@@ -174,6 +174,109 @@ button.btn:hover {
   transform: translateY(-2px);
 }
 
+#single-player-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.room p.room-name {
+  font-size: 20px;
+  color: #8a3384;
+  font-weight: 900; /* Torna a fonte bem grossa */
+  text-shadow: 
+    2px 2px 0 #fff,   /* Borda branca para a parte superior e direita */
+    -2px -2px 0 #fff, /* Borda branca para a parte inferior e esquerda */
+    2px -2px 0 #fff,  /* Borda branca para a parte superior e esquerda */
+    -2px 2px 0 #fff,  /* Borda branca para a parte inferior e direita */
+    3px 3px 5px rgba(175, 175, 175, 0.5); /* Sombra cinza clara com opacidade */
+  margin-bottom: 10px;
+}
+
+.room-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  list-style: none;
+  padding: 0;
+}
+
+.room {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem; /* Aumenta o padding */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; /* Aumenta o gap */
+}
+
+.room p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.room span {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.room .card-header {
+  background-color: #d83d80; /* Fundo rosa */
+  padding: 0.5rem 1rem;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.room .card-tag {
+  background-color: #fff;
+  color: #C13271;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+}
+
+.btn {
+  background-color: #d4257d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+}
+
+.btn:hover {
+  background-color: #b81e69;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+/* For empty state */
+.room-list p {
+  text-align: center;
+  color: #666;
+  font-size: 1.1rem;
+  grid-column: 1 / -1;
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+
 /* Navbar Style */
 #nav-container {
   background-color: #b03d6f; /* Roxo escuro para a barra de navegação */
