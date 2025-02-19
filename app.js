@@ -20,8 +20,8 @@ const userRoutes = require('./routes/users')
 
 const User = require('./models/user'); //require user model
 
-// const dbUrl = 'mongodb://127.0.0.1:27017/cruzy';
-const dbUrl = process.env["DB_URL"]
+const dbUrl = 'mongodb://127.0.0.1:27017/cruzy';
+// const dbUrl = process.env["DB_URL"]
 //connect to mongo by mongoose
 mongoose.connect(dbUrl)
 mongoose.connection.on("error", console.error.bind(console, "connection error:"));

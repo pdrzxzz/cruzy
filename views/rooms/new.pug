@@ -1,22 +1,36 @@
 include ../layouts/layout
 
-  main#single-player-container
-    .intro-text
-      h2 Create New Game
-      p Escolha um tema para o seu jogo de palavras cruzadas.
 
-    form(action="/rooms" method="POST" class="validated-form new-room-form" novalidate)
-      label(for="name") Room Name:
-      input(type="text" name="name" id="name" required)  
-      label(for="theme") Theme:
-      input(type="text" name="theme" id="theme" required)  
-      label Approximate Number of Words:
-      input(type="radio" name="numWords" id="5" value="5" required)   
-      label(for="5") 5
-      input(type="radio" name="numWords" id="10" value="10" required)   
-      label(for="10") 10
-      input(type="radio" name="numWords" id="20" value="20" required)   
-      label(for="20") 20
-      span (Default: 10)
-      
-      button.btn(type="submit") Create
+main#single-player-container
+  .intro-text
+    h2 Create New Game
+    p Escolha um tema para o seu jogo de palavras cruzadas.
+
+  form(action="/rooms" method="POST" class="validated-form new-room-form" novalidate)
+   .room
+        .intro-text
+          h3 Room Name:
+          input(type="text" name="name" id="name" required)
+          
+        .intro-text
+          h3 Theme:
+          input(type="text" name="theme" id="theme" required)
+          
+        .intro-text
+          .word-options-container
+            h3 Approximate Number of Words:
+            .word-options
+              label
+                input(type="radio" name="numWords" id="5" value="5" required)
+                span 5
+              label
+                input(type="radio" name="numWords" id="10" value="10" required)
+                span 10
+              label
+                input(type="radio" name="numWords" id="20" value="20" required)
+                span 20
+
+        .intro-text
+          p (Default: 10)
+
+        button.btn(type="submit") Create
