@@ -182,7 +182,7 @@ button.btn:hover {
 
 .room p.room-name {
   font-size: 20px;
-  color: rgb(138, 51, 132);
+  color: #8a3384;
   font-weight: 900; /* Torna a fonte bem grossa */
   text-shadow: 
     2px 2px 0 #fff,   /* Borda branca para a parte superior e direita */
@@ -341,4 +341,20 @@ button.btn:hover {
 .nav-link:focus {
   outline: none; /* Remove o contorno padrão */
   color: white; /* Altera a cor do texto quando em foco */
+}
+
+#game-clues {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+  margin-top: 1rem;
+}
+
+#game-clues li {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #333;
 }
