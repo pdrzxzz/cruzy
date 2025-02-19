@@ -180,16 +180,6 @@ button.btn:hover {
   padding: 2rem;
 }
 
-.intro-text {
-  margin-bottom: 2rem;
-}
-
-.intro-text h2 {
-  color: #333;
-  font-size: 1.75rem;
-  font-weight: 600;
-}
-
 .room p.room-name {
   font-size: 20px;
   color: #8a3384;
