@@ -66,7 +66,7 @@ main#game-container .intro-text p {
 
 .intro-text h2 {
   font-size: 28px;
-  color: #6b2666; /* Roxo escuro */
+  color: rgb(107, 38, 102); /* Roxo escuro */
   font-weight: 900; /* Torna a fonte bem grossa */
   text-shadow: 
     2px 2px 0 #fff,   /* Borda branca para a parte superior e direita */
@@ -182,14 +182,21 @@ button.btn:hover {
 
 .room p.room-name {
   font-size: 20px;
-  color: #8a3384;
+  color: rgb(138, 51, 132);
   font-weight: 900; /* Torna a fonte bem grossa */
   text-shadow: 
     2px 2px 0 #fff,   /* Borda branca para a parte superior e direita */
     -2px -2px 0 #fff, /* Borda branca para a parte inferior e esquerda */
     2px -2px 0 #fff,  /* Borda branca para a parte superior e esquerda */
     -2px 2px 0 #fff,  /* Borda branca para a parte inferior e direita */
-    3px 3px 5px rgba(175, 175, 175, 0.5); /* Sombra cinza clara com opacidade */
+    3px 3px 5px rgb(138, 51, 132, 0.5); /* Sombra cinza clara com opacidade */
+  margin-bottom: 10px;
+}
+
+.room span.room-theme {
+  font-size: 20px;
+  color: #8a3384;
+  font-weight: 900; /* Torna a fonte bem grossa */
   margin-bottom: 10px;
 }
 
@@ -272,7 +279,7 @@ button.btn:hover {
   font-size: 1.1rem;
   grid-column: 1 / -1;
   padding: 2rem;
-  background: #f8f9fa;
+  background: rgb(107, 38, 102, 0.1);
   border-radius: 12px;
 }
 

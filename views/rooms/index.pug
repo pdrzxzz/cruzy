@@ -13,7 +13,7 @@ include ../layouts/layout
               .card-header
                 span.card-tag SOLO
               p.room-name= `${room.name}`
-              span= `Tema: ${room.theme}`
+              span.room-theme= `Tema: ${room.theme}`
               form(action=`/play/${room._id}`, method="GET")
                 button.btn Entrar
               form(action=`/rooms/${room._id}?_method=DELETE`, method="POST")
