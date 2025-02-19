@@ -3,8 +3,8 @@ const OpenAI = require('openai')
 require('dotenv').config()
 
 module.exports.showAllRooms = async(req, res, next) => {
-  const rooms = await Room.find({});
-  res.render('rooms/index', {rooms});
+  const rooms = await Room.find({owner: req.user.username});
+  res.render('rooms/index', {rooms: rooms || []});
 }
 
 module.exports.showRoomCreation = async(req, res, next) => {
