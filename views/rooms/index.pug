@@ -10,6 +10,8 @@ include ../layouts/layout
         if room.owner == currentUser.username
           li 
             .room
+              .card-header
+                span.card-tag SOLO
               p.room-name= `${room.name}`
               span= `Tema: ${room.theme}`
               form(action=`/play/${room._id}`, method="GET")

@@ -233,6 +233,22 @@ button.btn:hover {
   font-size: 0.95rem;
 }
 
+.room .card-header {
+  background-color: #d83d80; /* Fundo rosa */
+  padding: 0.5rem 1rem;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.room .card-tag {
+  background-color: #fff;
+  color: #C13271;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+}
+
 .btn {
   background-color: #d4257d;
   color: white;
