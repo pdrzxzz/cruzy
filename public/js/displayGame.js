@@ -1,4 +1,3 @@
-
 displayGame = (game) => {
     const GRID_SIZE = 50; //Tamanho de cada bloquinho
     const CANVAS_SIZE = GRID_SIZE * game.size + 5; //Tamanho inicial do canvas
@@ -200,7 +199,7 @@ displayGame = (game) => {
             }
         
             function toggleUserDirection() {
-                game.userDirection = game.userDirection === 'vertical' ? 'horizontal' : 'vertical';
+                game.userDirection = game.userDirection === 'vertical' ? 'horizontal' : 'horizontal';
             }
 
             function stopEditingCell() {
@@ -238,9 +237,11 @@ displayGame = (game) => {
                 top: GRID_SIZE * row,
                 width: GRID_SIZE,
                 height: GRID_SIZE,
-                stroke: 'black',
-                fill: 'transparent',
+                stroke: '#8a3384',      // Cor da borda
+                fill: '#fff',        // Fundo branco
                 strokeWidth: 2,
+                rx: 5,               // Canto arredondado horizontal
+                ry: 5,               // Canto arredondado vertical
                 lockMovementX: true,
                 lockMovementY: true,
                 hasControls: false,
@@ -251,7 +252,9 @@ displayGame = (game) => {
                 left: GRID_SIZE * column + 15,
                 top: GRID_SIZE * row + 10,
                 fontSize: GRID_SIZE / 1.6,
-                fill: 'black',
+                fill: '#8a3384',
+                fontFamily: 'Courier New', // Define a nova fonte
+                fontWeight: 'bold', // Texto em negrito
                 editable: false, // Inicialmente desativado
                 hasControls: false,
                 backgroundColor: 'transparent',
@@ -334,7 +337,7 @@ displayGame = (game) => {
                 left: GRID_SIZE * column + 5,
                 top: GRID_SIZE * row,
                 fontSize: GRID_SIZE / 3,
-                fill: 'red',
+                fill: '#8a3384',
                 editable: false,
                 hasControls: false,
                 lockMovementX: true,
@@ -376,15 +379,22 @@ displayGame = (game) => {
 
     const container = document.querySelector('#game-container');
     container.innerHTML = `
-      <div>
-        <p>Room Name: ${room.name}</p>
-        <p>Theme: ${room.theme}</p>
-        <p>Created By: ${room.owner}</p>
-        <canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="game-board">The game is loading or can't load on your browser.</canvas>
-      </div>
-      <div>
-        <p>Game Clues</p>
-        <ol id="game-clues"></ol>
+      <div class="game-layout">
+        <div class="game-clues-container">
+          <h3>Game Clues</h3>
+          <ol id="game-clues"></ol>
+        </div>
+        <div class="game-info">
+          <h2>Room Information</h2>
+          <p class="room-detail">Room Name: ${room.name}</p>
+          <p class="room-detail">Theme: ${room.theme}</p>
+          <p class="room-detail">Created By: ${room.owner}</p>
+        </div>
+        <div class="game-board-container">
+          <canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="game-board">
+            The game is loading or can't load on your browser.
+          </canvas>
+        </div>
       </div>
     `;
 
