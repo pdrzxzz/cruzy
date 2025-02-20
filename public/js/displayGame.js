@@ -163,7 +163,14 @@ displayGame = (game) => {
             }
 
             function completeGame() {
-                console.log('you won')
+                setTimeout(() => {
+                    alert('Parabéns! Você completou o jogo!')
+                    if (confirm('Deseja jogar novamente?')){
+                        location.reload();
+                    } else {
+                        window.location.href = '/rooms'
+                    }
+                }, 500);
             }
 
             function goToNextWord() {
