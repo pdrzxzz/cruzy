@@ -379,18 +379,21 @@ displayGame = (game) => {
 
     const container = document.querySelector('#game-container');
     container.innerHTML = `
-      <div style="display: flex; gap: 2rem;">
-        <div>
-          <p>Room Name: ${room.name}</p>
-          <p>Theme: ${room.theme}</p>
-          <p>Created By: ${room.owner}</p>
+      <div class="game-layout">
+        <div class="game-clues-container">
+          <h3>Game Clues</h3>
+          <ol id="game-clues"></ol>
+        </div>
+        <div class="game-info">
+          <h2>Room Information</h2>
+          <p class="room-detail">Room Name: ${room.name}</p>
+          <p class="room-detail">Theme: ${room.theme}</p>
+          <p class="room-detail">Created By: ${room.owner}</p>
+        </div>
+        <div class="game-board-container">
           <canvas width="${CANVAS_SIZE}" height="${CANVAS_SIZE}" id="game-board">
             The game is loading or can't load on your browser.
           </canvas>
-        </div>
-        <div>
-          <p>Game Clues</p>
-          <ol id="game-clues"></ol>
         </div>
       </div>
     `;
