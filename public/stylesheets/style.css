@@ -343,6 +343,117 @@ button.btn:hover {
   color: white; /* Altera a cor do texto quando em foco */
 }
 
+word-options-container {
+  display: flex;
+  align-items: center;  /* Alinha os itens no centro verticalmente */
+  gap: 10px;  /* Espaçamento entre o texto e as opções */
+ }
+ 
+ 
+ .word-options {
+  display: flex;
+  gap: 15px; /* Espaçamento entre os itens */
+  align-items: center;
+ }
+ 
+ 
+ .word-options label {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Espaço entre o input e o número */
+ }
+ 
+ 
+ .word-options input {
+  cursor: pointer;
+ }
+ 
+ 
+ .word-options span {
+  font-size: 16px;
+  font-weight: bold;
+  align-items: center;
+ }
+ 
+ 
+ 
+ .newroomcontainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center; /* Centraliza os itens dentro do container */
+  
+  background-color: white; /* Fundo branco igual ao do room card */
+  border-radius: 12px; /* Bordas arredondadas iguais ao do room */
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1); /* Sombra igual ao room */
+  
+  padding: 10px; /* Espaçamento interno */
+  
+  width: 80%; /* Ajuste a largura para 80% da tela */
+  max-width: 1000px; /* Largura máxima */
+  min-width: 250px; /* Largura mínima */
+  
+  height: 500px; /* Altura fixa */
+  
+  margin: auto; /* Centraliza o container na tela */
+  margin-bottom: 50px;
+}
+
+/* Container pai que envolve o .newroomcontainer */
+.main-container {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  height: 100vh; /* Garante que ocupe toda a altura da tela */
+}
+
+ 
+ 
+ input[type="text"] {
+  border: 2px solid #ccc; /* Borda cinza clara */
+  border-radius: 10px; /* Arredonda as bordas */
+  padding: 10px; /* Adiciona um espaçamento interno */
+  font-size: 16px; /* Ajusta o tamanho do texto */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra cinza suave */
+  outline: none; /* Remove a borda azul ao clicar */
+  transition: box-shadow 0.3s ease-in-out; /* Suaviza o efeito de foco */
+ }
+ 
+ 
+ input[type="text"]:focus {
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); /* Aumenta a sombra quando clicado */
+  border-color: #a88cb5; /* Muda a cor da borda ao focar */
+ }
+
+ .word-options-container {
+  display: flex;
+  flex-direction: column; /* Organiza os itens verticalmente */
+  gap: 10px; /* Espaçamento entre o texto e as opções */
+  align-items: center; /* Centraliza as opções */
+}
+
+.word-options {
+  display: flex;
+  gap: 15px; /* Espaçamento entre as opções */
+  align-items: center; /* Alinha os itens verticalmente */
+  justify-content: center; /* Centraliza os itens horizontalmente */
+}
+
+.word-options label {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Espaço entre o input e o número */
+}
+
+.word-options input {
+  cursor: pointer;
+}
+
+.word-options span {
+  font-size: 16px;
+  font-weight: bold;
+}
+
 #game-clues {
   background-color: #fff;
   border: 1px solid #ccc;
