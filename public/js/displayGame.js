@@ -199,7 +199,7 @@ displayGame = (game) => {
             }
         
             function toggleUserDirection() {
-                game.userDirection = game.userDirection === 'vertical' ? 'horizontal' : 'horizontal';
+                game.userDirection = game.userDirection === 'vertical' ? 'horizontal' : 'vertical';
             }
 
             function stopEditingCell() {
