@@ -372,7 +372,7 @@ button.btn:hover {
   grid-column: 2;
   grid-row: 1;
   background: linear-gradient(to bottom, #fff 0%, #f8f9fa 100%);
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(138, 51, 132, 0.1);
   margin-bottom: 2rem;
