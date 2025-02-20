@@ -446,6 +446,7 @@ displayGame = (game) => {
 
 displayGame(room.game)
 
+//debbuging
 console.log('themeArray: ', room.game.themeArray);
 console.log('size: ', room.game.size);
 console.log('canvasSize: ', room.CANVAS_SIZE);
