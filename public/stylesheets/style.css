@@ -182,7 +182,7 @@ button.btn:hover {
 
 .room p.room-name {
   font-size: 20px;
-  color: rgb(138, 51, 132);
+  color: #8a3384;
   font-weight: 900; /* Torna a fonte bem grossa */
   text-shadow: 
     2px 2px 0 #fff,   /* Borda branca para a parte superior e direita */
@@ -341,4 +341,132 @@ button.btn:hover {
 .nav-link:focus {
   outline: none; /* Remove o contorno padrão */
   color: white; /* Altera a cor do texto quando em foco */
+}
+
+#game-clues {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+  margin-top: 1rem;
+}
+
+#game-clues li {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+.game-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Aumenta proporção da área do canvas */
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.game-info {
+  grid-column: 2;
+  grid-row: 1;
+  background: linear-gradient(to bottom, #fff 0%, #f8f9fa 100%);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(138, 51, 132, 0.1);
+  margin-bottom: 2rem;
+  margin-left: auto;
+  min-width: 300px;
+  border: 1px solid rgba(138, 51, 132, 0.1);
+}
+
+.game-info h2 {
+  color: #8a3384;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.room-detail {
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px dashed rgba(138, 51, 132, 0.2);
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.room-detail:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.game-board-container {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  background: transparent;
+  padding: 1.5rem;
+  border-radius: 8px;
+  justify-self: start; /* Alinha à esquerda */
+}
+
+.game-clues-container {
+  grid-column: 2;
+  grid-row: 2;
+  background: linear-gradient(to bottom, #fff 0%, #f8f9fa 100%);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(138, 51, 132, 0.1);
+  margin-left: auto;
+  min-width: 300px;
+  border: 1px solid rgba(138, 51, 132, 0.1);
+  height: fit-content;
+}
+
+.game-clues-container h3 {
+  color: #8a3384;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid rgba(138, 51, 132, 0.2);
+  padding-bottom: 1rem;
+}
+
+#game-clues {
+  list-style-position: inside;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 8px;
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid rgba(138, 51, 132, 0.1);
+}
+
+#game-clues li {
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 6px;
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.5;
+  background: #f8f9fa;
+  border-left: 3px solid #8a3384;
+  transition: all 0.2s ease;
+}
+
+#game-clues li:hover {
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(138, 51, 132, 0.1);
+  transform: translateX(5px);
+}
+
+#game-clues li:last-child {
+  border-bottom: none;
 }
