@@ -417,37 +417,54 @@ button.btn:hover {
 .game-clues-container {
   grid-column: 2;
   grid-row: 2;
-  background: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  margin-left: auto; /* Empurra para direita */
-  min-width: 300px; /* Largura mínima */
+  background: linear-gradient(to bottom, #fff 0%, #f8f9fa 100%);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(138, 51, 132, 0.1);
+  margin-left: auto;
+  min-width: 300px;
+  border: 1px solid rgba(138, 51, 132, 0.1);
   height: fit-content;
 }
 
 .game-clues-container h3 {
   color: #8a3384;
-  margin-bottom: 1rem;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
   text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid rgba(138, 51, 132, 0.2);
+  padding-bottom: 1rem;
 }
 
 #game-clues {
   list-style-position: inside;
-  padding: 1rem;
-  background: #f8f9fa;
-  border-radius: 6px;
-  max-height: 300px;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 8px;
+  max-height: 400px;
   overflow-y: auto;
+  border: 1px solid rgba(138, 51, 132, 0.1);
 }
 
 #game-clues li {
-  padding: 0.75rem;
-  border-bottom: 1px solid #eee;
-  color: #444;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 6px;
+  color: #666;
   font-size: 1rem;
-  line-height: 1.4;
+  line-height: 1.5;
+  background: #f8f9fa;
+  border-left: 3px solid #8a3384;
+  transition: all 0.2s ease;
+}
+
+#game-clues li:hover {
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(138, 51, 132, 0.1);
+  transform: translateX(5px);
 }
 
 #game-clues li:last-child {
