@@ -2,7 +2,7 @@ include ../layouts/layout
   
   main#single-player-container
     .intro-text
-      h2 Suas Salas
+      h2 Your Rooms
 
     ul
     .room-list
@@ -12,10 +12,10 @@ include ../layouts/layout
               .card-header
                 span.card-tag SOLO
               p.room-name= `${room.name}`
-              span.room-theme= `Tema: ${room.theme}`
+              span.room-theme= `Theme: ${room.theme}`
               form(action=`/play/${room._id}`, method="GET")
-                button.btn Entrar
+                button.btn Join
               form(action=`/rooms/${room._id}?_method=DELETE`, method="POST")
                 button.btn.btn-danger Delete
       unless rooms.length
-        p Não há salas a mostrar
+        p No rooms to show!
