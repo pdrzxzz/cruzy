@@ -28,19 +28,3 @@ module.exports = class Game {
     return Math.ceil(Math.sqrt(this.themeArray.length * maxWordLength)); // Tamanho inicial do tabuleiro (1 dimension)
   }
 }
-
-// const game = new Game(data.themeArray);
-
-// Debugging
-// console.log('data.theme :', data.theme)
-// console.log('data.owner :', data.owner)
-// console.log('data.language :', data.language)
-
-// console.log('game.themeArray: ', game.themeArray);
-// console.log('size: ', game.size);
-// console.log('canvasSize: ', game.canvasSize);
-// console.log('board: ', game.board);
-// console.log('userInput: ', game.userInput)
-// console.log('canvas: ', game.canvas);
-// console.log('game.placedWords: ', game.placedWords);
-// console.log('game.wordLocations: ', game.wordLocations);

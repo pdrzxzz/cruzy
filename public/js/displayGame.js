@@ -163,7 +163,14 @@ displayGame = (game) => {
             }
 
             function completeGame() {
-                console.log('you won')
+                setTimeout(() => {
+                    alert('Parabéns! Você completou o jogo!')
+                    if (confirm('Deseja jogar novamente?')){
+                        location.reload();
+                    } else {
+                        window.location.href = '/rooms'
+                    }
+                }, 500);
             }
 
             function goToNextWord() {
@@ -199,7 +206,7 @@ displayGame = (game) => {
             }
         
             function toggleUserDirection() {
-                game.userDirection = game.userDirection === 'vertical' ? 'horizontal' : 'horizontal';
+                game.userDirection = game.userDirection === 'vertical' ? 'horizontal' : 'vertical';
             }
 
             function stopEditingCell() {
@@ -439,6 +446,7 @@ displayGame = (game) => {
 
 displayGame(room.game)
 
+//debbuging
 console.log('themeArray: ', room.game.themeArray);
 console.log('size: ', room.game.size);
 console.log('canvasSize: ', room.CANVAS_SIZE);
