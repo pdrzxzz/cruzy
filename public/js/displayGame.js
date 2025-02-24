@@ -20,7 +20,10 @@ displayGame = (game) => {
             }
 
             function grayHighlightCell(cell) {
-                const rect = cell._objects[0]
+                if (!game.highlightedCells.includes(cell)) {
+                    game.highlightedCells.push(cell);
+                }
+                const rect = cell._objects[0];
                 rect.set('fill', '#e6e6e6');
             }
 
