@@ -12,7 +12,8 @@ body {
 }
 
 header {
-  background-color: #C13271; /* Rosa */
+  background-color: #C13271;
+  /* Rosa */
   color: white;
   text-align: center;
   padding: 20px 0;
@@ -20,35 +21,47 @@ header {
   font-weight: bold;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   /* position: absolute; Posiciona a header em cima da navbar */
-  top: 0; /* Alinha no topo da página */
+  top: 0;
+  /* Alinha no topo da página */
   left: 0;
   right: 0;
-  z-index: 2000; /* Garante que a header fique em cima da navbar */
+  z-index: 2000;
+  /* Garante que a header fique em cima da navbar */
 }
 
 header img {
-  width: auto; /* Ajusta a largura automaticamente */
-  max-width: 350px; /* Limita a largura máxima da imagem */
-  height: auto; /* Mantém a proporção da imagem */
+  width: auto;
+  /* Ajusta a largura automaticamente */
+  max-width: 350px;
+  /* Limita a largura máxima da imagem */
+  height: auto;
+  /* Mantém a proporção da imagem */
   display: block;
-  margin: 0 auto; /* Centraliza a imagem */
+  margin: 0 auto;
+  /* Centraliza a imagem */
 }
 
 header h1 {
-  display: none; /* Esconde o texto 'CRUZY' */
+  display: none;
+  /* Esconde o texto 'CRUZY' */
 }
 
 /* Definir a imagem de fundo apenas para a página Home */
 main#game-container {
-  background-image: url('images/image.png'); /* Caminho para a imagem; */
-  background-size: 1540px 410px; /* A imagem vai cobrir toda a área do container */
-  background-position: center top; /* Centraliza a imagem */
-  background-repeat: no-repeat; /* Impede a repetição da imagem */
+  background-image: url('images/image.png');
+  /* Caminho para a imagem; */
+  background-size: 1540px 410px;
+  /* A imagem vai cobrir toda a área do container */
+  background-position: center top;
+  /* Centraliza a imagem */
+  background-repeat: no-repeat;
+  /* Impede a repetição da imagem */
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 40px 20px;
-  text-align: right; /* Alinha o texto para a direita na Home */
+  text-align: right;
+  /* Alinha o texto para a direita na Home */
   gap: 20px;
   height: 100vh;
 }
@@ -57,69 +70,97 @@ main#game-container {
 main#game-container .intro-text h2,
 main#game-container .intro-text h3,
 main#game-container .intro-text p {
-  margin-right: auto;  /* Move o texto para a direita */
-  margin-left: 500px; /* Adiciona uma margem direita para dar um espaçamento */
-  text-align: justify; /* Alinha o texto para a direita */
+  margin-right: auto;
+  /* Move o texto para a direita */
+  margin-left: 500px;
+  /* Adiciona uma margem direita para dar um espaçamento */
+  text-align: justify;
+  /* Alinha o texto para a direita */
   margin-top: 15px;
 }
 
 
 .intro-text h2 {
   font-size: 28px;
-  color: rgb(107, 38, 102); /* Roxo escuro */
-  font-weight: 900; /* Torna a fonte bem grossa */
-  text-shadow: 
-    2px 2px 0 #fff,   /* Borda branca para a parte superior e direita */
-    -2px -2px 0 #fff, /* Borda branca para a parte inferior e esquerda */
-    2px -2px 0 #fff,  /* Borda branca para a parte superior e esquerda */
-    -2px 2px 0 #fff,  /* Borda branca para a parte inferior e direita */
-    3px 3px 5px rgba(175, 175, 175, 0.5); /* Sombra cinza clara com opacidade */
-    
+  color: rgb(107, 38, 102);
+  /* Roxo escuro */
+  font-weight: 900;
+  /* Torna a fonte bem grossa */
+  text-shadow:
+    2px 2px 0 #fff,
+    /* Borda branca para a parte superior e direita */
+    -2px -2px 0 #fff,
+    /* Borda branca para a parte inferior e esquerda */
+    2px -2px 0 #fff,
+    /* Borda branca para a parte superior e esquerda */
+    -2px 2px 0 #fff,
+    /* Borda branca para a parte inferior e direita */
+    3px 3px 5px rgba(175, 175, 175, 0.5);
+  /* Sombra cinza clara com opacidade */
+
 }
 
 .intro-text h3 {
   font-size: 18px;
-  color: #6b2666; /* Roxo escuro */
-  font-weight: 900; /* Torna a fonte bem grossa */
-  text-shadow: 
-    2px 2px 0 #fff,   /* Borda branca para a parte superior e direita */
-    -2px -2px 0 #fff, /* Borda branca para a parte inferior e esquerda */
-    2px -2px 0 #fff,  /* Borda branca para a parte superior e esquerda */
-    -2px 2px 0 #fff,  /* Borda branca para a parte inferior e direita */
-    3px 3px 5px rgba(175, 175, 175, 0.5); /* Sombra cinza clara com opacidade */
+  color: #6b2666;
+  /* Roxo escuro */
+  font-weight: 900;
+  /* Torna a fonte bem grossa */
+  text-shadow:
+    2px 2px 0 #fff,
+    /* Borda branca para a parte superior e direita */
+    -2px -2px 0 #fff,
+    /* Borda branca para a parte inferior e esquerda */
+    2px -2px 0 #fff,
+    /* Borda branca para a parte superior e esquerda */
+    -2px 2px 0 #fff,
+    /* Borda branca para a parte inferior e direita */
+    3px 3px 5px rgba(175, 175, 175, 0.5);
+  /* Sombra cinza clara com opacidade */
 }
 
 
 
 .intro-text p {
   font-size: 16px;
-  color: #6b2666; /* Roxo escuro */
+  color: #6b2666;
+  /* Roxo escuro */
   font-weight: 700;
   max-width: 600px;
   line-height: 1.6;
   margin-bottom: 10px;
-    text-align: center; /* Justifica o texto */
+  text-align: center;
+  /* Justifica o texto */
 
 }
 
 /* Container dos botões na Home Page */
 .button-container {
   display: flex;
-  justify-content: flex-end; /* Move os botões para a direita */
-  width: 100%; /* Garante que o container ocupa toda a largura */
-  gap: 40px; /* Espaço entre os botões */
-  margin-top: 50px; /* Ajuste o espaço superior */
+  justify-content: flex-end;
+  /* Move os botões para a direita */
+  width: 100%;
+  /* Garante que o container ocupa toda a largura */
+  gap: 40px;
+  /* Espaço entre os botões */
+  margin-top: 50px;
+  /* Ajuste o espaço superior */
   margin-right: 300px;
 
 }
 
 /* Estilo dos botões específicos da Home Page */
 main#game-container button.btn {
-  display: inline-block; /* Garante que os botões respeitem tamanho */
-  font-size: 32px; /* Texto do botão 2x maior */
-  border-radius: 10px; /* Bordas arredondadas maiores */
-  padding: 15px 60px; /* Espaçamento interno maior */
-  box-shadow: 0 10px #b03d6f; /* Ajusta sombra */
+  display: inline-block;
+  /* Garante que os botões respeitem tamanho */
+  font-size: 32px;
+  /* Texto do botão 2x maior */
+  border-radius: 10px;
+  /* Bordas arredondadas maiores */
+  padding: 15px 60px;
+  /* Espaçamento interno maior */
+  box-shadow: 0 10px #b03d6f;
+  /* Ajusta sombra */
 }
 
 
@@ -158,7 +199,8 @@ main#single-player-container .intro-text p {
 button.btn {
   background-color: #d04e83;
   color: white;
-  font-size: 18px; /* Menor tamanho para essa página */
+  font-size: 18px;
+  /* Menor tamanho para essa página */
   font-weight: bold;
   border: none;
   border-radius: 8px;
@@ -183,20 +225,27 @@ button.btn:hover {
 .room p.room-name {
   font-size: 20px;
   color: #8a3384;
-  font-weight: 900; /* Torna a fonte bem grossa */
-  text-shadow: 
-    2px 2px 0 #fff,   /* Borda branca para a parte superior e direita */
-    -2px -2px 0 #fff, /* Borda branca para a parte inferior e esquerda */
-    2px -2px 0 #fff,  /* Borda branca para a parte superior e esquerda */
-    -2px 2px 0 #fff,  /* Borda branca para a parte inferior e direita */
-    3px 3px 5px rgb(138, 51, 132, 0.5); /* Sombra cinza clara com opacidade */
+  font-weight: 900;
+  /* Torna a fonte bem grossa */
+  text-shadow:
+    2px 2px 0 #fff,
+    /* Borda branca para a parte superior e direita */
+    -2px -2px 0 #fff,
+    /* Borda branca para a parte inferior e esquerda */
+    2px -2px 0 #fff,
+    /* Borda branca para a parte superior e esquerda */
+    -2px 2px 0 #fff,
+    /* Borda branca para a parte inferior e direita */
+    3px 3px 5px rgb(138, 51, 132, 0.5);
+  /* Sombra cinza clara com opacidade */
   margin-bottom: 10px;
 }
 
 .room span.room-theme {
   font-size: 20px;
   color: #8a3384;
-  font-weight: 900; /* Torna a fonte bem grossa */
+  font-weight: 900;
+  /* Torna a fonte bem grossa */
   margin-bottom: 10px;
 }
 
@@ -211,11 +260,13 @@ button.btn:hover {
 .room {
   background: white;
   border-radius: 12px;
-  padding: 2rem; /* Aumenta o padding */
+  padding: 2rem;
+  /* Aumenta o padding */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  gap: 1.25rem; /* Aumenta o gap */
+  gap: 1.25rem;
+  /* Aumenta o gap */
 }
 
 .room p {
@@ -231,7 +282,8 @@ button.btn:hover {
 }
 
 .room .card-header {
-  background-color: #d83d80; /* Fundo rosa */
+  background-color: #d83d80;
+  /* Fundo rosa */
   padding: 0.5rem 1rem;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
@@ -286,14 +338,18 @@ button.btn:hover {
 
 /* Navbar Style */
 #nav-container {
-  background-color: #b03d6f; /* Roxo escuro para a barra de navegação */
+  background-color: #b03d6f;
+  /* Roxo escuro para a barra de navegação */
   padding: 10px 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   /* position: absolute; A navbar fica fixa na parte superior */
-  top: 110px; /* Ajuste para colocar a navbar logo abaixo da header */
+  top: 110px;
+  /* Ajuste para colocar a navbar logo abaixo da header */
   left: 0;
-  width: 100%; /* Garante que a navbar ocupe toda a largura da página */
-  z-index: 1000; /* Navbar abaixo da header */
+  width: 100%;
+  /* Garante que a navbar ocupe toda a largura da página */
+  z-index: 1000;
+  /* Navbar abaixo da header */
 }
 
 
@@ -323,126 +379,163 @@ button.btn:hover {
 .nav-link:hover {
   background-color: white;
   transform: translateY(-1px);
-  color: #6b2666; /* Altera a cor do texto durante o hover */
+  color: #6b2666;
+  /* Altera a cor do texto durante o hover */
 }
 
 .nav-link.active {
-  background-color: #d04e83; /* Cor de fundo quando estiver ativo */
+  background-color: #d04e83;
+  /* Cor de fundo quando estiver ativo */
   color: white;
   text-decoration: none;
 }
 
 .nav-link.disabled {
-  color: #d3d3d3; /* Cor para itens desabilitados */
-  pointer-events: none; /* Impede interação com o link */
+  color: #d3d3d3;
+  /* Cor para itens desabilitados */
+  pointer-events: none;
+  /* Impede interação com o link */
   text-decoration: none;
 }
 
 .nav-link:focus {
-  outline: none; /* Remove o contorno padrão */
-  color: white; /* Altera a cor do texto quando em foco */
+  outline: none;
+  /* Remove o contorno padrão */
+  color: white;
+  /* Altera a cor do texto quando em foco */
 }
 
 word-options-container {
   display: flex;
-  align-items: center;  /* Alinha os itens no centro verticalmente */
-  gap: 10px;  /* Espaçamento entre o texto e as opções */
- }
- 
- 
- .word-options {
-  display: flex;
-  gap: 15px; /* Espaçamento entre os itens */
   align-items: center;
- }
- 
- 
- .word-options label {
+  /* Alinha os itens no centro verticalmente */
+  gap: 10px;
+  /* Espaçamento entre o texto e as opções */
+}
+
+
+.word-options {
+  display: flex;
+  gap: 15px;
+  /* Espaçamento entre os itens */
+  align-items: center;
+}
+
+
+.word-options label {
   display: flex;
   align-items: center;
-  gap: 5px; /* Espaço entre o input e o número */
- }
- 
- 
- .word-options input {
+  gap: 5px;
+  /* Espaço entre o input e o número */
+}
+
+
+.word-options input {
   cursor: pointer;
- }
- 
- 
- .word-options span {
+}
+
+.word-options span {
   font-size: 16px;
   font-weight: bold;
   align-items: center;
- }
- 
- 
- 
- .newroomcontainer {
+}
+
+
+.newroomcontainer {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  align-items: center; /* Centraliza os itens dentro do container */
-  
-  background-color: white; /* Fundo branco igual ao do room card */
-  border-radius: 12px; /* Bordas arredondadas iguais ao do room */
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1); /* Sombra igual ao room */
-  
-  padding: 10px; /* Espaçamento interno */
-  
-  width: 80%; /* Ajuste a largura para 80% da tela */
-  max-width: 1000px; /* Largura máxima */
-  min-width: 250px; /* Largura mínima */
-  
-  height: 500px; /* Altura fixa */
-  
-  margin: auto; /* Centraliza o container na tela */
+  align-items: center;
+  /* Centraliza os itens dentro do container */
+
+  background-color: white;
+  /* Fundo branco igual ao do room card */
+  border-radius: 12px;
+  /* Bordas arredondadas iguais ao do room */
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  /* Sombra igual ao room */
+
+  padding: 10px;
+  /* Espaçamento interno */
+
+  width: 80%;
+  /* Ajuste a largura para 80% da tela */
+  max-width: 1000px;
+  /* Largura máxima */
+  min-width: 250px;
+  /* Largura mínima */
+
+  height: 500px;
+  /* Altura fixa */
+
+  margin: auto;
+  /* Centraliza o container na tela */
   margin-bottom: 50px;
 }
 
 /* Container pai que envolve o .newroomcontainer */
 .main-container {
   display: flex;
-  justify-content: center; /* Centraliza horizontalmente */
-  align-items: center; /* Centraliza verticalmente */
-  height: 100vh; /* Garante que ocupe toda a altura da tela */
+  justify-content: center;
+  /* Centraliza horizontalmente */
+  align-items: center;
+  /* Centraliza verticalmente */
+  height: 100vh;
+  /* Garante que ocupe toda a altura da tela */
 }
 
- 
- 
- input[type="text"] {
-  border: 2px solid #ccc; /* Borda cinza clara */
-  border-radius: 10px; /* Arredonda as bordas */
-  padding: 10px; /* Adiciona um espaçamento interno */
-  font-size: 16px; /* Ajusta o tamanho do texto */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra cinza suave */
-  outline: none; /* Remove a borda azul ao clicar */
-  transition: box-shadow 0.3s ease-in-out; /* Suaviza o efeito de foco */
- }
- 
- 
- input[type="text"]:focus {
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); /* Aumenta a sombra quando clicado */
-  border-color: #a88cb5; /* Muda a cor da borda ao focar */
- }
 
- .word-options-container {
+
+input[type="text"] {
+  border: 2px solid #ccc;
+  /* Borda cinza clara */
+  border-radius: 10px;
+  /* Arredonda as bordas */
+  padding: 10px;
+  /* Adiciona um espaçamento interno */
+  font-size: 16px;
+  /* Ajusta o tamanho do texto */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  /* Sombra cinza suave */
+  outline: none;
+  /* Remove a borda azul ao clicar */
+  transition: box-shadow 0.3s ease-in-out;
+  /* Suaviza o efeito de foco */
+}
+
+
+input[type="text"]:focus {
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  /* Aumenta a sombra quando clicado */
+  border-color: #a88cb5;
+  /* Muda a cor da borda ao focar */
+}
+
+.word-options-container {
   display: flex;
-  flex-direction: column; /* Organiza os itens verticalmente */
-  gap: 10px; /* Espaçamento entre o texto e as opções */
-  align-items: center; /* Centraliza as opções */
+  flex-direction: column;
+  /* Organiza os itens verticalmente */
+  gap: 10px;
+  /* Espaçamento entre o texto e as opções */
+  align-items: center;
+  /* Centraliza as opções */
 }
 
 .word-options {
   display: flex;
-  gap: 15px; /* Espaçamento entre as opções */
-  align-items: center; /* Alinha os itens verticalmente */
-  justify-content: center; /* Centraliza os itens horizontalmente */
+  gap: 15px;
+  /* Espaçamento entre as opções */
+  align-items: center;
+  /* Alinha os itens verticalmente */
+  justify-content: center;
+  /* Centraliza os itens horizontalmente */
 }
 
 .word-options label {
   display: flex;
   align-items: center;
-  gap: 5px; /* Espaço entre o input e o número */
+  gap: 5px;
+  /* Espaço entre o input e o número */
 }
 
 .word-options input {
@@ -472,7 +565,8 @@ word-options-container {
 
 .game-layout {
   display: grid;
-  grid-template-columns: 2fr 1fr; /* Aumenta proporção da área do canvas */
+  grid-template-columns: 2fr 1fr;
+  /* Aumenta proporção da área do canvas */
   gap: 2rem;
   max-width: 1400px;
   margin: 0 auto;
@@ -522,7 +616,8 @@ word-options-container {
   background: transparent;
   padding: 1.5rem;
   border-radius: 8px;
-  justify-self: start; /* Alinha à esquerda */
+  justify-self: start;
+  /* Alinha à esquerda */
 }
 
 .game-clues-container {

@@ -15,6 +15,21 @@ block content
               .mb-3
                 label.form-label(for="password") Password
                 input.form-control(type="password" id="password" name="password" required)
-                .valid-feedback Looks good!
+                .invalid-feedback#passwordFeedback
+                  | Password must contain at least:
+                  ul
+                    li 8 characters
+                    li 1 uppercase letter
+                    li 1 lowercase letter
+                    li 1 number
+                    li 1 special character
+              .mb-3
+                label.form-label(for="confirmPassword") Confirm Password
+                input.form-control(type="password" id="confirmPassword" name="confirmPassword" required)
+                .invalid-feedback Passwords do not match.
+                .valid-feedback Passwords match!
               .button-container
-                button.btn Register
+                button.btn(type="submit" id="submitButton" disabled) Register
+
+script(src="/js/confirmPassword.js")
+script(src="/js/passwordValidation.js")
