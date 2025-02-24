@@ -486,7 +486,7 @@ word-options-container {
 
 
 
-input[type="text"] {
+.form-control {
   border: 2px solid #ccc;
   /* Borda cinza clara */
   border-radius: 10px;
@@ -504,7 +504,7 @@ input[type="text"] {
 }
 
 
-input[type="text"]:focus {
+.form-control:focus {
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
   /* Aumenta a sombra quando clicado */
   border-color: #a88cb5;
@@ -675,4 +675,9 @@ input[type="text"]:focus {
 
 #game-clues li:last-child {
   border-bottom: none;
+}
+
+.form-check-input:checked {
+  background-color: #b03d6f;
+  border-color: #b03d6f;
 }

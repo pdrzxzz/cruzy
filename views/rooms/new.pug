@@ -1,35 +1,33 @@
 include ../layouts/layout
 
-
-main#single-player-container
-  .intro-text
-    h2 Create New Game
-
-  form(action="/rooms" method="POST" class="validated-form new-room-form" novalidate)
-   .room
-        .intro-text
-          h3 Room Name (optional):
-          input(type="text" name="name" id="name" required)
-          
-        .intro-text
-          h3 Theme:
-          input(type="text" name="theme" id="theme" required)
-          
-        .intro-text
-          .word-options-container
-            h3 Approximate Number of Words:
-            .word-options
-              label
-                input(type="radio" name="numWords" id="5" value="5" required)
-                span 5
-              label
-                input(type="radio" name="numWords" id="10" value="10" required)
-                span 10
-              label
-                input(type="radio" name="numWords" id="20" value="20" required)
-                span 20
-
-        .intro-text
-          p (Default: 10)
-
-        button.btn(type="submit") Create
+block content
+  .container.d-flex.justify-content-center.align-items-center.mt-5
+    .row
+      .col-md-6.offset-md-3.col-xl-4.offset-xl-4
+        .room
+          img.card-img-top(src="/stylesheets/images/logo.png", alt="")
+          .card-body
+            h5.card-title Create New Game
+            form.validated-form(action="/rooms" method="POST" novalidate)
+              .mb-3
+                label.form-label(for="name") Room Name (optional)
+                input.form-control(type="text" id="name" name="name")
+              .mb-3
+                label.form-label(for="theme") Theme
+                input.form-control(type="text" id="theme" name="theme" required)
+              .mb-3
+                label.form-label Approximate Number of Words
+                .word-options
+                  .form-check
+                    input.form-check-input(type="radio" name="numWords" id="5" value="5" required)
+                    label.form-check-label(for="5") 5
+                  .form-check
+                    input.form-check-input(type="radio" name="numWords" id="10" value="10" required)
+                    label.form-check-label(for="10") 10
+                  .form-check
+                    input.form-check-input(type="radio" name="numWords" id="20" value="20" required)
+                    label.form-check-label(for="20") 20
+              .mb-3
+                small.form-text.text-muted (Default: 10)
+              .button-container
+                button.btn.btn-primary(type="submit") Create
