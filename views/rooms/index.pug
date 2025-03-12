@@ -1,21 +1,35 @@
+//=== Página de listagem de salas do usuário ===//
 include ../layouts/layout
   
   main#single-player-container
+    // Título da página
     .intro-text
       h2 Your Rooms
 
     ul
+    // Lista de salas em formato de grade
     .room-list
+      // Itera sobre cada sala do usuário
       each room in rooms
           li 
+            // Card para cada sala
             .room
+              // Cabeçalho da sala com tag de modo
               .card-header
                 span.card-tag SOLO
+              
+              // Nome e tema da sala
               p.room-name= `${room.name}`
               span.room-theme= `Theme: ${room.theme}`
+              
+              // Botão para jogar na sala
               form(action=`/play/${room._id}`, method="GET")
                 button.btn Join
+              
+              // Botão para excluir a sala
               form(action=`/rooms/${room._id}?_method=DELETE`, method="POST")
                 button.btn.btn-danger Delete
+      
+      // Mensagem quando não há salas para mostrar
       unless rooms.length
         p No rooms to show!

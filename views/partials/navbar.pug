@@ -1,22 +1,35 @@
+//=== Barra de navegação responsiva ===//
 div#nav-container
   ul.nav
+    // Link para página inicial sempre visível
     li.nav-item
       a.nav-link(href="/") Home
+    
+    // Links disponíveis apenas para usuários autenticados
     if currentUser
+      // Link para listar salas do usuário
       li.nav-item
         a.nav-link(href="/rooms") Rooms
+      
+      // Link para criar nova sala
       li.nav-item
         a.nav-link(href="/rooms/new") Create New Room
+      
+      // Link para logout
       li.nav-item
         a.nav-link(href="/logout") Logout
+      
+      // Exibe o nome do usuário logado
       li.nav-item
         a.nav-link= currentUser.username
+    
+    // Links disponíveis apenas para usuários não autenticados
     else 
       li.nav-item
         a.nav-link(href="/login") Login
       li.nav-item
         a.nav-link(href="/register") Register
       //- p currentUser não está funcionando mostrar o usuário logado
-    
-    
+
+
 

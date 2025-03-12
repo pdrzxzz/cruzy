@@ -2,15 +2,30 @@ const Room = require('../models/room')
 const OpenAI = require('openai')
 require('dotenv').config()
 
+/**
+ * Exibe todas as salas do usuário atual
+ * Busca as salas do banco de dados filtrando pelo nome de usuário
+ */
 module.exports.showAllRooms = async(req, res, next) => {
   const rooms = await Room.find({owner: req.user.username});
   res.render('rooms/index', {rooms: rooms || []});
 }
 
+/**
+ * Renderiza o formulário de criação de nova sala
+ */
 module.exports.showRoomCreation = async(req, res, next) => {
   res.render('rooms/new');
 }
 
+/**
+ * Cria uma nova sala de jogo com palavras cruzadas
+ * 1. Verifica se o nome da sala já existe
+ * 2. Define valores padrão para nome e número de palavras se não fornecidos
+ * 3. Utiliza a API da OpenAI para gerar palavras e dicas com base no tema escolhido
+ * 4. Cria um novo jogo de palavras cruzadas usando o algoritmo próprio
+ * 5. Salva a sala no banco de dados e redireciona para o jogo
+ */
 module.exports.createNewRoom = async(req, res, next) => {
   
   if(await Room.exists({name: req.body.name})){
@@ -30,7 +45,7 @@ module.exports.createNewRoom = async(req, res, next) => {
   });
 
   async function main() {
-
+    // Chamada à API da OpenAI para gerar palavras e dicas com base no tema
     const chatCompletion = await client.chat.completions.create({
       messages: [{ role: 'user', content: `return a javascript array like this: 
   { 
@@ -79,23 +94,33 @@ module.exports.createNewRoom = async(req, res, next) => {
 
   const { theme, themeArray } = await main();
   
+  // Cria um novo jogo de palavras cruzadas usando o algoritmo próprio
   const Game = require('../public/js/Game');
   const game = new Game(themeArray);
 
+  // Salva a sala no banco de dados
   const room = new Room({name, theme, numWords, owner: req.user.username, game})
   await room.save()
   req.flash('success', 'New room created!');
   res.redirect(`/play/${room._id}`);
 }
 
+/**
+ * Exibe uma sala específica para jogar
+ * Busca a sala pelo ID e renderiza a página de jogo
+ */
 module.exports.showRoom = async(req, res, next) => {
   const room = await Room.findById(req.params.id)
   res.render('play', {room}) 
 }
 
+/**
+ * Exclui uma sala do banco de dados
+ * Busca e remove a sala pelo ID e redireciona para a lista de salas
+ */
 module.exports.deleteRoom = async(req, res, next) => {
   const {id} = req.params;
   await Room.findByIdAndDelete(id);
-  req.flash('success', 'Successfully deleted room') //flash pop-up
+  req.flash('success', 'Successfully deleted room') // Mensagem de confirmação
   res.redirect('/rooms');
 }

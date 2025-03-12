@@ -1,9 +1,18 @@
+/**
+ * Script para validação complexa de senha no formulário de registro
+ * Verifica requisitos de segurança como tamanho mínimo, caracteres especiais, etc.
+ */
 document.addEventListener('DOMContentLoaded', function() {
     const passwordInput = document.getElementById('password');
     const confirmPasswordInput = document.getElementById('confirmPassword');
     const passwordFeedback = document.getElementById('passwordFeedback');
     const submitButton = document.getElementById('submitButton');
 
+    /**
+     * Valida se a senha atende a todos os requisitos de segurança
+     * @param {string} password - A senha a ser validada
+     * @returns {boolean} - True se a senha atender a todos os requisitos
+     */
     const validatePassword = (password) => {
         const minLength = 8;
         const hasUpperCase = /[A-Z]/.test(password);
@@ -14,6 +23,10 @@ document.addEventListener('DOMContentLoaded', function() {
         return password.length >= minLength && hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar;
     };
 
+    /**
+     * Valida o formulário completo e habilita/desabilita o botão de envio
+     * Atualiza classes visuais para feedback ao usuário
+     */
     const validateForm = () => {
         const password = passwordInput.value;
         const confirmPassword = confirmPasswordInput.value;
@@ -44,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
+    // Event listeners para validação em tempo real
     passwordInput.addEventListener('input', validateForm);
     confirmPasswordInput.addEventListener('input', validateForm);
 });

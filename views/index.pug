@@ -1,18 +1,24 @@
+//=== Página inicial (landing page) ===//
 include layouts/layout
 
-
+  // Container principal
   main#game-container
+    // Seção de texto introdutório
     .intro-text
       h2 Welcome to CRUZY
       p Use artificial intelligence to create your own crusades and explore a variety of options tailored to you.
       p Be the master of words and discover how the combination of creativity and technology can make each game unique and exciting. 
       p Get ready to train your brain in a whole new way!
+    
+    // Seção de botões de ação
     .button-container
+      // Opções para usuários autenticados
       if currentUser
         form(action="/rooms" method="GET" class="validated-form" novalidate)
           button.btn SinglePlayer
         //- form(action="/multi" method="GET" class="validated-form" novalidate)
         //-   button.btn Multiplayer
+      // Opções para usuários não autenticados
       else
         form(action="/login" method="GET" class="validated-form" novalidate)
               button.btn Login

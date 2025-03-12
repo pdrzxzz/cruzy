@@ -1,9 +1,12 @@
+//=== Sistema de mensagens flash (alertas temporários) ===//
+// Exibe mensagens de sucesso se existirem
 if success
       each message in success
         div(role="alert").alert.alert-success.alert-dismissible.fade.show
           p= message
           button(type="button" data-bs-dismiss="alert" aria-label="Close").btn-close
 
+// Exibe mensagens de erro se existirem
 if error
     each message in error 
         div(role="alert").alert.alert-danger.alert-dismissible.fade.show

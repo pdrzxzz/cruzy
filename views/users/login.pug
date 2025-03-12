@@ -1,19 +1,29 @@
+//=== Página de login ===//
 include ../layouts/layout
 
 block content
+  // Container centralizado com responsividade para diferentes tamanhos de tela
   .container.d-flex.justify-content-center.align-items-center.mt-5
     .row
       .col-md-6.offset-md-3.col-xl-4.offset-xl-4
+        // Card de login
         .room
+          // Logo do aplicativo
           img.card-img-top(src="/stylesheets/images/logo.png", alt="")
           .card-body
             h5.card-title Login
+            // Formulário de login com validação
             form.validated-form(action="/login" method="POST" novalidate)
+              // Campo de usuário
               .mb-3
                 label.form-label(for="username") Username
                 input.form-control(type="text" id="username" name="username" autofocus required)
+              
+              // Campo de senha
               .mb-3
                 label.form-label(for="password") Password
                 input.form-control(type="password" id="password" name="password" required)
+              
+              // Botão de envio
               .button-container
                 button.btn Login

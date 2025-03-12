@@ -1,6 +1,8 @@
+//=== Página de erro ===//
 include layouts/layout
 
 block content
+  // Exibe informações sobre o erro ocorrido
   h1= message
   h2= error.status
   pre #{error.stack}

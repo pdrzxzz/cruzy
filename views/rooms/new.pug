@@ -1,20 +1,30 @@
+//=== Página de criação de nova sala ===//
 include ../layouts/layout
 
 block content
+  // Container centralizado
   .container.d-flex.justify-content-center.align-items-center.mt-5
     .row
       .col-md-6.offset-md-3.col-xl-4.offset-xl-4
+        // Card de criação de sala
         .room
+          // Logo do aplicativo
           img.card-img-top(src="/stylesheets/images/logo.png", alt="")
           .card-body
             h5.card-title Create New Game
+            // Formulário de criação
             form.validated-form(action="/rooms" method="POST" novalidate)
+              // Nome da sala (opcional)
               .mb-3
                 label.form-label(for="name") Room Name (optional)
                 input.form-control(type="text" id="name" name="name")
+              
+              // Tema do jogo (obrigatório) - base para geração de palavras pela IA
               .mb-3
                 label.form-label(for="theme") Theme
                 input.form-control(type="text" id="theme" name="theme" required)
+              
+              // Opções para número de palavras no jogo
               .mb-3
                 label.form-label Approximate Number of Words
                 .word-options
@@ -29,5 +39,7 @@ block content
                     label.form-check-label(for="20") 20
               .mb-3
                 small.form-text.text-muted (Default: 10)
+              
+              // Botão para criar a sala
               .button-container
                 button.btn.btn-primary(type="submit") Create

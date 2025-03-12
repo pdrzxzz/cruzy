@@ -1,7 +1,11 @@
+//=== Página de jogo de palavras cruzadas ===//
 include layouts/layout
 
   main#game-container
+    // Script para passar os dados da sala ao JavaScript cliente
     script.
       const room = !{JSON.stringify(room)}; //pass data to theme.js, data comes from req.session.data on get /play on index.js
     script(src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js")
-    script(src="/js/displayGame.js") 
+    
+    // Script que renderiza e gerencia o jogo
+    script(src="/js/displayGame.js")

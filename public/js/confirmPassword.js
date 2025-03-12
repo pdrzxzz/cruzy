@@ -1,8 +1,17 @@
+/**
+ * Script para validação em tempo real da correspondência entre senha e confirmação de senha
+ * Aplicado no formulário de registro de usuários
+ */
 const password = document.getElementById("password");
 const confirmPassword = document.getElementById("confirmPassword");
 const form = document.querySelector(".validated-form");
 
-// Function to validate password match
+/**
+ * Valida se a senha e a confirmação de senha correspondem
+ * Aplica classes visuais e mensagens de validação personalizadas
+ * - Adiciona mensagem de erro se as senhas não corresponderem
+ * - Adiciona classes CSS para feedback visual ao usuário
+ */
 function validatePassword() {
     if (password.value !== confirmPassword.value) {
         confirmPassword.setCustomValidity("Passwords do not match.");
@@ -15,11 +24,16 @@ function validatePassword() {
     }
 }
 
-// Event listeners for real-time validation
+// Listeners de eventos para validação em tempo real enquanto o usuário digita
 password.addEventListener("input", validatePassword);
 confirmPassword.addEventListener("input", validatePassword);
 
-// Prevent form submission if passwords don't match
+/**
+ * Evento de envio do formulário
+ * - Executa a validação de senha
+ * - Impede o envio do formulário se houver campos inválidos
+ * - Adiciona a classe was-validated para ativar os estilos de validação do Bootstrap
+ */
 form.addEventListener("submit", function (event) {
     validatePassword();
     if (!form.checkValidity()) {

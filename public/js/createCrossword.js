@@ -1,5 +1,18 @@
+/**
+ * Função principal para criar o tabuleiro de palavras cruzadas
+ * Recebe um objeto Game e preenche seu tabuleiro com palavras cruzadas
+ * @param {Object} game - Instância da classe Game
+ */
 module.exports = createCrossword = (game) => {
 
+    /**
+     * Verifica se é possível colocar uma palavra em uma determinada posição e direção
+     * @param {string} word - A palavra a ser colocada
+     * @param {number} row - A linha inicial
+     * @param {number} column - A coluna inicial
+     * @param {string} direction - A direção ('horizontal' ou 'vertical')
+     * @returns {boolean} - True se for possível colocar a palavra, false caso contrário
+     */
     function canPlaceWord(word, row, column, direction) {
         /*
         Essa função retorna true, se pode colocar a palavra
@@ -79,10 +92,16 @@ module.exports = createCrossword = (game) => {
 
         //Se chegou até aqui não saiu dos limites e tem alguma intersecção, logo colocar palavra
         return true;
-
-
     }
 
+    /**
+     * Coloca uma palavra no tabuleiro na posição e direção especificadas
+     * @param {string} word - A palavra a ser colocada
+     * @param {number} row - A linha inicial
+     * @param {number} column - A coluna inicial
+     * @param {string} direction - A direção ('horizontal' ou 'vertical')
+     * @param {number} wordIndex - O índice da palavra para identificação
+     */
     function placeWord(word, row, column, direction, wordIndex) {
         for (let i = 0; i < word.length; i++) {
             if (direction === 'horizontal') {
@@ -99,22 +118,29 @@ module.exports = createCrossword = (game) => {
                 } else {
                     game.wordLocations[row + i][column] += '-' + String(wordIndex);
                 }
-
             }
         }
     }
 
+    /**
+     * Aumenta o tamanho do tabuleiro quando não é possível colocar todas as palavras
+     * Reinicia o processo de criação do tabuleiro
+     */
     function increaseBoardSize() {
         console.log('Aumentando tamanho do tabuleiro...')
         game.size++; // Aumenta o tamanho do tabuleiro
-        game.canvasSize = game.gridSize * game.size + 5; //Atualiza o tamanho do canvas
+        game.canvasSize = game.gridSize * game.size + 5; // Atualiza o tamanho do canvas
         game.board = Array.from({ length: game.size }, () => Array(game.size).fill('')); // Cria um novo tabuleiro maior
         game.userInput = Array.from({ length: game.size }, () => Array(game.size).fill(''));
-        game.placedWords = []; // Limpa as palavras já colocadas e tenta colocar novamente ( Voltando ao começo do while )
-        game.unplacedWords = [...game.themeArray]; //restart
+        game.placedWords = []; // Limpa as palavras já colocadas e tenta colocar novamente (Voltando ao começo do while)
+        game.unplacedWords = [...game.themeArray]; // Reinicia com todas as palavras
         game.wordLocations = Array.from({ length: game.size }, () => Array(game.size).fill(''));
     }
 
+    /**
+     * Tenta preencher o tabuleiro com todas as palavras
+     * Usa tentativas aleatórias para posicionar cada palavra
+     */
     function tryFillBoard() {
         /*
         Se as palavras conseguem ser colocadas todas em um tabuleiro de game.size então depois que terminar de executar tryFillBoard
@@ -147,15 +173,19 @@ module.exports = createCrossword = (game) => {
                 attempts++;
             }
 
-            //Se todas as palavras já foram colocadas, não faz sentido continuar com esse for
+            // Se todas as palavras já foram colocadas, não faz sentido continuar com esse for
             if (!game.unplacedWords.length) {
                 break;
             }
         }
     }
 
+    /**
+     * Verifica se todas as palavras foram colocadas no tabuleiro
+     * @returns {boolean} - True se todas as palavras foram colocadas, false caso contrário
+     */
     function isBoardFilled() {
-        //If unplacedWords.length = 0, board is filled
+        // If unplacedWords.length = 0, board is filled
         return !game.unplacedWords.length
     }
 
@@ -163,18 +193,17 @@ module.exports = createCrossword = (game) => {
     let placedAllWords = false;
 
     while (!placedAllWords) {
-        //Tenta preencher o tabuleiro
+        // Tenta preencher o tabuleiro
         tryFillBoard()
 
         if (isBoardFilled()) {
-            //Se conseguiu colocar todas as palavras, dá o comando de encerrar o while
+            // Se conseguiu colocar todas as palavras, dá o comando de encerrar o while
             placedAllWords = true;
         } else {
             // Se não conseguiu colocar todas as palavras, significa que precisamos aumentar o tamanho do tabuleiro
             increaseBoardSize()
         }
     }
-
 }
 
 
