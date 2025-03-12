@@ -14,6 +14,7 @@ Aprimore suas habilidades e descubra como a combinação entre criatividade e te
 - [Como Instalar](#como-instalar)
 - [Como Executar](#como-executar)
 - [Estrutura do Projeto](#estrutura-do-projeto)
+- [Arquitetura do Código](#arquitetura-do-código)
 - [Como Contribuir](#como-contribuir)
 - [Licença](#licença)
 
@@ -34,9 +35,11 @@ Cruzy é uma plataforma web para jogar palavras cruzadas online com temas person
 
 - Node.js
 - Express.js
+- Passport.js
 - HTML5
 - CSS3
 - JavaScript
+- Fabric.js
 - MongoDB
 - OpenAI API
 - Jest
@@ -101,18 +104,79 @@ Após iniciar o servidor, acesse o aplicativo em seu navegador:
 ```
 Projeto-Cruzy/
 ├── config/
-├── controllers/
-├── models/
-├── public/
-│   ├── css/
-│   ├── js/
-│   └── images/
-├── routes/
-├── views/
-├── app.js
-├── package.json
-└── README.md
+├── controllers/         # Controladores da aplicação
+├── models/              # Modelos de dados (MongoDB)
+├── public/              # Arquivos estáticos
+│   ├── css/             # Estilos CSS
+│   ├── js/              # Scripts JavaScript do cliente
+│   └── images/          # Imagens e mídias
+├── routes/              # Rotas da aplicação
+├── views/               # Templates Pug
+│   ├── layouts/         # Layouts base
+│   ├── partials/        # Componentes parciais
+│   ├── rooms/           # Views relacionadas às salas
+│   └── users/           # Views relacionadas aos usuários
+├── middleware.js        # Funções de middleware
+├── app.js               # Arquivo principal da aplicação
+├── package.json         # Configurações e dependências
+└── README.md            # Documentação do projeto
 ```
+
+## 🔧 Arquitetura do Código
+
+### Backend
+
+#### Estrutura MVC
+O projeto segue uma arquitetura Model-View-Controller (MVC):
+- **Models**: Define os esquemas e modelos de dados usando Mongoose para MongoDB
+- **Views**: Renderiza as interfaces usando templates Pug
+- **Controllers**: Contém a lógica de negócios e manipulação de dados
+
+#### Principais Componentes
+
+1. **app.js**: Ponto de entrada da aplicação
+   - Configura middleware, rotas e conexão com MongoDB
+   - Inicializa o mecanismo de autenticação usando Passport.js
+
+2. **models/**
+   - **user.js**: Define o modelo de usuário e gerencia autenticação
+   - **room.js**: Gerencia salas de jogo com esquema para tema, palavras e configurações
+
+3. **controllers/**
+   - **users.js**: Gerencia login, registro e autenticação
+   - **rooms.js**: Manipula criação, exclusão e acesso às salas
+   - **index.js**: Controla rotas principais
+
+4. **routes/**
+   - Define e organiza os endpoints da API e rotas da aplicação
+
+### Frontend
+
+1. **public/js/**
+   - **Game.js**: Classe principal que gerencia a lógica do jogo
+   - **createCrossword.js**: Algoritmo para criação do tabuleiro de palavras cruzadas
+   - **displayGame.js**: Renderiza o jogo usando Fabric.js para canvas interativo
+
+2. **views/**
+   - Templates Pug organizados por funcionalidade
+   - Sistema de layouts e partials para reutilização de código
+
+### Integração com IA
+
+- **controllers/rooms.js**: Integra com a API da OpenAI para gerar palavras cruzadas com temas personalizados
+- O sistema envia prompts específicos para a API e processa as respostas para criar os jogos
+
+### Sistema de Autenticação
+
+- Implementado usando Passport.js com estratégia local
+- Gerenciamento de sessões via MongoDB para persistência
+
+### Fluxo de Dados
+
+1. Usuário se autentica → passport-local valida
+2. Usuário cria uma sala → OpenAI gera palavras e dicas
+3. Sistema gera o tabuleiro → algoritmo de palavras cruzadas otimiza layout
+4. Usuário joga → interação via Fabric.js e validação em tempo real
 
 ## 🤝 Como Contribuir
 
