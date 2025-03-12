@@ -40,6 +40,7 @@ Cruzy é uma plataforma web para jogar palavras cruzadas online com temas person
 - CSS3
 - JavaScript
 - Pug.js
+- Bootstrap
 - Fabric.js
 - Mongoose
 - MongoDB
