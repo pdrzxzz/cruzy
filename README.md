@@ -39,7 +39,9 @@ Cruzy é uma plataforma web para jogar palavras cruzadas online com temas person
 - HTML5
 - CSS3
 - JavaScript
+- Pug.js
 - Fabric.js
+- Mongoose
 - MongoDB
 - OpenAI API
 - Jest
@@ -53,7 +55,7 @@ Cruzy é uma plataforma web para jogar palavras cruzadas online com temas person
 - Modo de Jogo SinglePlayer com histórico de salas
 - Interface responsiva para desktop e dispositivos móveis
 
-## 📥 Como Instalar
+## 📥 Como Rodar Projeto Localmente
 
 1. Certifique-se de ter o Node.js instalado em seu computador
    ```bash
@@ -80,23 +82,20 @@ Cruzy é uma plataforma web para jogar palavras cruzadas online com temas person
    npm install nodemon -g
    ```
 
-## 🚀 Como Executar
+6. Solicite as variáveis de ambiente necessárias (conforme arquivo .env.example) aos criadores do projeto.
 
-- Disponível Online: https://cruzy.onrender.com/
-
-Para iniciar o servidor de desenvolvimento:
-
-```bash
-nodemon app.js
-```
-
-Ou usando o script predefinido:
-
-```bash
-npm run start
-```
-
-Após iniciar o servidor, acesse o aplicativo em seu navegador:
+7. Crie um arquivo .env na raiz do diretório e preencha com as informações recebidas.
+   
+8. Execute o script.
+   ```bash
+   npm run start
+   ```
+   *Caso não funcione você pode tentar:*
+   ```bash
+   nodemon app.js
+   ```
+   
+9. Após iniciar o servidor, acesse o aplicativo em seu navegador:
 [http://localhost:3000](http://localhost:3000)
 
 ## 📁 Estrutura do Projeto
