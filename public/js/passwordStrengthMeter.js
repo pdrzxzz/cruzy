@@ -12,6 +12,15 @@ document.addEventListener('DOMContentLoaded', function() {
      * @param {string} password - A senha a ser avaliada
      */
     const calculatePasswordStrength = (password) => {
+        // Show strength indicator only when password has content
+        if (!password) {
+            strengthText.classList.add('d-none');
+            strengthMeter.style.width = '0%';
+            return;
+        } else {
+            strengthText.classList.remove('d-none');
+        }
+
         // Critérios de avaliação
         const criteria = {
             length: password.length >= 8,
@@ -99,4 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
     passwordInput.addEventListener('input', function() {
         calculatePasswordStrength(this.value);
     });
+    
+    // Initialize - hide strength text when page loads
+    calculatePasswordStrength(passwordInput.value);
 });
