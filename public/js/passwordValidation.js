@@ -1,6 +1,7 @@
 /**
  * Script para validação complexa de senha no formulário de registro
  * Verifica requisitos de segurança como tamanho mínimo, caracteres especiais, etc.
+ * Integrado com a barra de progresso visual
  */
 document.addEventListener('DOMContentLoaded', function() {
     const passwordInput = document.getElementById('password');
@@ -32,15 +33,25 @@ document.addEventListener('DOMContentLoaded', function() {
         const confirmPassword = confirmPasswordInput.value;
 
         const isPasswordValid = validatePassword(password);
-        const doPasswordsMatch = password === confirmPassword;
+        
+        // Check if passwords match only if both fields have content
+        // This fixes the bug where empty passwords were considered "matching"
+        const doPasswordsMatch = password && confirmPassword ? 
+            password === confirmPassword : false;
 
-        if (isPasswordValid && doPasswordsMatch) {
+        // Only enable submit button if all validations pass and both fields have content
+        if (isPasswordValid && doPasswordsMatch && password && confirmPassword) {
             submitButton.disabled = false;
         } else {
             submitButton.disabled = true;
         }
 
-        if (!isPasswordValid) {
+        // Validate password field
+        if (!password) {
+            // If password is empty, remove both classes
+            passwordInput.classList.remove('is-invalid');
+            passwordInput.classList.remove('is-valid');
+        } else if (!isPasswordValid) {
             passwordInput.classList.add('is-invalid');
             passwordInput.classList.remove('is-valid');
         } else {
@@ -48,7 +59,12 @@ document.addEventListener('DOMContentLoaded', function() {
             passwordInput.classList.remove('is-invalid');
         }
 
-        if (!doPasswordsMatch) {
+        // Validate confirm password field
+        if (!confirmPassword) {
+            // If confirm password is empty, remove both classes
+            confirmPasswordInput.classList.remove('is-invalid');
+            confirmPasswordInput.classList.remove('is-valid');
+        } else if (!doPasswordsMatch) {
             confirmPasswordInput.classList.add('is-invalid');
             confirmPasswordInput.classList.remove('is-valid');
         } else {
