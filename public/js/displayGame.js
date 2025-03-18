@@ -514,9 +514,11 @@ displayGame = (game) => {
                 }
                 textBox.set('editable', false);
                 
-                // Remove destaque visual
-                const rect = cell._objects[0];
-                rect.set('fill', 'white');
+                // Remove destaque visual SOMENTE se não for uma célula completada
+                if (!game.completedCells.includes(cell)) {
+                    const rect = cell._objects[0];
+                    rect.set('fill', 'white');
+                }
             });
             
             // Limpa o array de células destacadas
