@@ -47,9 +47,6 @@ displayGame = (game) => {
              * @param {Object} cell - Objeto Fabric.js representando a célula
              */
             function grayHighlightCell(cell) {
-                if (!game.highlightedCells.includes(cell)) {
-                    game.highlightedCells.push(cell);
-                }
                 const rect = cell._objects[0];
                 rect.set('fill', '#e6e6e6');
             }
@@ -506,23 +503,30 @@ displayGame = (game) => {
         });
 
         if (!clickedHighlightedCell) {
-            // Para a edição em todas as células destacadas
-            game.highlightedCells.forEach(cell => {
-                const textBox = cell._objects[1];
-                if (textBox.isEditing) {
-                    textBox.exitEditing();
+            // Get all cells (not just highlighted ones in the array)
+            game.canvas.getObjects().forEach(obj => {
+                // Check if it's a cell (has _objects)
+                if (obj._objects && obj._objects[0]) {
+                    const rect = obj._objects[0];
+                    const textBox = obj._objects[1];
+                    
+                    // Exit editing if needed
+                    if (textBox && textBox.isEditing) {
+                        textBox.exitEditing();
+                        textBox.set('editable', false);
+                    }
+                    
+                    // Reset fill color unless it's a completed cell
+                    if (!game.completedCells.includes(obj)) {
+                        rect.set('fill', 'white');
+                    }
                 }
-                textBox.set('editable', false);
-                
-                // Remove destaque visual
-                const rect = cell._objects[0];
-                rect.set('fill', 'white');
             });
             
-            // Limpa o array de células destacadas
+            // Clear highlighted cells array
             game.highlightedCells = [];
             
-            // Atualiza o canvas
+            // Update canvas
             game.canvas.renderAll();
         }
     }

@@ -13,7 +13,7 @@ block content
           .card-body
             h5.card-title Create New Game
             // Formulário de criação
-            form.validated-form(action="/rooms" method="POST" novalidate)
+            form.validated-form#roomForm(action="/rooms" method="POST" novalidate)
               // Nome da sala (opcional)
               .mb-3
                 label.form-label(for="name") Room Name (optional)
@@ -42,4 +42,234 @@ block content
               
               // Botão para criar a sala
               .button-container
-                button.btn.btn-primary(type="submit") Create
+                button.btn.btn-primary#createButton(type="submit") Create
+
+  // Loading overlay aprimorado
+  #loadingOverlay.d-none
+    .loading-container
+      .loader-animation
+        .crossword-grid
+          .crossword-letter C
+          .crossword-letter R
+          .crossword-letter U
+          .crossword-letter Z
+          .crossword-letter Y
+      h3.mt-3.text-light.loading-title Creating your crossword puzzle...
+      .loading-progress
+        .progress-bar
+      p.mt-2.text-light.loading-message Generating creative words and clues based on your theme
+      .loading-steps
+        .step.active
+          i.fas.fa-lightbulb
+          span Processing theme
+        .step
+          i.fas.fa-list-ul
+          span Generating words
+        .step
+          i.fas.fa-puzzle-piece
+          span Building crossword
+
+  style.
+    #loadingOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      background-size: 600% 600%;
+      animation: gradientBG 15s ease infinite;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+    
+    #loadingOverlay.d-none {
+      display: none;
+      opacity: 0;
+    }
+    
+    #loadingOverlay:not(.d-none) {
+      display: flex;
+      opacity: 1;
+    }
+    
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .loading-container {
+      text-align: center;
+      padding: 2.5rem;
+      border-radius: 16px;
+      background-color: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      max-width: 500px;
+      width: 90%;
+    }
+    
+    .loader-animation {
+      margin: 0 auto 1.5rem;
+    }
+    
+    .loading-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: #fff;
+    }
+    
+    .loading-message {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .loading-progress {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+      border-radius: 10px;
+      animation: progress 8s infinite;
+    }
+    
+    @keyframes progress {
+      0% { width: 0%; }
+      40% { width: 40%; }
+      60% { width: 60%; }
+      80% { width: 80%; }
+      100% { width: 95%; }
+    }
+    
+    .loading-steps {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1.5rem;
+    }
+    
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: rgba(255, 255, 255, 0.5);
+      transition: color 0.5s ease;
+      flex: 1;
+      padding: 0 10px;
+    }
+    
+    .step i {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .step span {
+      font-size: 0.8rem;
+      text-align: center;
+    }
+    
+    .step.active {
+      color: white;
+    }
+    
+    /* Animação de palavras cruzadas */
+    .crossword-grid {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      margin-bottom: 1rem;
+    }
+    
+    .crossword-letter {
+      width: 40px;
+      height: 40px;
+      background-color: white;
+      color: #333;
+      font-weight: bold;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      animation: letterPulse 2s infinite;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    
+    .crossword-letter:nth-child(1) { animation-delay: 0s; }
+    .crossword-letter:nth-child(2) { animation-delay: 0.2s; }
+    .crossword-letter:nth-child(3) { animation-delay: 0.4s; }
+    .crossword-letter:nth-child(4) { animation-delay: 0.6s; }
+    .crossword-letter:nth-child(5) { animation-delay: 0.8s; }
+    
+    @keyframes letterPulse {
+      0%, 100% { transform: translateY(0) scale(1); background-color: white; }
+      50% { transform: translateY(-10px) scale(1.1); background-color: #f0f0f0; }
+    }
+
+  script.
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('roomForm');
+      const loadingOverlay = document.getElementById('loadingOverlay');
+      const steps = document.querySelectorAll('.loading-steps .step');
+      
+      // Função para alternar a classe ativa nos passos de carregamento
+      function animateSteps() {
+        // Reset all steps
+        steps.forEach(step => step.classList.remove('active'));
+        
+        // Animate through steps
+        setTimeout(() => { steps[0].classList.add('active'); }, 500);
+        setTimeout(() => { steps[1].classList.add('active'); }, 3000);
+        setTimeout(() => { steps[2].classList.add('active'); }, 5500);
+      }
+      
+      // Mensagens aleatórias para mostrar durante o carregamento
+      const loadingMessages = [
+        "Pensando em palavras criativas...",
+        "Montando seu jogo de palavras cruzadas...",
+        "Organizando palavras e dicas...",
+        "Quase lá! Só mais um momento...",
+        "Fazendo a magia acontecer...",
+        "Construindo seu desafio de palavras cruzadas..."
+      ];
+      
+      function changeLoadingMessage() {
+        const messageElement = document.querySelector('.loading-message');
+        const randomMessage = loadingMessages[Math.floor(Math.random() * loadingMessages.length)];
+        messageElement.style.opacity = 0;
+        
+        setTimeout(() => {
+          messageElement.textContent = randomMessage;
+          messageElement.style.opacity = 1;
+        }, 500);
+      }
+      
+      form.addEventListener('submit', function(e) {
+        // Verificar se o formulário é válido antes de mostrar a tela de carregamento
+        if (form.checkValidity()) {
+          // Mostrar overlay de carregamento
+          loadingOverlay.classList.remove('d-none');
+          
+          // Desativar botão de envio para evitar envios múltiplos
+          document.getElementById('createButton').disabled = true;
+          
+          // Iniciar animações e atualizações de mensagem
+          animateSteps();
+          setInterval(changeLoadingMessage, 3000);
+        }
+      });
+    });
