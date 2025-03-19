@@ -1,0 +1,106 @@
+/* Room list and room card styles */
+main#single-player-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  padding: 40px 20px;
+}
+
+main#single-player-container .intro-text h2 {
+  font-size: 28px;
+  color: #6b2666;
+  margin-bottom: 10px;
+}
+
+main#single-player-container .intro-text p {
+  font-size: 16px;
+  color: #555;
+  max-width: 600px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+#single-player-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.room-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  list-style: none;
+  padding: 0;
+}
+
+.room {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.room p.room-name {
+  font-size: 20px;
+  color: #8a3384;
+  font-weight: 900;
+  text-shadow:
+    2px 2px 0 #fff,
+    -2px -2px 0 #fff,
+    2px -2px 0 #fff,
+    -2px 2px 0 #fff,
+    3px 3px 5px rgb(138, 51, 132, 0.5);
+  margin-bottom: 10px;
+}
+
+.room span.room-theme {
+  font-size: 20px;
+  color: #8a3384;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.room p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.room span {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.room .card-header {
+  background-color: #d83d80;
+  padding: 0.5rem 1rem;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.room .card-tag {
+  background-color: #fff;
+  color: #C13271;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+}
+
+/* For empty state */
+.room-list p {
+  text-align: center;
+  color: #666;
+  font-size: 1.1rem;
+  grid-column: 1 / -1;
+  padding: 2rem;
+  background: rgb(107, 38, 102, 0.1);
+  border-radius: 12px;
+}

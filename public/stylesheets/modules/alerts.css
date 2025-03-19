@@ -1,0 +1,23 @@
+/* Flash message and alert styles */
+.alert {
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: none;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  border-left: 5px solid #28a745;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-left: 5px solid #dc3545;
+}
+
+.alert p {
+  margin: 0;
+}
