@@ -1,0 +1,79 @@
+/* Home page styles */
+main#game-container {
+  background-image: url('../images/image.png');
+  background-size: 1540px 410px;
+  background-position: center top;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  text-align: right;
+  gap: 20px;
+  height: 100vh;
+}
+
+main#game-container .intro-text h2,
+main#game-container .intro-text h3,
+main#game-container .intro-text p {
+  margin-right: auto;
+  margin-left: 500px;
+  text-align: justify;
+  margin-top: 15px;
+}
+
+.intro-text h2 {
+  font-size: 28px;
+  color: rgb(107, 38, 102);
+  font-weight: 900;
+  text-shadow:
+    2px 2px 0 #fff,
+    -2px -2px 0 #fff,
+    2px -2px 0 #fff,
+    -2px 2px 0 #fff,
+    3px 3px 5px rgba(175, 175, 175, 0.5);
+}
+
+.intro-text h3 {
+  font-size: 18px;
+  color: #6b2666;
+  font-weight: 900;
+  text-shadow:
+    2px 2px 0 #fff,
+    -2px -2px 0 #fff,
+    2px -2px 0 #fff,
+    -2px 2px 0 #fff,
+    3px 3px 5px rgba(175, 175, 175, 0.5);
+}
+
+.intro-text p {
+  font-size: 16px;
+  color: #6b2666;
+  font-weight: 700;
+  max-width: 600px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  gap: 40px;
+  margin-top: 50px;
+  margin-right: 300px;
+}
+
+main#game-container button.btn {
+  display: inline-block;
+  font-size: 32px;
+  border-radius: 10px;
+  padding: 15px 60px;
+  box-shadow: 0 10px #b03d6f;
+}
+
+main#game-container button.btn:hover {
+  background-color: #b03d6f;
+  transform: translateY(-6px);
+}

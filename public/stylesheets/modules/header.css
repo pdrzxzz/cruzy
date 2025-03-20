@@ -1,0 +1,26 @@
+/* Header styles */
+header {
+  background-color: #C13271;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 28px;
+  font-weight: bold;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2000;
+}
+
+header img {
+  width: auto;
+  max-width: 350px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+header h1 {
+  display: none;
+}
