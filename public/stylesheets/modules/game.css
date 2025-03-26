@@ -139,7 +139,7 @@
 }
 
 .clue-direction {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: #8a3384;
   font-weight: 600;
   text-transform: uppercase;
@@ -154,8 +154,15 @@
   font-weight: 700;
   color: #8a3384;
   font-size: 1.1rem;
-  min-width: 1.5rem;
+  min-width: 1.8rem;
+  height: 1.8rem;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-right: 0.6rem;
+  box-shadow: 0 1px 3px rgba(138, 51, 132, 0.1);
 }
 
 .clue-text {
@@ -198,6 +205,8 @@
 
 #game-clues li.completed-clue .clue-number {
   color: #28a745;
+  border-color: #28a745;
+  box-shadow: 0 1px 3px rgba(40, 167, 69, 0.1);
 }
 
 #game-clues li.completed-clue::after {
