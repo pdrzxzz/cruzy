@@ -80,33 +80,164 @@
 }
 
 #game-clues {
-  list-style-position: inside;
+  list-style-type: none;
   padding: 1.5rem;
   background: #fff;
-  border-radius: 8px;
-  max-height: 400px;
+  border-radius: 12px;
+  max-height: 450px;
   overflow-y: auto;
   border: 1px solid rgba(138, 51, 132, 0.1);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05);
+  scrollbar-width: thin;
+  scrollbar-color: #8a3384 #f0f0f0;
+}
+
+#game-clues::-webkit-scrollbar {
+  width: 8px;
+}
+
+#game-clues::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 10px;
+}
+
+#game-clues::-webkit-scrollbar-thumb {
+  background-color: #8a3384;
+  border-radius: 10px;
+  border: 2px solid #f0f0f0;
 }
 
 #game-clues li {
-  padding: 1rem;
-  margin-bottom: 0.5rem;
-  border-radius: 6px;
-  color: #666;
+  padding: 1.25rem;
+  margin-bottom: 0.75rem;
+  border-radius: 8px;
+  color: #555;
   font-size: 1rem;
   line-height: 1.5;
   background: #f8f9fa;
   border-left: 3px solid #8a3384;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.clue-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.clue-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dotted rgba(138, 51, 132, 0.2);
+}
+
+.clue-body {
+  padding-top: 0.25rem;
+}
+
+.clue-direction {
+  font-size: 0.8rem;
+  color: #8a3384;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.clue-number {
+  font-weight: 700;
+  color: #8a3384;
+  font-size: 1.1rem;
+  min-width: 1.8rem;
+  height: 1.8rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-right: 0.6rem;
+  box-shadow: 0 1px 3px rgba(138, 51, 132, 0.1);
+}
+
+.clue-text {
+  display: block;
+  width: 100%;
 }
 
 #game-clues li:hover {
   background: #fff;
-  box-shadow: 0 2px 4px rgba(138, 51, 132, 0.1);
+  box-shadow: 0 3px 6px rgba(138, 51, 132, 0.15);
   transform: translateX(5px);
+  border-left: 4px solid #8a3384;
 }
 
 #game-clues li:last-child {
-  border-bottom: none;
+  margin-bottom: 0;
+}
+
+/* Estilos para dicas completadas */
+#game-clues li.completed-clue {
+  background: linear-gradient(135deg, #e8f7e8 0%, #d4edda 100%);
+  border-left: 4px solid #28a745;
+  color: #1e7e34;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(40, 167, 69, 0.15);
+  transform: translateX(3px);
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  animation: pulseSuccess 0.6s ease-in-out;
+}
+
+#game-clues li.completed-clue .clue-header {
+  border-bottom: 1px dotted rgba(40, 167, 69, 0.3);
+}
+
+#game-clues li.completed-clue .clue-direction {
+  background: transparent;
+  color: #1e7e34;
+}
+
+#game-clues li.completed-clue .clue-number {
+  color: #28a745;
+  border-color: #28a745;
+  box-shadow: 0 1px 3px rgba(40, 167, 69, 0.1);
+}
+
+#game-clues li.completed-clue::after {
+  content: "✓";
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  color: #28a745;
+  font-weight: bold;
+  font-size: 1.25rem;
+  background: rgba(255, 255, 255, 0.7);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes pulseSuccess {
+  0% {
+    transform: translateX(3px) scale(1);
+    box-shadow: 0 0 0 rgba(40, 167, 69, 0.1);
+  }
+  50% {
+    transform: translateX(3px) scale(1.03);
+    box-shadow: 0 0 15px rgba(40, 167, 69, 0.3);
+  }
+  100% {
+    transform: translateX(3px) scale(1);
+    box-shadow: 0 2px 10px rgba(40, 167, 69, 0.15);
+  }
 }

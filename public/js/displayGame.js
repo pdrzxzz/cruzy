@@ -148,6 +148,15 @@ displayGame = (game) => {
                     }
                 });
 
+                // Marca a dica correspondente como completada
+                const wordIndex = game.placedWords.indexOf(word);
+                if (wordIndex !== -1) {
+                    const clueElement = document.querySelector(`#game-clues li:nth-child(${wordIndex + 1})`);
+                    if (clueElement) {
+                        clueElement.classList.add('completed-clue');
+                    }
+                }
+
                 game.completedWords.push(word);
                 // console.log('game.completedWords: ', game.completedWords)
                 checkGameCompletion()
@@ -454,10 +463,66 @@ displayGame = (game) => {
      */
     function displayClues() {
         const ol = document.querySelector('#game-clues')
-        game.placedWords.forEach(entry => {
+        game.placedWords.forEach((entry, index) => {
             const newLi = document.createElement('li');
-            newLi.innerHTML = `${entry.clue} (${entry.direction}) - Posição: (${entry.row}, ${entry.column})`;
-            ol.append(newLi);
+            
+            // Cria um elemento div container para manter o texto e número juntos
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'clue-content';
+            
+            // Cria o elemento span para o número da palavra
+            const numberSpan = document.createElement('span');
+            numberSpan.className = 'clue-number';
+            numberSpan.textContent = `${index + 1}`;
+            
+            // Cria o elemento para o texto da dica
+            const clueText = document.createElement('span');
+            clueText.className = 'clue-text';
+            clueText.textContent = entry.clue;
+            
+            // Cria o elemento span para a direção como badge
+            const directionSpan = document.createElement('span');
+            directionSpan.className = 'clue-direction';
+            directionSpan.textContent = entry.direction === 'horizontal' ? 'Horizontal' : 'Vertical';
+            
+            // Cria uma estrutura de layout melhor organizada
+            const clueHeader = document.createElement('div');
+            clueHeader.className = 'clue-header';
+            clueHeader.appendChild(numberSpan);
+            clueHeader.appendChild(directionSpan);
+            
+            const clueBody = document.createElement('div');
+            clueBody.className = 'clue-body';
+            clueBody.appendChild(clueText);
+            
+            // Adiciona as partes à estrutura principal da dica
+            contentDiv.appendChild(clueHeader);
+            contentDiv.appendChild(clueBody);
+            
+            newLi.appendChild(contentDiv);
+            
+            // Adiciona um evento de clique para destacar a palavra correspondente no tabuleiro
+            newLi.addEventListener('click', () => {
+                const word = game.placedWords[index];
+                if (!game.completedWords.includes(word)) {
+                    // Limpa destaques anteriores
+                    if (game.activeCell) {
+                        stopEditingCell();
+                    }
+                    
+                    // Define a direção do usuário para corresponder à palavra
+                    game.userDirection = word.direction;
+                    
+                    // Encontra a célula inicial e inicia edição
+                    game.canvas.getObjects().forEach((obj) => {
+                        if (obj.cellName && obj.row === word.row && obj.column === word.column) {
+                            startEditingCell(obj);
+                        }
+                    });
+                }
+            });
+            
+            ol.appendChild(newLi);
         });
     }
 
