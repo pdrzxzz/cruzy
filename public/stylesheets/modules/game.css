@@ -110,3 +110,59 @@
 #game-clues li:last-child {
   border-bottom: none;
 }
+
+/* Estilos para dicas completadas */
+#game-clues li.completed-clue {
+  background: linear-gradient(135deg, #e8f7e8 0%, #d4edda 100%);
+  border-left: 4px solid #28a745;
+  color: #1e7e34;
+  font-weight: 500;
+  position: relative;
+  padding-right: 2.5rem;
+  box-shadow: 0 2px 10px rgba(40, 167, 69, 0.15);
+  transform: translateX(3px);
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  animation: pulseSuccess 0.6s ease-in-out;
+}
+
+#game-clues li.completed-clue::after {
+  content: "✓";
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #28a745;
+  font-weight: bold;
+  font-size: 1.25rem;
+  background: rgba(255, 255, 255, 0.7);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+#game-clues li.completed-clue:hover {
+  background: linear-gradient(135deg, #d8f3d8 0%, #c3e6cb 100%);
+  transform: translateX(8px);
+  box-shadow: 0 3px 12px rgba(40, 167, 69, 0.2);
+}
+
+@keyframes pulseSuccess {
+  0% {
+    transform: translateX(3px) scale(1);
+    box-shadow: 0 0 0 rgba(40, 167, 69, 0.1);
+  }
+  50% {
+    transform: translateX(3px) scale(1.03);
+    box-shadow: 0 0 15px rgba(40, 167, 69, 0.3);
+  }
+  100% {
+    transform: translateX(3px) scale(1);
+    box-shadow: 0 2px 10px rgba(40, 167, 69, 0.15);
+  }
+}

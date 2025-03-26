@@ -148,6 +148,15 @@ displayGame = (game) => {
                     }
                 });
 
+                // Marca a dica correspondente como completada
+                const wordIndex = game.placedWords.indexOf(word);
+                if (wordIndex !== -1) {
+                    const clueElement = document.querySelector(`#game-clues li:nth-child(${wordIndex + 1})`);
+                    if (clueElement) {
+                        clueElement.classList.add('completed-clue');
+                    }
+                }
+
                 game.completedWords.push(word);
                 // console.log('game.completedWords: ', game.completedWords)
                 checkGameCompletion()
