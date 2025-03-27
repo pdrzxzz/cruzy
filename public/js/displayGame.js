@@ -139,11 +139,11 @@ displayGame = (game) => {
                         if (direction === 'horizontal' && obj.top === cell.top && obj.left >= cell.left) { // Apenas células na mesma linha horizontal
                             const rect = obj._objects[0];
                             game.completedCells.push(obj)
-                            rect.set('fill', 'mediumaquamarine');
+                            rect.set('fill', '#d9efdd');
                         } else if (direction === 'vertical' && obj.left === cell.left && obj.top >= cell.top) { // Apenas células na mesma coluna vertical
                             const rect = obj._objects[0];
                             game.completedCells.push(obj)
-                            rect.set('fill', 'mediumaquamarine');
+                            rect.set('fill', '#d9efdd');
                         }
                     }
                 });
