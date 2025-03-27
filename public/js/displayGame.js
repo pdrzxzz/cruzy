@@ -139,11 +139,11 @@ displayGame = (game) => {
                         if (direction === 'horizontal' && obj.top === cell.top && obj.left >= cell.left) { // Apenas células na mesma linha horizontal
                             const rect = obj._objects[0];
                             game.completedCells.push(obj)
-                            rect.set('fill', 'lightgreen');
+                            rect.set('fill', 'mediumaquamarine');
                         } else if (direction === 'vertical' && obj.left === cell.left && obj.top >= cell.top) { // Apenas células na mesma coluna vertical
                             const rect = obj._objects[0];
                             game.completedCells.push(obj)
-                            rect.set('fill', 'lightgreen');
+                            rect.set('fill', 'mediumaquamarine');
                         }
                     }
                 });
@@ -215,16 +215,77 @@ displayGame = (game) => {
 
             /**
              * Finaliza o jogo quando todas as palavras são completadas
-             * Mostra mensagem de parabéns e opções para continuar
+             * Mostra uma modal de vitória com animação e opções para continuar
              */
             function completeGame() {
                 setTimeout(() => {
-                    alert('Parabéns! Você completou o jogo!')
-                    if (confirm('Deseja jogar novamente?')){
-                        location.reload();
-                    } else {
-                        window.location.href = '/rooms'
+                    // Create modal overlay
+                    const modalOverlay = document.createElement('div');
+                    modalOverlay.className = 'victory-modal-overlay';
+                    
+                    // Create modal content
+                    const modalContent = document.createElement('div');
+                    modalContent.className = 'victory-modal';
+                    
+                    // Create confetti container
+                    const confettiContainer = document.createElement('div');
+                    confettiContainer.className = 'confetti-container';
+                    for (let i = 0; i < 50; i++) {
+                        const confetti = document.createElement('div');
+                        confetti.className = 'confetti';
+                        confetti.style.left = Math.random() * 100 + '%';
+                        confetti.style.animationDelay = Math.random() * 3 + 's';
+                        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 80%, 60%)`;
+                        confettiContainer.appendChild(confetti);
                     }
+                    
+                    // Create modal header with trophy icon
+                    const modalHeader = document.createElement('div');
+                    modalHeader.className = 'victory-header';
+                    modalHeader.innerHTML = '<span class="trophy-icon">🏆</span><h2>Parabéns!</h2>';
+                    
+                    // Create modal message
+                    const modalMessage = document.createElement('p');
+                    modalMessage.className = 'victory-message';
+                    modalMessage.textContent = 'Você completou o jogo de palavras cruzadas!';
+                    
+                    // Create buttons container
+                    const buttonsContainer = document.createElement('div');
+                    buttonsContainer.className = 'victory-buttons';
+                    
+                    // Play again button
+                    const playAgainBtn = document.createElement('button');
+                    playAgainBtn.className = 'victory-btn play-again';
+                    playAgainBtn.textContent = 'Jogar Novamente';
+                    playAgainBtn.addEventListener('click', () => {
+                        location.reload();
+                    });
+                    
+                    // Return to rooms button
+                    const returnBtn = document.createElement('button');
+                    returnBtn.className = 'victory-btn return-rooms';
+                    returnBtn.textContent = 'Voltar para Salas';
+                    returnBtn.addEventListener('click', () => {
+                        window.location.href = '/rooms';
+                    });
+                    
+                    // Assemble the modal
+                    buttonsContainer.appendChild(playAgainBtn);
+                    buttonsContainer.appendChild(returnBtn);
+                    modalContent.appendChild(confettiContainer);
+                    modalContent.appendChild(modalHeader);
+                    modalContent.appendChild(modalMessage);
+                    modalContent.appendChild(buttonsContainer);
+                    modalOverlay.appendChild(modalContent);
+                    
+                    // Add to the document
+                    document.body.appendChild(modalOverlay);
+                    
+                    // Add entrance animation class after a short delay
+                    setTimeout(() => {
+                        modalOverlay.classList.add('show');
+                        modalContent.classList.add('show');
+                    }, 10);
                 }, 500);
             }
 

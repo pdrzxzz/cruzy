@@ -241,3 +241,190 @@
     box-shadow: 0 2px 10px rgba(40, 167, 69, 0.15);
   }
 }
+
+/* Add these styles at the end of the file */
+
+/* Victory Modal */
+.victory-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.victory-modal-overlay.show {
+  opacity: 1;
+}
+
+.victory-modal {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 16px;
+  padding: 2.5rem;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transform: translateY(30px) scale(0.95);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.victory-modal.show {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.victory-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.trophy-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  animation: pulse 2s infinite;
+  display: inline-block;
+}
+
+.victory-header h2 {
+  color: #8a3384;
+  font-size: 2.5rem;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, #8a3384 0%, #b44e9f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.victory-message {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.victory-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.victory-btn {
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  outline: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.play-again {
+  background: linear-gradient(135deg, #8a3384 0%, #b44e9f 100%);
+  color: white;
+}
+
+.play-again:hover {
+  background: linear-gradient(135deg, #7a2d74 0%, #a3478f 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(138, 51, 132, 0.3);
+}
+
+.return-rooms {
+  background: white;
+  color: #8a3384;
+  border: 2px solid #8a3384;
+}
+
+.return-rooms:hover {
+  background: #f8f0f7;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(138, 51, 132, 0.1);
+}
+
+/* Confetti Animation */
+.confetti-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #8a3384;
+  opacity: 0.8;
+  border-radius: 0;
+  top: -50px;
+  animation: confetti-fall 5s linear infinite;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-50px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(800px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Media queries for responsive design */
+@media (max-width: 600px) {
+  .victory-modal {
+    padding: 1.5rem;
+    width: 85%;
+  }
+  
+  .victory-buttons {
+    flex-direction: column;
+  }
+  
+  .victory-btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  
+  .trophy-icon {
+    font-size: 3rem;
+  }
+  
+  .victory-header h2 {
+    font-size: 2rem;
+  }
+}
