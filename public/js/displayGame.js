@@ -307,7 +307,7 @@ displayGame = (game) => {
                         break; // Encontra a primeira palavra não completada
                     }
                 }
-        
+                
                 if (nextWord) {
                     // Encontra a célula inicial da próxima palavra
                     let { row, column, direction } = nextWord;
@@ -322,6 +322,47 @@ displayGame = (game) => {
                             startingCell = obj;
                         }
                     });
+                    
+                    // Verifica se a célula inicial já está preenchida corretamente
+                    // Se estiver, encontra a próxima célula não preenchida na palavra
+                    if (startingCell && game.userInput[row][column] === game.board[row][column]) {
+                        let i = 0;
+                        let nextEmptyCell = null;
+                        
+                        if (direction === 'horizontal') {
+                            // Procura a próxima célula vazia na horizontal
+                            while (i < nextWord.word.length && !nextEmptyCell) {
+                                if (game.userInput[row][column + i] !== game.board[row][column + i]) {
+                                    // Encontra a célula correspondente na posição não preenchida
+                                    game.canvas.getObjects().forEach((obj) => {
+                                        if (obj.cellName && obj.row === row && obj.column === (column + i)) {
+                                            nextEmptyCell = obj;
+                                        }
+                                    });
+                                }
+                                i++;
+                            }
+                        } else { // vertical
+                            // Procura a próxima célula vazia na vertical
+                            while (i < nextWord.word.length && !nextEmptyCell) {
+                                if (game.userInput[row + i][column] !== game.board[row + i][column]) {
+                                    // Encontra a célula correspondente na posição não preenchida
+                                    game.canvas.getObjects().forEach((obj) => {
+                                        if (obj.cellName && obj.row === (row + i) && obj.column === column) {
+                                            nextEmptyCell = obj;
+                                        }
+                                    });
+                                }
+                                i++;
+                            }
+                        }
+                        
+                        // Se encontrou uma célula vazia, usa ela em vez da célula inicial
+                        if (nextEmptyCell) {
+                            startingCell = nextEmptyCell;
+                        }
+                    }
+                    
                     return startingCell;
                 }
             }
