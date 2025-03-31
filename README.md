@@ -97,7 +97,7 @@ Cruzy é uma plataforma web para jogar palavras cruzadas online com temas person
    ```
    
 9. Após iniciar o servidor, acesse o aplicativo em seu navegador:
-[http://localhost:3000](http://localhost:3000)
+[http://localhost:33322](http://localhost:33322)
 
 ## 📁 Estrutura do Projeto
 
