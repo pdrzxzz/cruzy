@@ -2,9 +2,9 @@
 
 ![Cruzy Logo](public/stylesheets/images/logo.png)
 
-Utilize inteligência artificial para desenvolver suas próprias cruzadas e explorar uma ampla gama de opções personalizadas para você.
+Disponível em: https://mint-ample-dodo.ngrok-free.app/
 
-Aprimore suas habilidades e descubra como a combinação entre criatividade e tecnologia pode tornar cada desafio único e envolvente.
+Utilize inteligência artificial para desenvolver suas próprias cruzadas e explorar uma ampla gama de opções personalizadas para você.  
 
 ## 📋 Índice
 
