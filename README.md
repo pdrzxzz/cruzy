@@ -47,7 +47,7 @@ Cruzy é uma plataforma web para jogar palavras cruzadas online com temas person
 - Jest
 - Render
 
-## ✨ Funcionalidades
+## Funcionalidades ✨
 
 - Cadastro e login de usuários
 - Jogos de palavras cruzadas interativos
