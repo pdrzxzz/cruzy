@@ -23,8 +23,8 @@ Cruzy é uma plataforma web para jogar palavras cruzadas online com temas person
 
 ### Equipe de Desenvolvimento
 
+- **Emanuel Pedroza** @pdrzxzz (Líder da Equipe)
 - **Bianca Paes** @bianca-bpas
-- **Emanuel Pedroza** @pdrzxzz
 - **João Pontes** @pontesjpp
 - **Letícia Andrade** @andrxmedy
 - **Luma Rios** @lumarf
