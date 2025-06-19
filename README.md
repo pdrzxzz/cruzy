@@ -1,36 +1,36 @@
-# Cruzy - Palavras Cruzadas Online
+# Cruzy - Online Crossword Puzzles
 
 ![Cruzy Logo](public/stylesheets/images/logo.png)
 
-Disponível em: https://mint-ample-dodo.ngrok-free.app/
+Available at: https://mint-ample-dodo.ngrok-free.app/
 
-Utilize inteligência artificial para desenvolver suas próprias cruzadas e explorar uma ampla gama de opções personalizadas para você.  
+Use artificial intelligence to develop your own crosswords and explore a wide range of customizable options for you.
 
-## 📋 Índice
+## 📋 Index
 
-- [Sobre o Projeto](#sobre-o-projeto)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Funcionalidades](#funcionalidades)
-- [Como Executar o Projeto Localmente](#como-executar-o-projeto-localmente)
-- [Estrutura do Projeto](#estrutura-do-projeto)
-- [Arquitetura do Código](#arquitetura-do-código)
-- [Como Contribuir](#como-contribuir)
-- [Licença](#licença)
+- [About the Project](#about-the-project)
+- [Technologies Used](#technologies-used)
+- [Features](#features)
+- [How to Run the Project Locally](#how-to-run-the-project-locally)
+- [Project Structure](#project-structure)
+- [Code Architecture](#code-architecture)
+- [How to Contribute](#how-to-contribute)
+- [License](#license)
 
-## Sobre o Projeto
+## About the Project
 
-Cruzy é uma plataforma web para jogar palavras cruzadas online com temas personalizados por IA. Este projeto foi desenvolvido com Node.js e oferece uma experiência interativa para os amantes de jogos de palavras. Com a inteligência artificial, é possível jogar em diversos níveis de dificuldade e temas variados, tornando o jogo divertido e educativo.
+Cruzy is a web platform for playing online crossword puzzles with AI-customized themes. This project was developed with Node.js and offers an interactive experience for word game lovers. With artificial intelligence, it's possible to play at various difficulty levels and diverse themes, making the game fun and educational.
 
-### Equipe de Desenvolvimento
+### Development Team
 
-- **Emanuel Pedroza** @pdrzxzz (Líder da Equipe)
+- **Emanuel Pedroza** @pdrzxzz (Team Leader)
 - **Bianca Paes** @bianca-bpas
 - **João Pontes** @pontesjpp
 - **Letícia Andrade** @andrxmedy
 - **Luma Rios** @lumarf
 - **Vitor Lacerda**
 
-## Tecnologias Utilizadas
+## Technologies Used
 
 - Node.js
 - Express.js
@@ -47,150 +47,140 @@ Cruzy é uma plataforma web para jogar palavras cruzadas online com temas person
 - Jest
 - Render
 
-## Funcionalidades
+## Features
 
-- Cadastro e login de usuários
-- Jogos de palavras cruzadas interativos
-- Tema personalizado com IA
-- Modo de Jogo SinglePlayer com histórico de salas
-- Interface responsiva para desktop e dispositivos móveis
+- User registration and login
+- Interactive crossword puzzles
+- AI-customized themes
+- SinglePlayer Game Mode with room history
+- Responsive interface for desktop and mobile devices
 
-## Como Executar o Projeto Localmente
+## How to Run the Project Locally
 
-1. Certifique-se de ter o Node.js instalado em seu computador
+1. Make sure you have Node.js installed on your computer
    ```bash
    node --version
    ```
 
-2. Clone o repositório do projeto
+2. Clone the project repository
    ```bash
    git clone https://github.com/pdrzxzz/Projeto-Cruzy.git
    ```
 
-3. Acesse o diretório do projeto
+3. Access the project directory
    ```bash
    cd Projeto-Cruzy
    ```
 
-4. Instale todas as dependências necessárias
+4. Install all required dependencies
    ```bash
    npm install
    ```
 
-5. Instale o Nodemon globalmente (para desenvolvimento)
+5. Install Nodemon globally (for development)
    ```bash
    npm install nodemon -g
    ```
 
-6. Solicite as variáveis de ambiente necessárias (conforme arquivo .env.example) aos criadores do projeto.
+6. Request the necessary environment variables (as per the .env.example file) from the project creators.
 
-7. Crie um arquivo .env na raiz do diretório e preencha com as informações recebidas.
+7. Create a .env file in the root directory and fill it with the received information.
    
-8. Execute o script.
+8. Run the script.
    ```bash
    npm run start
    ```
-   *Caso não funcione você pode tentar:*
+   *If it doesn't work, you can try:*
    ```bash
    nodemon app.js
    ```
    
-9. Após iniciar o servidor, acesse o aplicativo em seu navegador:
+9. After starting the server, access the application in your browser:
 [http://localhost:33322](http://localhost:33322)
 
-## Estrutura do Projeto
+## Project Structure
 
 ```
 Projeto-Cruzy/
 ├── config/
-├── controllers/         # Controladores da aplicação
-├── models/              # Modelos de dados (MongoDB)
-├── public/              # Arquivos estáticos
-│   ├── css/             # Estilos CSS
-│   ├── js/              # Scripts JavaScript do cliente
-│   └── images/          # Imagens e mídias
-├── routes/              # Rotas da aplicação
-├── views/               # Templates Pug
-│   ├── layouts/         # Layouts base
-│   ├── partials/        # Componentes parciais
-│   ├── rooms/           # Views relacionadas às salas
-│   └── users/           # Views relacionadas aos usuários
-├── middleware.js        # Funções de middleware
-├── app.js               # Arquivo principal da aplicação
-├── package.json         # Configurações e dependências
-└── README.md            # Documentação do projeto
+├── controllers/         # Application controllers
+├── models/              # Data models (MongoDB)
+├── public/              # Static files
+│   ├── css/             # CSS styles
+│   ├── js/              # Client-side JavaScript scripts
+│   └── images/          # Images and media
+├── routes/              # Application routes
+├── views/               # Pug templates
+│   ├── layouts/         # Base layouts
+│   ├── partials/        # Partial components
+│   ├── rooms/           # Room-related views
+│   └── users/           # User-related views
+├── middleware.js        # Middleware functions
+├── app.js               # Main application file
+├── package.json         # Configurations and dependencies
+└── README.md            # Project documentation
 ```
 
-## Arquitetura do Código
+## Code Architecture
 
 ### Backend
 
-#### Estrutura MVC
-O projeto segue uma arquitetura Model-View-Controller (MVC):
-- **Models**: Define os esquemas e modelos de dados usando Mongoose para MongoDB
-- **Views**: Renderiza as interfaces usando templates Pug
-- **Controllers**: Contém a lógica de negócios e manipulação de dados
+#### MVC Structure
+The project follows a Model-View-Controller (MVC) architecture:
+- **Models**: Defines data schemas and models using Mongoose for MongoDB
+- **Views**: Renders interfaces using Pug templates
+- **Controllers**: Contains business logic and data handling
 
-#### Principais Componentes
+#### Main Components
 
-1. **app.js**: Ponto de entrada da aplicação
-   - Configura middleware, rotas e conexão com MongoDB
-   - Inicializa o mecanismo de autenticação usando Passport.js
+1. **app.js**: Application entry point
+   - Configures middleware, routes, and MongoDB connection
+   - Initializes authentication mechanism using Passport.js
 
 2. **models/**
-   - **user.js**: Define o modelo de usuário e gerencia autenticação
-   - **room.js**: Gerencia salas de jogo com esquema para tema, palavras e configurações
+   - **user.js**: Defines the user model and manages authentication
+   - **room.js**: Manages game rooms with schema for theme, words, and settings
 
 3. **controllers/**
-   - **users.js**: Gerencia login, registro e autenticação
-   - **rooms.js**: Manipula criação, exclusão e acesso às salas
-   - **index.js**: Controla rotas principais
+   - **users.js**: Manages login, registration, and authentication
+   - **rooms.js**: Handles creation, deletion, and access to rooms
+   - **index.js**: Controls main routes
 
 4. **routes/**
-   - Define e organiza os endpoints da API e rotas da aplicação
+   - Defines and organizes API endpoints and application routes
 
 ### Frontend
 
 1. **public/js/**
-   - **Game.js**: Classe principal que gerencia a lógica do jogo
-   - **createCrossword.js**: Algoritmo para criação do tabuleiro de palavras cruzadas
-   - **displayGame.js**: Renderiza o jogo usando Fabric.js para canvas interativo
+   - **Game.js**: Main class that manages game logic
+   - **createCrossword.js**: Algorithm for creating the crossword puzzle board
+   - **displayGame.js**: Renders the game using Fabric.js for interactive canvas
 
 2. **views/**
-   - Templates Pug organizados por funcionalidade
-   - Sistema de layouts e partials para reutilização de código
+   - Pug templates organized by functionality
+   - Layout system and partials for code reuse
 
-### Integração com IA
+### AI Integration
 
-- **controllers/rooms.js**: Integra com a API da OpenAI para gerar palavras cruzadas com temas personalizados
-- O sistema envia prompts específicos para a API e processa as respostas para criar os jogos
+- **controllers/rooms.js**: Integrates with the OpenAI API to generate crossword puzzles with customized themes
+- The system sends specific prompts to the API and processes responses to create games
 
-### Sistema de Autenticação
+### Authentication System
 
-- Implementado usando Passport.js com estratégia local
-- Gerenciamento de sessões via MongoDB para persistência
+- Implemented using Passport.js with local strategy
+- Session management via MongoDB for persistence
 
-### Fluxo de Dados
+### Data Flow
 
-1. Usuário se autentica → passport-local valida
-2. Usuário cria uma sala → OpenAI gera palavras e dicas
-3. Sistema gera o tabuleiro → algoritmo de palavras cruzadas otimiza layout
-4. Usuário joga → interação via Fabric.js e validação em tempo real
+1. User authenticates → passport-local validates
+2. User creates a room → OpenAI generates words and clues
+3. System generates the board → crossword algorithm optimizes layout
+4. User plays → interaction via Fabric.js and real-time validation
 
-## Como Contribuir
+## Documentation
 
-1. Faça um fork do projeto
-2. Crie uma nova branch com a sua feature: `git checkout -b minha-feature`
-3. Commit suas mudanças: `git commit -m 'feat: Minha nova feature'`
-4. Push para a branch: `git push origin minha-feature`
-5. Abra um Pull Request
+For more details, see our [Official Documentation](https://docs.google.com/document/d/1JyKNSJcvwg3tDUKqbK3uDbGl7hSoqT--c2qsRwEY06o/edit?usp=drive_link).
 
-## Documentação
+## License
 
-Para mais detalhes, consulte nossa [Documentação Oficial](https://docs.google.com/document/d/1JyKNSJcvwg3tDUKqbK3uDbGl7hSoqT--c2qsRwEY06o/edit?usp=drive_link).
-
-## Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
-
+This project is under the MIT license.
